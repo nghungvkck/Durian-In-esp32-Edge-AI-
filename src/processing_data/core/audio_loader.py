@@ -2,25 +2,26 @@
 file load audio from computer
 định dangtj wav, mp3, m4a, flac, ogg
 """
-import librosa
-from pathlib import Path
+import librosa                # thư viện hỗ trợ các thao tác xử lý âm thanh, bao gồm việc tải và phân tích các tệp âm thanh
+from pathlib import Path      # thư viện hỗ trợ thao tác với đường dẫn tệp và thư mục
 
-AUDIO_EXTENSIONS = ('.wav', '.mp3', '.m4a', '.flac', '.ogg')
+AUDIO_EXTENSIONS = ('.wav', '.mp3', '.m4a', '.flac', '.ogg')  # các dịnh dạng âm thanh được hỗ trợ
 
 
 class AudioLoader:
     """Load audio files."""
     
     def __init__(self, sample_rate=None, mono=True):
-        self.sample_rate = sample_rate
-        self.mono = mono
+        self.sample_rate = sample_rate    # tần số lấy mẫu ( sample rate) của âm thanh 
+        self.mono = mono                  # nếu mono=True, âm thanh sẽ được chuyển đổi thành tín hiệu đơn kênh (mono) khi tải, 
+                                          # nếu mono=False, âm thanh sẽ được giữ nguyên kênh (stereo hoặc nhiều kênh)
     
     def load(self, filepath):
         """Load 1 audio file. Returns (data, sr)."""
-        data, sr = librosa.load(filepath, sr=self.sample_rate, mono=self.mono)
-        return data, sr
+        data, sr = librosa.load(filepath, sr=self.sample_rate, mono=self.mono)  # load audio file
+        return data, sr                                                         # trả về dữ liệu âm thanh và tần số lấy mẫu của tệp âm thanh đã tải
     
-    def get_files(self, folder):
+    def get_files(self, folder):                                                # hàm lấy danh sách các tệp âm thanh trong thư mục 
         """Get list of audio files in folder (recursive)."""
         folder = Path(folder)
         files = []
