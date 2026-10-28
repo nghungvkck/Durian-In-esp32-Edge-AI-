@@ -91,25 +91,42 @@ class load_Data:
         factor = np.random.uniform(*factor_range)
         return mel_spec * factor
     
-    def augemnt_chin_data (self, X_chin, target_count= None):
-        if target_count is None:
-            target_count = len(X_chin) * 5
-            
+    def augement_data(self, X, y, random_state=42):
+        """Làm giàu nhãn ít mẫu để cân bằng hai nhãn, trả về (X, y).
+
+        X có dạng (N, H, W) hoặc (N, 1, H, W). Chỉ dùng cho tập train.
+        """
+        X, y = np.asarray(X), np.asarray(y)
+        if X.ndim not in (3, 4) or (X.ndim == 4 and X.shape[1] != 1):
+            raise ValueError("X phải có dạng (N, H, W) hoặc (N, 1, H, W).")
+        if y.ndim != 1 or len(X) != len(y):
+            raise ValueError("y phải là mảng 1 chiều có cùng số mẫu với X.")
+        labels, counts = np.unique(y, return_counts=True)
+        if len(labels) != 2:
+            raise ValueError("Cần đủ hai nhãn để cân bằng dữ liệu.")
+        target_count = int(counts.max() - counts.min())
+        if target_count == 0:
+            return X.copy(), y.copy()
+
+        minority_label = labels[np.argmin(counts)]
+        X_minority = X[y == minority_label]
         X_aug = []
-        current_count = len(X_chin)
+        current_count = len(X_minority)
         
         while len(X_aug) < target_count:
             idx = np.random.randint(0, current_count)
-            x = X_chin[idx].copy()
+            x = X_minority[idx].copy()
+            if X.ndim == 4:
+                x = x[0]  # Bỏ chiều kênh để time_shift dịch đúng trục thời gian.
             
             # Randomly choose an augmentation method
             aug_type = np.random.choice(['noise', 'shift', 'brightness', 'combined'])
             
             if aug_type == 'noise':
                 x = self.add_noise(x, noise_factor = np.random.uniform(0.001, 0.01))
-            if aug_type == 'shift':
+            elif aug_type == 'shift':
                 x = self.time_shift(x, shift_max = np.random.randint(5,15))
-            if aug_type == 'brightness':
+            elif aug_type == 'brightness':
                 x = self.adjust_brightness(x, factor_range = (0.8, 1.2))
             else:
                 x= self.add_noise(x, 0.001)
@@ -117,10 +134,18 @@ class load_Data:
                     x = self.time_shift(x, 10)
                 if np.random.rand() > 0.5:
                     x = self.adjust_brightness(x)
+            if X.ndim == 4:
+                x = x[np.newaxis, :, :]
             X_aug.append(x)
-        return np.array(X_aug)
+
+        X_aug = np.asarray(X_aug, dtype=X.dtype)
+        y_aug = np.full(target_count, minority_label, dtype=y.dtype)
+        X_balanced = np.concatenate([X, X_aug], axis=0)
+        y_balanced = np.concatenate([y, y_aug], axis=0)
+        indices = np.random.default_rng(random_state).permutation(len(y_balanced))
+        return X_balanced[indices], y_balanced[indices]
             
-    
+    # hàm resize dữ liệu về kích thước 128 x128
     def resize_spectrograms(self, X, target_size=(N_MELS, N_MELS)):
         X_resized = []
         for x in X:
@@ -133,11 +158,58 @@ class load_Data:
                 X_resized.append(x_resized)
             else:
                 raise ValueError(f"Unexpected shape {x.shape} for spectrogram.")
-        return np.array(X_resized)
-                
+        X_resized = np.array(X_resized) 
+        X_resized = X_resized[:, np.newaxis, :, :]
+        return X_resized
+
+    def split_data(self, X, y, random_state=42):
+        """Chia dữ liệu train/val/test theo tỷ lệ 70/15/15, giữ tỷ lệ nhãn.
+
+        Gọi trước khi augmentation; chỉ tăng cường dữ liệu của tập train.
+        Trả về X_train, X_val, X_test, y_train, y_val, y_test.
+        """
+        X_train, X_temp, y_train, y_temp = train_test_split(
+            X, y, test_size=0.30, random_state=random_state, stratify=y
+        )
+        X_val, X_test, y_val, y_test = train_test_split(
+            X_temp, y_temp, test_size=0.50,
+            random_state=random_state, stratify=y_temp
+        )
+        return X_train, X_val, X_test, y_train, y_val, y_test
 
 if __name__ == "__main__":
     base_path = BASE_PATH
-    data_loader = load_Data(base_path)
-    data_loader.load_data(base_path)
     
+    # Load data
+    data_loader = load_Data(base_path)
+    X, y = data_loader.load_data(base_path)
+
+    # Resize spectrogram
+    X_resized = data_loader.resize_spectrograms(X)
+
+    # Chia dữ liệu train/val/test theo tỷ lệ 70/15/15
+    X_train, X_val, X_test, y_train, y_val, y_test = (
+        data_loader.split_data(X_resized, y)
+    )
+
+    print("\n SPLIT COMPLETE!")
+    print(f"   - Train: {len(X_train)} samples | X: {X_train.shape}, y: {y_train.shape}")
+    print(f"   - Val:   {len(X_val)} samples | X: {X_val.shape}, y: {y_val.shape}")
+    print(f"   - Test:  {len(X_test)} samples | X: {X_test.shape}, y: {y_test.shape}")
+
+    # Tự làm giàu nhãn ít mẫu hơn để cân bằng hai nhãn trong tập train.
+    print(f"\n   - Train class distribution before augmentation: {Counter(y_train)}")
+    train_count_before = len(X_train)
+    X_train, y_train = data_loader.augement_data(X_train, y_train)
+
+    print("\n AUGMENTATION COMPLETE!")
+    print(f"   - Added samples: {len(X_train) - train_count_before}")
+    print(f"   - Train: X: {X_train.shape}, y: {y_train.shape}")
+    print(f"   - Train class distribution: {Counter(y_train)}")
+
+    print("X_resized shape:", X_resized.shape)
+    print("X_resized dtype:", X_resized.dtype)
+    print("X_resized min:", X_resized.min())
+    print("X_resized max:", X_resized.max())
+
+    print(X_resized)
