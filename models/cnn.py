@@ -86,6 +86,16 @@ class MelCNN(nn.Module):
     
     def forward(self, x):
         features = self.encoder(x)
-        features = features.view(features)  # Flatten the tensor
+        features = features.flatten(start_dim = 1) # Flatten the tensor
         output = self.classifier(features)
         return output
+
+
+def loss_optimizer(model):
+    """Khởi tạo hàm loss, optimizer và scheduler cho mô hình."""
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(model.parameters(), lr=0.001, weight_decay=1e-4)
+    scheduler = optim.lr_scheduler.ReduceLROnPlateau(
+        optimizer, mode='min', factor=0.5, patience=10,
+    )
+    return criterion, optimizer, scheduler
