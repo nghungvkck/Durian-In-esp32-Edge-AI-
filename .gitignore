@@ -68,6 +68,7 @@ service-account*.json
 *.mp3
 *.m4a
 *.flac
+*.png
 
 # ============================================================
 # MODEL WEIGHTS
