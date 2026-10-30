@@ -1,0 +1,374 @@
+{
+  "date": "2026-10-29",
+  "timezone": "Asia/Bangkok",
+  "scope": "freecad_control only",
+  "removed_files": [
+    {
+      "path": "_purge_completed.py",
+      "bytes": 849
+    },
+    {
+      "path": "add_ics43434.py",
+      "bytes": 9210
+    },
+    {
+      "path": "add_three_button_module.py",
+      "bytes": 6229
+    },
+    {
+      "path": "archive_vertical_preview.py",
+      "bytes": 500
+    },
+    {
+      "path": "archive_wiring_trials.py",
+      "bytes": 561
+    },
+    {
+      "path": "build_enclosure.py",
+      "bytes": 15081
+    },
+    {
+      "path": "build_side_usb_bottom_switch.py",
+      "bytes": 18624
+    },
+    {
+      "path": "build_vertical_clamshell.py",
+      "bytes": 10068
+    },
+    {
+      "path": "build_wired_clamshell.py",
+      "bytes": 18108
+    },
+    {
+      "path": "center_front_mount_holes.py",
+      "bytes": 4886
+    },
+    {
+      "path": "check_side_visibility.py",
+      "bytes": 155
+    },
+    {
+      "path": "check_upright_volumes.py",
+      "bytes": 266
+    },
+    {
+      "path": "clean_upright_preview.py",
+      "bytes": 552
+    },
+    {
+      "path": "drill_top_mount_holes.py",
+      "bytes": 4892
+    },
+    {
+      "path": "ensure_upright_shell_visible.py",
+      "bytes": 392
+    },
+    {
+      "path": "export_face_holes.py",
+      "bytes": 549
+    },
+    {
+      "path": "export_mount_holes.py",
+      "bytes": 1291
+    },
+    {
+      "path": "export_solid_top.py",
+      "bytes": 2563
+    },
+    {
+      "path": "export_three_buttons.py",
+      "bytes": 1900
+    },
+    {
+      "path": "export_top_buttons.py",
+      "bytes": 1578
+    },
+    {
+      "path": "export_vertical_sd.py",
+      "bytes": 2190
+    },
+    {
+      "path": "extend_solid_top.py",
+      "bytes": 2730
+    },
+    {
+      "path": "finalize_wired_clamshell.py",
+      "bytes": 3396
+    },
+    {
+      "path": "find_keeper_position.py",
+      "bytes": 680
+    },
+    {
+      "path": "finish_ics43434.py",
+      "bytes": 3006
+    },
+    {
+      "path": "finish_side_harness.py",
+      "bytes": 973
+    },
+    {
+      "path": "finish_side_revision.py",
+      "bytes": 668
+    },
+    {
+      "path": "inspect_charge_port.py",
+      "bytes": 358
+    },
+    {
+      "path": "inspect_geometry.py",
+      "bytes": 548
+    },
+    {
+      "path": "inspect_pad_centers.py",
+      "bytes": 312
+    },
+    {
+      "path": "inspect_wire_contact.py",
+      "bytes": 164
+    },
+    {
+      "path": "iterations/Enclosure_Cylinder_v1/Cylinder_Enclosure.FCStd",
+      "bytes": 1021158
+    },
+    {
+      "path": "iterations/Enclosure_Cylinder_v1/Cylinder_Exploded.FCStd",
+      "bytes": 1333356
+    },
+    {
+      "path": "iterations/Enclosure_Cylinder_v1/assembly_inside.png",
+      "bytes": 119815
+    },
+    {
+      "path": "iterations/Enclosure_Cylinder_v1/exploded.png",
+      "bytes": 171423
+    },
+    {
+      "path": "iterations/Enclosure_Cylinder_v1/parameters.json",
+      "bytes": 395
+    },
+    {
+      "path": "iterations/Enclosure_Cylinder_v1/validation.json",
+      "bytes": 1322
+    },
+    {
+      "path": "iterations/Enclosure_Cylinder_v2/Cylinder_Enclosure.FCStd",
+      "bytes": 1021337
+    },
+    {
+      "path": "iterations/Enclosure_Cylinder_v2/Cylinder_Exploded.FCStd",
+      "bytes": 1335166
+    },
+    {
+      "path": "iterations/Enclosure_Cylinder_v2/assembly_inside.png",
+      "bytes": 120807
+    },
+    {
+      "path": "iterations/Enclosure_Cylinder_v2/exploded.png",
+      "bytes": 176373
+    },
+    {
+      "path": "iterations/Enclosure_Cylinder_v2/parameters.json",
+      "bytes": 395
+    },
+    {
+      "path": "iterations/Enclosure_Cylinder_v2/validation.json",
+      "bytes": 1216
+    },
+    {
+      "path": "iterations/Enclosure_Wired_Clamshell_2/STL/Rear_half.stl",
+      "bytes": 438384
+    },
+    {
+      "path": "iterations/Enclosure_Wired_Clamshell_2/Vertical_Clamshell.FCStd",
+      "bytes": 1152280
+    },
+    {
+      "path": "iterations/Enclosure_Wired_Clamshell_2/charge_and_code_access.png",
+      "bytes": 62347
+    },
+    {
+      "path": "iterations/Enclosure_Wired_Clamshell_2/closed_transparent.png",
+      "bytes": 253877
+    },
+    {
+      "path": "iterations/Enclosure_Wired_Clamshell_2/rear_with_upright_stack.png",
+      "bytes": 133120
+    },
+    {
+      "path": "iterations/Enclosure_Wired_Clamshell_20261029_184723/Vertical_Clamshell.FCStd",
+      "bytes": 1151831
+    },
+    {
+      "path": "iterations/Enclosure_Wired_Clamshell_20261029_184723/Vertical_Clamshell_Open.FCStd",
+      "bytes": 1475422
+    },
+    {
+      "path": "iterations/Enclosure_Wired_Clamshell_20261029_184723/charge_and_code_access.png",
+      "bytes": 62821
+    },
+    {
+      "path": "iterations/Enclosure_Wired_Clamshell_20261029_184723/closed_transparent.png",
+      "bytes": 253518
+    },
+    {
+      "path": "iterations/Enclosure_Wired_Clamshell_20261029_184723/rear_with_upright_stack.png",
+      "bytes": 125587
+    },
+    {
+      "path": "iterations/Enclosure_Wired_Clamshell_20261029_184723/two_halves_open.png",
+      "bytes": 154391
+    },
+    {
+      "path": "iterations/Enclosure_Wired_Clamshell_20261029_184723/validation.json",
+      "bytes": 2187
+    },
+    {
+      "path": "iterations/Enclosure_Wired_Clamshell_20261029_184723/wire_netlist.json",
+      "bytes": 2423
+    },
+    {
+      "path": "iterations/Vertical_before_wire_chase/STL/Front_half.stl",
+      "bytes": 551384
+    },
+    {
+      "path": "iterations/Vertical_before_wire_chase/STL/Rear_half.stl",
+      "bytes": 361884
+    },
+    {
+      "path": "iterations/Vertical_before_wire_chase/Two_shell_halves.step",
+      "bytes": 705559
+    },
+    {
+      "path": "iterations/Vertical_before_wire_chase/Vertical_Clamshell.FCStd",
+      "bytes": 1071337
+    },
+    {
+      "path": "iterations/Vertical_before_wire_chase/Vertical_Clamshell_Open.FCStd",
+      "bytes": 1384967
+    },
+    {
+      "path": "iterations/Vertical_before_wire_chase/closed_transparent.png",
+      "bytes": 198840
+    },
+    {
+      "path": "iterations/Vertical_before_wire_chase/rear_with_upright_stack.png",
+      "bytes": 57485
+    },
+    {
+      "path": "iterations/Vertical_before_wire_chase/two_halves_open.png",
+      "bytes": 78385
+    },
+    {
+      "path": "iterations/Vertical_before_wire_chase/validation.json",
+      "bytes": 1907
+    },
+    {
+      "path": "last_build.json",
+      "bytes": 1333
+    },
+    {
+      "path": "last_vertical_build.json",
+      "bytes": 2323
+    },
+    {
+      "path": "locate_interference.py",
+      "bytes": 345
+    },
+    {
+      "path": "measure_components.py",
+      "bytes": 740
+    },
+    {
+      "path": "measurements.json",
+      "bytes": 4725
+    },
+    {
+      "path": "move_holes_off_seam.py",
+      "bytes": 4937
+    },
+    {
+      "path": "raise_buttons_and_mount.py",
+      "bytes": 4732
+    },
+    {
+      "path": "repair_upright_rear.py",
+      "bytes": 3113
+    },
+    {
+      "path": "restore_side_views.py",
+      "bytes": 1614
+    },
+    {
+      "path": "revise_vertical_sd.py",
+      "bytes": 8793
+    },
+    {
+      "path": "show_charge_code_ports.py",
+      "bytes": 836
+    },
+    {
+      "path": "show_microphone_in_cylinder.py",
+      "bytes": 1925
+    },
+    {
+      "path": "show_mount_holes_left.py",
+      "bytes": 709
+    },
+    {
+      "path": "show_side_and_bottom.py",
+      "bytes": 1221
+    },
+    {
+      "path": "show_upright_microphone.py",
+      "bytes": 1053
+    },
+    {
+      "path": "stand_microphone_upright.py",
+      "bytes": 7276
+    },
+    {
+      "path": "validate_solid_top.py",
+      "bytes": 2750
+    },
+    {
+      "path": "validate_three_buttons.py",
+      "bytes": 1619
+    },
+    {
+      "path": "validate_top_buttons.py",
+      "bytes": 2134
+    },
+    {
+      "path": "validate_vertical_sd.py",
+      "bytes": 2550
+    },
+    {
+      "path": "verify_exports.py",
+      "bytes": 964
+    }
+  ],
+  "removed_file_count": 86,
+  "removed_directories": [
+    "iterations"
+  ],
+  "removed_bytes": 15151670,
+  "retained_entries": [
+    ".gitignore",
+    "Connect.FCMacro",
+    "README.md",
+    "cleanup_summary.json",
+    "export_center_holes.py",
+    "inbox",
+    "inspect_connection.py",
+    "outbox",
+    "resume_latest.py",
+    "send.py",
+    "show_center_holes.py",
+    "status.json",
+    "validate_latest.py"
+  ],
+  "outside_scope_untouched": true,
+  "queue_cleanup": "Completed historical request/response pairs removed between GUI ticks. Current cleanup pair retained; future bridge commands create new pairs.",
+  "verification": "Read-only validation of accepted FCStd and both STLs passed; retained Python scripts compiled; exporter not executed."
+}

@@ -12,7 +12,7 @@ venv/
 .venv/
 env/
 3D/
-freecad_control/
+
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/

@@ -1,0 +1,5 @@
+inbox/
+outbox/
+status.json
+status.tmp
+__pycache__/

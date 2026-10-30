@@ -1,0 +1,58 @@
+"""Local file bridge. Run in FreeCAD; close FreeCAD to disconnect."""
+import json
+import os
+import time
+import traceback
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide import QtCore
+
+
+class LocalControl:
+    def __init__(self):
+        self.root = Path(r"D:\Hoc_tap_Sinh_Vien\Kien_thu_AI\Project\Duration_edge_ai\freecad_control")
+        self.inbox = self.root / "inbox"
+        self.outbox = self.root / "outbox"
+        self.inbox.mkdir(exist_ok=True)
+        self.outbox.mkdir(exist_ok=True)
+        self.namespace = {"App": App, "Gui": Gui, "__name__": "__freecad_control__"}
+        self.timer = QtCore.QTimer(Gui.getMainWindow())
+        self.timer.timeout.connect(self.tick)
+        self.timer.start(500)
+        self.tick()
+
+    def write_json(self, path, value):
+        temporary = path.with_suffix(".tmp")
+        temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2), encoding="utf-8")
+        os.replace(str(temporary), str(path))
+
+    def tick(self):
+        self.write_json(self.root / "status.json", {
+            "connected": True,
+            "time": time.time(),
+            "pid": os.getpid(),
+            "version": list(App.Version()),
+            "documents": list(App.listDocuments()),
+        })
+        for request in sorted(self.inbox.glob("*.json")):
+            destination = self.outbox / request.name
+            if destination.exists():
+                continue
+            try:
+                command = json.loads(request.read_text(encoding="utf-8"))
+                self.namespace["result"] = None
+                exec(compile(command["code"], str(request), "exec"), self.namespace)
+                response = {"ok": True, "result": self.namespace.get("result")}
+                # Confirm that the result can be returned as JSON.
+                json.dumps(response)
+            except Exception:
+                response = {"ok": False, "error": traceback.format_exc()}
+            self.write_json(destination, response)
+
+
+if hasattr(App, "_local_codex_control"):
+    App._local_codex_control.timer.stop()
+App._local_codex_control = LocalControl()
+App.Console.PrintMessage("Local FreeCAD control connected. Close FreeCAD to disconnect.\n")
