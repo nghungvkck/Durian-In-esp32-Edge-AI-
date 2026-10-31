@@ -35,16 +35,14 @@ def load_data(data_dir=cfg.DATA_TRAIN_DIR, batch_size=cfg.BATCH_SIZE, seed=cfg.S
 
 def load_student(device=None, model_path=cfg.STUDENT_MODEL_PATH):
     """Nạp MelStudent từ pth/model_Student.pth và trả về model trên device."""
-    device = torch.device(device if device is not None else
-                          ("cuda" if torch.cuda.is_available() else "cpu"))
+    device = torch.device(device if device is not None else ("cuda" if torch.cuda.is_available() else "cpu"))
     model_path = Path(model_path)
     if not model_path.is_absolute():
         model_path = cfg.PROJECT_ROOT / model_path
     if not model_path.is_file():
         raise FileNotFoundError(f"Không tìm thấy trọng số Student: {model_path}")
-    student = MelStudent(
-        num_classes=cfg.NUM_CLASSES, dropout_rate=cfg.STUDENT_DROPOUT_RATE,
-    ).to(device)
+    
+    student = MelStudent(num_classes=cfg.NUM_CLASSES, dropout_rate=cfg.STUDENT_DROPOUT_RATE,).to(device)
     student.load_state_dict(torch.load(model_path, map_location=device, weights_only=True))
     student.eval()
     print(f"Đã nạp Student: {model_path.resolve()}")

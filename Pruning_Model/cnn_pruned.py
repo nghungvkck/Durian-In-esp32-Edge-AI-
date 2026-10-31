@@ -85,6 +85,7 @@ class StudentPruner:
                 bias=classifier.bias is not None,
                 device=classifier.weight.device, dtype=classifier.weight.dtype,
             )
+            
             new_classifier.weight.copy_(classifier.weight[:, keep[-1]])
             new_classifier.weight.requires_grad_(classifier.weight.requires_grad)
             if classifier.bias is not None:

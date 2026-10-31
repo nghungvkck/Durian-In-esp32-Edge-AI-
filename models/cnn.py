@@ -91,6 +91,7 @@ class MelCNN(nn.Module):
         return output
 
 class Loss_OP:
+    @staticmethod
     def loss_optimizer(model):
         """Khởi tạo hàm loss, optimizer và scheduler cho mô hình."""
         criterion = nn.CrossEntropyLoss()

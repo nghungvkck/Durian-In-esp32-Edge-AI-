@@ -18,12 +18,12 @@ if __package__:
     from .DataLoader import DataLoader
     from .evaluate import ModelEvaluator
     from .load_Data import load_Data
-    from .cnn import MelCNN, loss_optimizer
+    from .cnn import MelCNN, Loss_OP
 else:
     from DataLoader import DataLoader
     from evaluate import ModelEvaluator
     from load_Data import load_Data
-    from cnn import MelCNN, loss_optimizer
+    from cnn import MelCNN, Loss_OP
 
 from config.config_model_cnn import (
     BATCH_SIZE,
@@ -180,7 +180,7 @@ def main(model_path=MODEL_PATH, evaluate_only=False, data_dir=None):
     else:
         total_params = sum(parameter.numel() for parameter in model.parameters())
         print(f"CNN parameters: {total_params:,}")
-        criterion, optimizer, scheduler = loss_optimizer(model)
+        criterion, optimizer, scheduler = Loss_OP.loss_optimizer(model)
         history, best_val_acc = train_model(
             model, data.train_loader, data.val_loader,
             criterion, optimizer, scheduler, device,
