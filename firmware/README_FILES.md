@@ -15,6 +15,8 @@ firmware/
 ├── main/
 │   ├── CMakeLists.txt
 │   ├── firmware.cpp
+│   ├── ics43434.h
+│   ├── ics43434.cpp
 │   └── idf_component.yml
 ├── models/
 │   └── durian_student_pruned.espdl
@@ -86,13 +88,19 @@ Luồng hiện tại:
 
 File này hiện chưa đọc micro, tính Mel-Spectrogram hoặc phân loại âm thanh thu trực tiếp. Đó là các chức năng cần bổ sung khi triển khai luồng suy luận thực tế.
 
+### `main/ics43434.h` và `main/ics43434.cpp`
+
+Class `Ics43434` dùng driver I2S standard của ESP-IDF 5.3 để thu âm mono từ ICS-43434. Header khai báo cấu hình chân, tần số lấy mẫu và API `begin()`, `read()`, `end()`, `is_started()`, `to_float()`; file `.cpp` chứa phần cài đặt và quản lý tài nguyên I2S/DMA.
+
+Mặc định 16 kHz, dữ liệu PCM 24 bit có dấu lưu trong `int32_t`. Chân BCLK/WS/DIN phải truyền qua `Config`. Class chưa được gọi trong `firmware.cpp`, chưa tạo Mel hoặc chạy phân loại, và chưa xác nhận bằng micro thật. Xem mục 6 trong [README.md](README.md) để nối dây và xem ví dụ gọi.
+
 ### `main/CMakeLists.txt`
 
 Cấu hình riêng cho component ứng dụng `main`:
 
-- `SRCS "firmware.cpp"`: chọn file nguồn để biên dịch.
+- `SRCS "firmware.cpp" "ics43434.cpp"`: chọn file nguồn để biên dịch.
 - `INCLUDE_DIRS "."`: thêm thư mục hiện tại vào đường dẫn tìm header.
-- `REQUIRES esp-dl`: khai báo phụ thuộc thư viện ESP-DL.
+- `REQUIRES esp-dl esp_driver_i2s esp_driver_gpio`: khai báo phụ thuộc ESP-DL và driver I2S/GPIO.
 - `target_add_binary_data(...)`: nhúng `models/durian_student_pruned.espdl` dưới dạng dữ liệu nhị phân vào component.
 
 Nhờ bước nhúng này, linker tạo được symbol mà `firmware.cpp` sử dụng. Nếu đổi tên model, cần cập nhật cả đường dẫn tại đây và tên symbol trong C++.

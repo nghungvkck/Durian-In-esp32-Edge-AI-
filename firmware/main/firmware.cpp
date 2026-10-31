@@ -1,23 +1,20 @@
-#include <cstdio>
+#include <cstdio>  
 #include <cstdint>
-
-#include "freertos/FreeRTOS.h"
+#include "freertos/FreeRTOS.h"    // Hệ diều hành quán lý thời gian thực FreeRTOS
 #include "freertos/task.h"
 #include "esp_log.h"
 #include "esp_err.h"
-#include "esp_heap_caps.h"
+#include "esp_heap_caps.h" // Kiểm tra bộ nhớ theo thuộc tiếng
+#include "dl_model_base.hpp"  // lớp cơ sở của mô hình ESP-DL
 
-#include "dl_model_base.hpp"
-
-extern const uint8_t model_espdl[] asm("_binary_durian_student_pruned_espdl_start");
-
+extern const uint8_t model_espdl[] asm("_binary_durian_student_pruned_espdl_start");   // Khai bao model
 static const char *TAG = "DURIAN_AI";
 
 extern "C" void app_main(void)
 {
     ESP_LOGI(TAG, "Starting Durian Edge AI...");
 
-    const size_t psram_free = heap_caps_get_free_size(MALLOC_CAP_SPIRAM);
+    const size_t psram_free = heap_caps_get_free_size(MALLOC_CAP_SPIRAM);              // Kiểm tra bộ nhớ PSRam
     ESP_LOGI(TAG, "PSRAM free: %u bytes, largest block: %u bytes",
              static_cast<unsigned>(psram_free),
              static_cast<unsigned>(heap_caps_get_largest_free_block(MALLOC_CAP_SPIRAM)));

@@ -34,7 +34,7 @@ dl::Model: Test Pass!
 DURIAN_AI: Model test PASSED
 ```
 
-Đây là bài test với dữ liệu kiểm thử được nhúng trong model khi export. Firmware hiện chưa thu âm micro hoặc chạy phân loại âm thanh trực tiếp; `app_main()` nạp model, chạy `model->test()`, in cấu trúc rồi chờ.
+Đây là bài test với dữ liệu kiểm thử được nhúng trong model khi export. `app_main()` hiện vẫn nạp model, chạy `model->test()`, in cấu trúc rồi chờ. Đã bổ sung class thu âm ICS-43434 trong `main/ics43434.h` và `main/ics43434.cpp`, nhưng chưa gọi từ `app_main()` và chưa kiểm chứng micro trên board. Chưa có luồng phân loại âm thanh trực tiếp.
 
 ## 2. Các file chính và cách model được nạp
 
@@ -252,3 +252,95 @@ Detected size(4096k) larger than the size in the binary image header(2048k).
 ```
 
 Flash vật lý 4 MB nhưng image đang cấu hình 2 MB. Bản hiện tại vừa trong 2 MB và đã chạy test thành công; chưa đổi cấu hình để sử dụng toàn bộ 4 MB.
+
+## 6. Module micro ICS-43434
+
+### Tổ chức code
+
+- `main/ics43434.h`: khai báo class `Ics43434`, cấu hình GPIO và các hàm công khai.
+- `main/ics43434.cpp`: cài đặt I2S, đọc PCM và giải phóng tài nguyên.
+- `main/CMakeLists.txt`: đã thêm source và dependency `esp_driver_i2s`, `esp_driver_gpio`.
+- `main/firmware.cpp`: sau này dùng `#include "ics43434.h"`, tạo đối tượng và gọi hàm. Không include file `.cpp`.
+
+Class chỉ phụ trách thu âm. Nên để Mel-Spectrogram và suy luận model ở module riêng, còn `app_main()` điều phối. C++ dùng `#include` cho khai báo và CMake để biên dịch/link phần cài đặt, khác với `import` module Python.
+
+### Nối dây mẫu
+
+Đây là phương án GPIO gợi ý, chưa xác nhận sơ đồ chân của board Super Mini thực tế. Kiểm tra nhãn GPIO trên board trước khi nối; số dưới đây là số GPIO, không phải vị trí chân trên hàng header. Có thể đổi bằng `Config` mà không sửa driver.
+
+| ICS-43434 | ESP32-S3 |
+| --- | --- |
+| VDD / 3V / VCC | 3V3 |
+| GND | GND chung |
+| SCK / BCLK | GPIO4 |
+| WS / LRCLK | GPIO5 |
+| SD / DOUT | GPIO6 (đầu vào ESP32) |
+| L/R / LR / SEL | GND để chọn kênh trái |
+
+Không nối nguồn 5 V vào micro. Không để L/R trôi nổi. Nếu L/R nối 3V3, đặt `right_channel = true`. Micro không cần dây MCLK. Nếu module chưa có tụ lọc nguồn, thêm tụ 100 nF gần VDD/GND theo datasheet.
+
+### API
+
+| Hàm | Chức năng |
+| --- | --- |
+| `begin(config)` | Kiểm tra cấu hình, cấp phát I2S RX/DMA, bật clock và đọc bỏ khoảng 200 ms đầu; có thể block trong lúc khởi động |
+| `read(buffer, capacity, samples_read, timeout_ms)` | Đọc PCM mono; kích thước và kết quả tính theo số mẫu, timeout tính bằng ms |
+| `to_float(sample)` | Đổi PCM đã đọc sang float xấp xỉ `[-1, 1)` |
+| `end()` | Tắt I2S và giải phóng tài nguyên; có thể gọi lại `begin()` sau đó |
+| `is_started()` | Cho biết driver đã được bật; không xác nhận micro có nối hay đang phát dữ liệu |
+
+Mặc định 16000 Hz, khớp `config/config_processing_data.py` (`SAMPLE_RATE = 16000`). ICS-43434 dùng chế độ low-power ở tần số này. Driver dùng I2S Philips, hai slot 32 bit để tạo 64 xung BCLK/frame; chỉ nhận slot trái/phải được chọn. Dữ liệu 24 bit có dấu được trả trong `int32_t`, miền `[-8388608, 8388607]`, đã bỏ 8 bit thấp của từ I2S. Không dịch phải thêm 8 bit ở phía gọi.
+
+`ESP_ERR_TIMEOUT` có thể kèm một phần dữ liệu hợp lệ: luôn xem `samples_read` và chỉ xử lý các mẫu đã nhận. Driver không tự khuếch đại, chuẩn hóa theo peak, resample hoặc tính Mel. Việc mở I2S thành công không phát hiện được micro vắng mặt; cần xem biên độ thay đổi khi có tiếng động.
+
+### Ví dụ gọi từ `firmware.cpp`
+
+Ví dụ tối thiểu dưới đây dành cho việc kiểm tra riêng micro, chưa nối dữ liệu vào model. Khi tích hợp vào luồng hiện có, tạo đối tượng và gọi `begin()` sau bài test model, rồi đọc trong vòng lặp cuối. Đối tượng phải còn sống trong toàn bộ thời gian thu âm; destructor tự gọi `end()` khi ra khỏi scope.
+
+```cpp
+#include "ics43434.h"
+#include "esp_log.h"
+
+extern "C" void app_main(void)
+{
+    Ics43434 mic;
+    Ics43434::Config config;
+    config.bclk = GPIO_NUM_4;
+    config.ws = GPIO_NUM_5;
+    config.din = GPIO_NUM_6;
+    config.sample_rate_hz = 16000;
+    config.right_channel = false;
+    ESP_ERROR_CHECK(mic.begin(config));
+
+    int32_t pcm[256];
+    size_t accumulated = 0;
+    int32_t peak = 0;
+    while (true) {
+        size_t count = 0;
+        const esp_err_t err = mic.read(pcm, 256, count, 1000);
+        if (err != ESP_OK && err != ESP_ERR_TIMEOUT) {
+            ESP_LOGE("MIC", "Read failed: %s", esp_err_to_name(err));
+            break;
+        }
+        for (size_t i = 0; i < count; ++i) {
+            const int32_t magnitude = pcm[i] < 0 ? -pcm[i] : pcm[i];
+            if (magnitude > peak) peak = magnitude;
+            // float normalized = Ics43434::to_float(pcm[i]);
+            // Sau này chuyển dữ liệu sang module xử lý âm thanh.
+        }
+        accumulated += count;
+        if (accumulated >= config.sample_rate_hz) {
+            ESP_LOGI("MIC", "Peak: %ld", static_cast<long>(peak));
+            accumulated = 0;
+            peak = 0;
+        }
+        if (err == ESP_ERR_TIMEOUT) {
+            ESP_LOGW("MIC", "Timeout, received %u samples", static_cast<unsigned>(count));
+        }
+    }
+}
+```
+
+Dùng một task để quản lý đối tượng, không gọi `begin/read/end` đồng thời từ nhiều task. Đọc đều đặn; tránh chờ lâu hoặc chạy suy luận nặng ngay giữa các lần đọc vì DMA có thể tràn và mất mẫu. Khi tích hợp suy luận liên tục, nên dùng task thu âm riêng và queue/ring buffer chuyển dữ liệu sang task xử lý. Không giữ toàn bộ bản thu dài trong stack; dùng buffer cố định hoặc bộ nhớ được cấp phát có kiểm tra.
+
+Nguồn đối chiếu: [datasheet ICS-43434 của TDK](https://product.tdk.com/system/files/dam/doc/product/sw_piezo/mic/mems-mic/data_sheet/ds-000069-ics-43434-v1.2.pdf), [I2S ESP-IDF 5.3.6 cho ESP32-S3](https://docs.espressif.com/projects/esp-idf/en/v5.3.6/esp32s3/api-reference/peripherals/i2s.html).
