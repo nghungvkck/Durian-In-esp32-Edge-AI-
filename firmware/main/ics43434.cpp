@@ -1,30 +1,37 @@
-#include "ics43434.h"
-
-#include <limits>
+#include "ics43434.h"   // lay tieu de ics43434
+#include <limits>       // Cung cấp giới hạn các kiểu dữ liệu
 
 Ics43434::~Ics43434()
 {
     (void)end();
 }
 
-esp_err_t Ics43434::begin(const Config &config)
+esp_err_t Ics43434::begin(const Config &config)   // Ham khoi tao micrphone
 {
     if (rx_ != nullptr) {
         return ESP_ERR_INVALID_STATE;
     }
+
     // ICS-43434 supports low-power and high-performance sample-rate bands.
     const bool valid_rate =
         (config.sample_rate_hz >= 6250 && config.sample_rate_hz <= 18750) ||
         (config.sample_rate_hz >= 23000 && config.sample_rate_hz <= 51600);
-    if (!valid_rate || !GPIO_IS_VALID_OUTPUT_GPIO(config.bclk) ||
-        !GPIO_IS_VALID_OUTPUT_GPIO(config.ws) || !GPIO_IS_VALID_GPIO(config.din) ||
-        config.bclk == config.ws || config.bclk == config.din || config.ws == config.din) {
+
+    if (!valid_rate || 
+        !GPIO_IS_VALID_OUTPUT_GPIO(config.bclk) ||
+        !GPIO_IS_VALID_OUTPUT_GPIO(config.ws) || 
+        !GPIO_IS_VALID_GPIO(config.din) ||
+        config.bclk == config.ws || 
+        config.bclk == config.din || 
+        config.ws == config.din) {
         return ESP_ERR_INVALID_ARG;
     }
+
 
     i2s_chan_config_t channel = I2S_CHANNEL_DEFAULT_CONFIG(I2S_NUM_AUTO, I2S_ROLE_MASTER);
     channel.dma_desc_num = 6;
     channel.dma_frame_num = 256;
+
     esp_err_t err = i2s_new_channel(&channel, nullptr, &rx_);
     if (err != ESP_OK) {
         return err;
@@ -35,7 +42,10 @@ esp_err_t Ics43434::begin(const Config &config)
     // Two 32-bit slots generate the 64 BCLK cycles/frame required by the mic.
     // Receive only the selected slot; the microphone's 24 bits occupy bits 31:8.
     standard.slot_cfg = I2S_STD_PHILIPS_SLOT_DEFAULT_CONFIG(
-        I2S_DATA_BIT_WIDTH_32BIT, I2S_SLOT_MODE_MONO);
+        I2S_DATA_BIT_WIDTH_32BIT, 
+        I2S_SLOT_MODE_MONO);
+
+        
     standard.slot_cfg.slot_mask = config.right_channel ? I2S_STD_SLOT_RIGHT : I2S_STD_SLOT_LEFT;
     standard.gpio_cfg.mclk = I2S_GPIO_UNUSED;
     standard.gpio_cfg.bclk = config.bclk;
