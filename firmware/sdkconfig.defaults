@@ -1,0 +1,11 @@
+# Embedded 2 MB Quad PSRAM: initialize, test, and expose it to the heap.
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_QUAD=y
+CONFIG_SPIRAM_TYPE_AUTO=y
+CONFIG_SPIRAM_SPEED_40M=y
+CONFIG_SPIRAM_BOOT_INIT=y
+CONFIG_SPIRAM_USE_MALLOC=y
+CONFIG_SPIRAM_MEMTEST=y
+
+# The firmware with its embedded model exceeds the default 1 MB app partition.
+CONFIG_PARTITION_TABLE_SINGLE_APP_LARGE=y
