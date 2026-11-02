@@ -1,8 +1,8 @@
 idf_component_register(
     SRCS 
-    "main.cpp" "ics43434.cpp" "audio_recorder.cpp" 
-    "audio_processor.cpp" "mel_extractor.cpp" "spectrogram_resize.cpp"
-    INCLUDE_DIRS "."
+    "src/main.cpp" "src/ics43434.cpp" "src/audio_recorder.cpp" 
+    "src/audio_processor.cpp" "src/mel_extractor.cpp" "src/spectrogram_resize.cpp"
+    INCLUDE_DIRS "include"
     REQUIRES esp-dl esp_driver_i2s esp_driver_gpio
 )
 

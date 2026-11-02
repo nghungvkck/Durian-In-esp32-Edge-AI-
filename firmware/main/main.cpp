@@ -234,7 +234,7 @@ extern "C" void app_main(void)
         }
 
         if (!valid_input) {
-            vTaskDelay(1);
+            vTaskDelay(1);   
             continue;
         }
 

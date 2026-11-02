@@ -8,7 +8,7 @@
 class MelExtractor {
 public:
     static constexpr size_t N_FFT = 2048;
-    static constexpr size_t HOP_LENGTH = 256;
+    static constexpr size_t HOP_LENGTH = 256;   
     static constexpr size_t N_MELS = 128;
 
     static constexpr float FMIN = 50.0f;

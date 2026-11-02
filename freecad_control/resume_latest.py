@@ -25,7 +25,9 @@ halves={}
 for name in ('Rear_half','Front_half'):
     shape=assembly.getObject(name).Shape
     assert shape.isValid() and len(shape.Solids)==1 and shape.Volume>40000, 'Check full shell geometry: '+name
-    assert abs(shape.BoundBox.XLength-50)<.01 and abs(shape.BoundBox.ZLength-201)<.01, 'Unexpected shell dimensions: '+name
+    # Trimmed spline faces can give a loose cached BoundBox after Boolean edits.
+    bounds=shape.optimalBoundingBox(False,False)
+    assert abs(bounds.XLength-50)<.01 and abs(bounds.ZLength-201)<.01, 'Unexpected shell dimensions: '+name
     halves[name]={'valid':True,'solids':1,'volume_mm3':round(shape.Volume,3)}
 for obj in assembly.Objects:
     if obj.TypeId=='Part::Feature':

@@ -1,6 +1,6 @@
 # Chức năng các file trong firmware
 
-Tài liệu này mô tả cấu trúc `firmware/` theo hiện trạng ngày 31/10/2026. Quy trình build, nạp code/model và xử lý lỗi nằm trong [README.md](README.md).
+Tài liệu này mô tả cấu trúc `firmware/` theo hiện trạng ngày 02/11/2026. Quy trình build, nạp code/model và xử lý lỗi nằm trong [README.md](README.md).
 
 ## 1. Sơ đồ thư mục
 
@@ -14,10 +14,21 @@ firmware/
 ├── dependencies.lock
 ├── main/
 │   ├── CMakeLists.txt
-│   ├── firmware.cpp
-│   ├── ics43434.h
-│   ├── ics43434.cpp
-│   └── idf_component.yml
+│   ├── idf_component.yml
+│   ├── include/
+│   │   ├── audio_processor.h
+│   │   ├── audio_recorder.h
+│   │   ├── ics43434.h
+│   │   ├── mel_extractor.h
+│   │   └── spectrogram_resize.h
+│   └── src/
+│       ├── main.cpp
+│       ├── firmware.cpp
+│       ├── audio_processor.cpp
+│       ├── audio_recorder.cpp
+│       ├── ics43434.cpp
+│       ├── mel_extractor.cpp
+│       └── spectrogram_resize.cpp
 ├── models/
 │   └── durian_student_pruned.espdl
 ├── managed_components/
@@ -72,38 +83,48 @@ Bản hiện tại ghi ESP-DL 3.3.14, `dl_fft` 0.8.0, `esp_new_jpeg` 1.0.2 và E
 
 ## 3. Thư mục `main/` — code ứng dụng
 
-### `main/firmware.cpp`
+Header nằm trong `main/include/`, phần cài đặt C++ nằm trong `main/src/`. CMake và manifest vẫn ở `main/`. Việc sắp xếp thư mục chỉ thay đổi đường dẫn build, giữ nguyên nội dung và logic các file C++/header.
 
-Code ứng dụng chính chạy trên ESP32-S3. Hàm `app_main()` là điểm bắt đầu của ứng dụng sau khi ESP-IDF khởi tạo hệ thống.
+### `main/src/main.cpp`
 
-Luồng hiện tại:
+Đây là file chứa `app_main()` đang được CMake chọn để build. Luồng trong mã nguồn hiện tại:
 
-1. In log khởi động và dung lượng PSRAM còn trống.
-2. Dừng khởi tạo model nếu không có PSRAM khả dụng.
-3. Dùng symbol `_binary_durian_student_pruned_espdl_start` để lấy địa chỉ model đã nhúng trong flash.
-4. Tạo `dl::Model` với `MODEL_LOCATION_IN_FLASH_RODATA` và `max_internal_size = 0`; khi PSRAM được bật, ESP-DL cấp phát vùng tensor vào PSRAM.
-5. Kiểm tra tensor input/output đã tồn tại và có bộ nhớ trước khi chạy test.
-6. Gọi `model->test()` với dữ liệu kiểm thử đã export kèm model và in kết quả PASS/FAIL.
-7. In cấu trúc các lớp bằng `model->print()`, rồi chờ trong vòng lặp có `vTaskDelay()`.
+1. Kiểm tra PSRAM, nạp model nhúng trong flash và kiểm tra tensor input/output.
+2. Khởi tạo micro ICS-43434 ở 16 kHz với BCLK GPIO3, WS GPIO2 và DIN GPIO1, nhận kênh trái.
+3. Thu âm 5 giây bằng `AudioRecorder`.
+4. Phát hiện đỉnh và cắt các đoạn âm thanh bằng `AudioProcessor`.
+5. Tính Mel-Spectrogram cho từng đoạn, chuẩn hóa về `[0, 1]` và resize thành `128 × 128`.
+6. Lượng tử hóa input INT8 theo exponent của model, gọi `model->run()` và đọc hai điểm số đầu ra.
+7. In dự đoán `XANH` (class 0) hoặc `CHIN` (class 1), giải phóng bộ nhớ xử lý rồi chờ.
 
-File này hiện chưa đọc micro, tính Mel-Spectrogram hoặc phân loại âm thanh thu trực tiếp. Đó là các chức năng cần bổ sung khi triển khai luồng suy luận thực tế.
+Mô tả này dựa trên mã nguồn; kết quả test model trên board ngày 31/10/2026 trong [README.md](README.md) thuộc bản kiểm thử trước, chưa xác nhận luồng thu âm và suy luận hiện tại.
 
-### `main/ics43434.h` và `main/ics43434.cpp`
+### `main/src/firmware.cpp`
 
-Class `Ics43434` dùng driver I2S standard của ESP-IDF 5.3 để thu âm mono từ ICS-43434. Header khai báo cấu hình chân, tần số lấy mẫu và API `begin()`, `read()`, `end()`, `is_started()`, `to_float()`; file `.cpp` chứa phần cài đặt và quản lý tài nguyên I2S/DMA.
+Giữ bản code kiểm thử model: kiểm tra PSRAM/tensor, gọi `model->test()`, in cấu trúc model rồi chờ. File này **không nằm trong danh sách `SRCS` hiện tại**, nên không được biên dịch cùng `main.cpp`.
 
-Mặc định 16 kHz, dữ liệu PCM 24 bit có dấu lưu trong `int32_t`. Chân BCLK/WS/DIN phải truyền qua `Config`. Class chưa được gọi trong `firmware.cpp`, chưa tạo Mel hoặc chạy phân loại, và chưa xác nhận bằng micro thật. Xem mục 6 trong [README.md](README.md) để nối dây và xem ví dụ gọi.
+### Các cặp header và source
+
+| Header trong `main/include/` | Source trong `main/src/` | Chức năng |
+| --- | --- | --- |
+| `ics43434.h` | `ics43434.cpp` | Driver I2S thu PCM mono 24 bit trong `int32_t`, cấu hình chân/kênh và quản lý tài nguyên micro |
+| `audio_recorder.h` | `audio_recorder.cpp` | Thu âm 5 giây ở 16 kHz vào buffer PCM `int16_t` |
+| `audio_processor.h` | `audio_processor.cpp` | Phát hiện đỉnh, quản lý tối đa 32 đoạn cắt dài 0,24 giây |
+| `mel_extractor.h` | `mel_extractor.cpp` | Tạo Mel-Spectrogram: FFT 2048, hop 256, 128 dải Mel, miền 50–2000 Hz, tối đa 32 frame |
+| `spectrogram_resize.h` | `spectrogram_resize.cpp` | Resize spectrogram sang kích thước đầu ra do phía gọi truyền vào |
+
+Xem mục 6 trong [README.md](README.md) để biết API micro và ví dụ kiểm tra riêng.
 
 ### `main/CMakeLists.txt`
 
 Cấu hình riêng cho component ứng dụng `main`:
 
-- `SRCS "firmware.cpp" "ics43434.cpp"`: chọn file nguồn để biên dịch.
-- `INCLUDE_DIRS "."`: thêm thư mục hiện tại vào đường dẫn tìm header.
+- `SRCS`: chọn sáu file `src/main.cpp`, `src/ics43434.cpp`, `src/audio_recorder.cpp`, `src/audio_processor.cpp`, `src/mel_extractor.cpp` và `src/spectrogram_resize.cpp` để biên dịch; không chọn `src/firmware.cpp`.
+- `INCLUDE_DIRS "include"`: thêm `main/include/` vào đường dẫn tìm header. Vì vậy source trong `src/` vẫn dùng `#include "ics43434.h"`, không cần đổi thành đường dẫn tương đối.
 - `REQUIRES esp-dl esp_driver_i2s esp_driver_gpio`: khai báo phụ thuộc ESP-DL và driver I2S/GPIO.
 - `target_add_binary_data(...)`: nhúng `models/durian_student_pruned.espdl` dưới dạng dữ liệu nhị phân vào component.
 
-Nhờ bước nhúng này, linker tạo được symbol mà `firmware.cpp` sử dụng. Nếu đổi tên model, cần cập nhật cả đường dẫn tại đây và tên symbol trong C++.
+Nhờ bước nhúng này, linker tạo được symbol mà `main/src/main.cpp` sử dụng. Nếu đổi tên model, cần cập nhật cả đường dẫn tại đây và tên symbol trong C++.
 
 ### `main/idf_component.yml`
 
@@ -141,7 +162,7 @@ Model được nhúng vào `firmware.bin` và flash cùng code. Khi thay model, 
 | `espressif__dl_fft/` | Thư viện phép biến đổi FFT, là dependency của ESP-DL |
 | `espressif__esp_new_jpeg/` | Thư viện xử lý JPEG, được kéo theo dependency của ESP-DL |
 
-Các thư viện có thể cung cấp nhiều chức năng hơn ứng dụng đang sử dụng. Có thư viện FFT/JPEG trong dependency không đồng nghĩa firmware hiện đã có luồng thu âm hoặc xử lý ảnh.
+Các thư viện có thể cung cấp nhiều chức năng hơn ứng dụng đang sử dụng. Luồng thu âm và xử lý Mel nằm trong code ứng dụng; việc có thư viện JPEG trong dependency không đồng nghĩa ứng dụng đang xử lý ảnh.
 
 Thư mục này do Component Manager tải và quản lý. Trong quy trình phát triển thông thường, chỉnh code ứng dụng trong `main/`, khai báo dependency ở manifest và để công cụ quản lý thư viện này.
 
@@ -186,7 +207,7 @@ Các offset này thuộc cấu hình hiện tại. Dùng `idf.py flash` để c�
 
 | Việc cần làm | File/thư mục liên quan |
 | --- | --- |
-| Sửa luồng chạy, thêm thu âm hoặc gọi suy luận | `main/firmware.cpp`, hoặc thêm source/header mới vào `main/` |
+| Sửa luồng chạy, thêm thu âm hoặc gọi suy luận | `main/src/main.cpp` và các module trong `main/src/`, `main/include/` |
 | Thêm source vào build, nhúng model với tên khác | `main/CMakeLists.txt` |
 | Thay trọng số/model | Export lại ngoài firmware, copy `.espdl` vào `models/`, rồi build/flash |
 | Đổi target, PSRAM, flash, phân vùng hoặc mức log | Cấu hình qua `idf.py menuconfig`; kết quả nằm ở `sdkconfig` |
@@ -195,4 +216,4 @@ Các offset này thuộc cấu hình hiện tại. Dùng `idf.py flash` để c�
 | Xem nguyên nhân build lỗi | `build/log/` và output lệnh `idf.py` |
 | Phân tích lỗi runtime hoặc mức sử dụng bộ nhớ | Log board, `build/firmware.elf`, `build/firmware.map` |
 
-Khi thêm source mới vào `main/`, nhớ cập nhật danh sách `SRCS` trong `main/CMakeLists.txt`. Xem [README.md](README.md) để thực hiện đúng quy trình build và nạp sau khi sửa.
+Khi thêm source mới vào `main/src/`, đặt header tương ứng trong `main/include/` và cập nhật danh sách `SRCS` trong `main/CMakeLists.txt`. Xem [README.md](README.md) để thực hiện đúng quy trình build và nạp sau khi sửa.

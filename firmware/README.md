@@ -1,6 +1,6 @@
 # Nạp firmware và model lên ESP32-S3
 
-Tài liệu ghi lại cấu hình đã chạy thành công, quy trình nạp và các lỗi đã xử lý ngày 31/10/2026.
+Tài liệu ghi lại cấu hình đã chạy thành công, quy trình nạp và các lỗi đã xử lý ngày 31/10/2026. Đường dẫn và mô tả code được cập nhật theo cấu trúc thư mục ngày 02/11/2026; chưa xác nhận build/chạy trên board sau lần sắp xếp này.
 
 ## 1. Phần cứng và kết quả đã xác nhận
 
@@ -34,7 +34,7 @@ dl::Model: Test Pass!
 DURIAN_AI: Model test PASSED
 ```
 
-Đây là bài test với dữ liệu kiểm thử được nhúng trong model khi export. `app_main()` hiện vẫn nạp model, chạy `model->test()`, in cấu trúc rồi chờ. Đã bổ sung class thu âm ICS-43434 trong `main/ics43434.h` và `main/ics43434.cpp`, nhưng chưa gọi từ `app_main()` và chưa kiểm chứng micro trên board. Chưa có luồng phân loại âm thanh trực tiếp.
+Đây là kết quả của bản kiểm thử model với dữ liệu được nhúng khi export, hiện giữ tại `main/src/firmware.cpp` và không nằm trong danh sách build. Điểm vào đang build là `main/src/main.cpp`: nạp model, thu âm micro 5 giây, phát hiện đỉnh/cắt đoạn, tính Mel, resize `128 × 128`, lượng tử hóa INT8 và chạy suy luận từng đoạn. Kết quả kiểm thử cũ không xác nhận luồng thu âm và suy luận hiện tại đã chạy trên board.
 
 ## 2. Các file chính và cách model được nạp
 
@@ -46,7 +46,10 @@ DURIAN_AI: Model test PASSED
 | `../espdl/durian_student_pruned.espdl` | Model đầu ra của script quantization |
 | `models/durian_student_pruned.espdl` | Bản model thực sự được firmware nhúng vào binary |
 | `main/CMakeLists.txt` | Khai báo source và nhúng model |
-| `main/firmware.cpp` | Nạp và kiểm thử model trên board |
+| `main/src/main.cpp` | Điểm vào đang build: điều phối thu âm, xử lý Mel và suy luận |
+| `main/src/firmware.cpp` | Bản kiểm thử model cũ, không nằm trong `SRCS` |
+| `main/include/` | Header của các module ứng dụng |
+| `main/src/` | Phần cài đặt C++ của các module |
 | `sdkconfig` | Cấu hình đang dùng cho build hiện tại |
 | `sdkconfig.defaults` | Cấu hình mặc định PSRAM và phân vùng app cho lần tạo cấu hình mới |
 
@@ -118,7 +121,7 @@ CONFIG_PARTITION_TABLE_FILENAME="partitions_singleapp_large.csv"
 
 `sdkconfig.defaults` đã lưu các thiết lập PSRAM và phân vùng app. File này cung cấp giá trị mặc định khi tạo cấu hình; không tự ghi đè các giá trị đã có trong `sdkconfig`. Nếu cấu hình cũ vẫn tắt PSRAM, mở `idf.py menuconfig`, bật trong `Component config → ESP PSRAM`, chọn Quad, 40 MHz và cho phép cấp phát qua malloc; chọn phân vùng single factory app lớn trong `Partition Table`.
 
-Trong `main/firmware.cpp`, model được tạo với `max_internal_size = 0`:
+Trong `main/src/main.cpp` (và bản kiểm thử `main/src/firmware.cpp`), model được tạo với `max_internal_size = 0`:
 
 ```cpp
 dl::Model *model = new dl::Model(
@@ -128,9 +131,19 @@ dl::Model *model = new dl::Model(
 );
 ```
 
-Với `CONFIG_SPIRAM=y`, bộ quản lý bộ nhớ Greedy của phiên bản ESP-DL hiện tại đặt vùng tensor vào PSRAM khi giới hạn RAM nội bằng 0. Code cũng kiểm tra PSRAM và tensor input/output trước khi gọi `test()`.
+Với `CONFIG_SPIRAM=y`, bộ quản lý bộ nhớ Greedy của phiên bản ESP-DL hiện tại đặt vùng tensor vào PSRAM khi giới hạn RAM nội bằng 0. Code hiện tại kiểm tra PSRAM và tensor input/output trước khi thu âm và suy luận. Bản kiểm thử cũ kiểm tra các điều kiện này trước khi gọi `test()`.
 
 ### Bước 4 — Build
+
+Source đã chuyển vào `main/src/`, header vào `main/include/`. `main/CMakeLists.txt` khai báo các đường dẫn `src/*.cpp` cụ thể và `INCLUDE_DIRS "include"`, nên vẫn dùng `#include "mel_extractor.h"` như trước. `src/firmware.cpp` được giữ lại nhưng không được build.
+
+Sau khi chuyển thư mục, chạy trong môi trường ESP-IDF ở bước 2:
+
+```bash
+idf.py reconfigure
+```
+
+Trong VS Code có thể dùng **ESP-IDF: Reconfigure Project** để cập nhật cấu hình. Nếu editor vẫn gạch đỏ include, kiểm tra cấu hình C/C++ đang dùng `build/compile_commands.json` vừa được tạo lại.
 
 ```bash
 idf.py build
@@ -158,7 +171,7 @@ Lệnh này nạp bootloader, bảng phân vùng và firmware chứa model, sau 
 
 ### Bước 6 — Xác nhận trên board
 
-Log phải có các dòng:
+Với bản kiểm thử model cũ (`main/src/firmware.cpp`, không được build hiện tại), log đã xác nhận có các dòng:
 
 ```text
 Found 2MB PSRAM device
@@ -168,7 +181,7 @@ Model loaded
 Model test PASSED
 ```
 
-Nếu chưa có `Model test PASSED`, lưu log từ lúc boot đến lỗi để chẩn đoán. Build thành công chưa đủ để xác nhận model chạy được trên phần cứng.
+Với `main/src/main.cpp` đang build, theo dõi `Starting durian audio pipeline`, `Model loaded. Input bytes=...`, `Recording audio...`, `Recorded ... samples`, `Detected peaks: ...`, các dòng `Crop ... prediction: ...` và `Pipeline completed: ... crops inferred`. Code hiện tại không gọi `model->test()`, nên không chờ dòng `Model test PASSED`. Nếu không có đỉnh hoặc gặp lỗi khởi tạo/xử lý, code có thể thoát sớm; lưu log từ lúc boot để chẩn đoán. Build thành công chưa đủ để xác nhận thu âm và suy luận đúng trên phần cứng.
 
 ### Các lần cập nhật tiếp theo
 
@@ -257,16 +270,16 @@ Flash vật lý 4 MB nhưng image đang cấu hình 2 MB. Bản hiện tại v�
 
 ### Tổ chức code
 
-- `main/ics43434.h`: khai báo class `Ics43434`, cấu hình GPIO và các hàm công khai.
-- `main/ics43434.cpp`: cài đặt I2S, đọc PCM và giải phóng tài nguyên.
+- `main/include/ics43434.h`: khai báo class `Ics43434`, cấu hình GPIO và các hàm công khai.
+- `main/src/ics43434.cpp`: cài đặt I2S, đọc PCM và giải phóng tài nguyên.
 - `main/CMakeLists.txt`: đã thêm source và dependency `esp_driver_i2s`, `esp_driver_gpio`.
-- `main/firmware.cpp`: sau này dùng `#include "ics43434.h"`, tạo đối tượng và gọi hàm. Không include file `.cpp`.
+- `main/src/main.cpp`: dùng `#include "ics43434.h"`, tạo đối tượng micro và gọi thu âm qua `AudioRecorder`. Header được tìm qua `INCLUDE_DIRS "include"`.
 
-Class chỉ phụ trách thu âm. Nên để Mel-Spectrogram và suy luận model ở module riêng, còn `app_main()` điều phối. C++ dùng `#include` cho khai báo và CMake để biên dịch/link phần cài đặt, khác với `import` module Python.
+Class chỉ phụ trách thu âm. Mel-Spectrogram nằm trong module `mel_extractor`, resize nằm trong `spectrogram_resize`, còn `app_main()` ở `main/src/main.cpp` điều phối và gọi suy luận model. C++ dùng `#include` cho khai báo và CMake để biên dịch/link phần cài đặt, khác với `import` module Python.
 
 ### Nối dây mẫu
 
-Đây là phương án GPIO gợi ý, chưa xác nhận sơ đồ chân của board Super Mini thực tế. Kiểm tra nhãn GPIO trên board trước khi nối; số dưới đây là số GPIO, không phải vị trí chân trên hàng header. Có thể đổi bằng `Config` mà không sửa driver.
+Bảng dưới là phương án GPIO gợi ý của ví dụ kiểm tra riêng. Code đang build trong `main/src/main.cpp` dùng BCLK GPIO3, WS GPIO2, DIN GPIO1 và kênh trái; không dùng bộ GPIO4/5/6 của ví dụ. Chưa xác nhận sơ đồ chân của board Super Mini thực tế. Kiểm tra nhãn GPIO trên board trước khi nối; số dưới đây là số GPIO, không phải vị trí chân trên hàng header. Có thể đổi bằng `Config` mà không sửa driver.
 
 | ICS-43434 | ESP32-S3 |
 | --- | --- |
@@ -293,9 +306,9 @@ Mặc định 16000 Hz, khớp `config/config_processing_data.py` (`SAMPLE_RATE 
 
 `ESP_ERR_TIMEOUT` có thể kèm một phần dữ liệu hợp lệ: luôn xem `samples_read` và chỉ xử lý các mẫu đã nhận. Driver không tự khuếch đại, chuẩn hóa theo peak, resample hoặc tính Mel. Việc mở I2S thành công không phát hiện được micro vắng mặt; cần xem biên độ thay đổi khi có tiếng động.
 
-### Ví dụ gọi từ `firmware.cpp`
+### Ví dụ kiểm tra riêng micro
 
-Ví dụ tối thiểu dưới đây dành cho việc kiểm tra riêng micro, chưa nối dữ liệu vào model. Khi tích hợp vào luồng hiện có, tạo đối tượng và gọi `begin()` sau bài test model, rồi đọc trong vòng lặp cuối. Đối tượng phải còn sống trong toàn bộ thời gian thu âm; destructor tự gọi `end()` khi ra khỏi scope.
+Ví dụ tối thiểu dưới đây dành cho việc kiểm tra riêng micro, chưa nối dữ liệu vào model. Đây là một `app_main()` thay thế để kiểm tra riêng, không thêm đồng thời vào danh sách build cùng `main/src/main.cpp` vì sẽ trùng điểm vào. Đối tượng phải còn sống trong toàn bộ thời gian thu âm; destructor tự gọi `end()` khi ra khỏi scope.
 
 ```cpp
 #include "ics43434.h"

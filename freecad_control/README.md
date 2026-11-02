@@ -1,284 +1,154 @@
-# FreeCAD — bàn giao để tiếp tục công việc
+# FreeCAD — bàn giao cho phiên tiếp theo
 
-**Cập nhật 30/10/2026, Asia/Bangkok. Chỉ cần đọc file này để khôi phục ngữ cảnh CAD.**
+Cập nhật **02/11/2026, Asia/Bangkok**. Đọc file này trước khi tiếp tục CAD. File tự chứa trạng thái cuối, đường dẫn file in, cách kết nối và việc còn dở; không cần đọc README gốc dự án. Khi sửa chi tiết, đọc thêm `3D/Enclosure_USB_Near_Wall_D50/DESIGN_NOTES.md`, nhưng ưu tiên các chốt mới trong tài liệu này hơn lịch sử.
 
-Người dùng đã xác nhận **bản 3D cuối có hai khung Type-C là chuẩn**, sau đó yêu cầu hoàn thiện bản vẽ kỹ thuật. Bộ bản vẽ mới nhất là **Rev C, 4 tờ A3**, đã hoàn thành. Không có yêu cầu sửa CAD nào còn đang thực hiện. Tiếp tục theo yêu cầu mới; không tự bắt đầu các việc chưa chốt bên dưới.
+## Chốt mới nhất — giản lược giá PCB ba nút (02/11/2026)
 
-## 1. Quy tắc phạm vi — phải giữ ở mọi phiên sau
+Theo yêu cầu mới, **giá PCB ba nút chỉ còn hai thanh ngang trên/dưới và ba lỗ cho đầu nút nhô ra**. Đã bỏ hai trụ tròn tại Z133/163, hai thanh dẫn dọc và toàn bộ gờ nhỏ của giá nút. Giữ nguyên hai thanh ngang nối thành tại Z128,7–129,7 và Z166,3–167,3; ba lỗ Ø4,6 ở X0/Z140,148,156 cùng hốc né thân nút phía trong. Không còn gờ kẹp bên riêng cho PCB nút; đây là ngoại lệ mới đối với yêu cầu giữ gờ linh kiện ở mục 3. Chưa thử giữ/lắp bo thực tế.
 
-**Người dùng yêu cầu: chỉ sửa đúng file/phần được chỉ định.**
+Đã lưu bản chính `3D/Enclosure_USB_Near_Wall_D50/Enclosure_USB_Near_Wall_D50.FCStd`, SHA-256 `718f4e5f86de5c4ae2f2d962ae061e29d907d7df437ade1af9e2fd6c8e702ce3`. Nửa trước hợp lệ, một solid, thể tích **72716,831590 mm³**; nửa sau giữ nguyên **86600,815315 mm³**; hai nửa giao thể tích **0 mm³**. Bao ngoài Ø50 × 201 giữ nguyên. Toàn bộ 76 đối tượng có Shape ngoài nửa trước giữ nguyên BRep/placement, tổng vẫn 80 objects; không sửa PCB, nút, LED, dây hoặc linh kiện khác. Kiểm tra cụm nút không giao thể tích với nhựa; vùng bỏ giá không còn nhựa nhô vào khoang.
 
-- Yêu cầu sửa một phần 3D: chỉ sửa phần đó trong FCStd được chỉ định. Không tự cập nhật bản vẽ, STL, STEP, ảnh, JSON, README hay các phần 3D khác.
-- Yêu cầu sửa bản vẽ kỹ thuật: chỉ cập nhật bộ bản vẽ; giữ nguyên file 3D nguồn và các file xuất 3D.
-- Yêu cầu sửa README này: chỉ sửa `freecad_control/README.md`. Lần cập nhật hiện tại thuộc trường hợp này.
-- Việc “đồng bộ tất cả file” **không còn là quy trình tự động**. Chỉ xuất/cập nhật thêm khi người dùng yêu cầu; các hướng dẫn cũ trong README lịch sử không mở rộng phạm vi.
-- Không tự sửa `.gitignore`, hoàn tác thay đổi ngoài phạm vi, commit, push hoặc xóa bản CAD lịch sử.
-- Người dùng muốn thao tác trực tiếp trong FreeCAD khi yêu cầu chỉnh CAD. Không dừng ở hướng dẫn tự vẽ. Không hỏi lại các lựa chọn đã chốt về micro, SD, nút, hai lỗ trên hoặc khung Type-C.
+Backup `Enclosure_USB_Near_Wall_D50_before_simple_key_support.FCStd`, báo cáo `simple_key_support_validation.json`, ảnh `simple_key_support_inside.png` trong thư mục CAD. Đã kiểm tra ảnh và để GUI xem cận mặt trong nửa trước. `removeSplitter()` tạo ứng viên không hợp lệ nên đã loại bỏ, giữ kết quả Boolean hợp lệ; đường chia mặt khi xem Flat Lines không phải gờ nhựa, dùng Shaded.
 
-Mọi lệnh shell phải có tiền tố **`rtk`**, theo `/home/nghung/.codex/RTK.md`. Ví dụ `rtk proxy python3 ...`, `rtk git status`, `rtk rg ...`.
+**Bộ STL/ZIP và nguồn hai vỏ trong `Print_2026-11-02/` vẫn thuộc bản trước thay đổi giá nút này**, chưa xuất lại. Không gửi nửa trước trong bộ đó nếu cần đúng sửa đổi mới. Các mục bên dưới ghi lại mốc xuất in và trạng thái dây; không dùng các thể tích/hash lịch sử thay cho mốc mới này. Không có yêu cầu tiếp tục nối dây hoặc firmware.
 
-## 2. Hai tài liệu hiện tại và tình trạng file xuất
+## 1. Bộ xuất in trước lần giản lược giá nút
 
-Mọi đường dẫn tương đối trong tài liệu này tính từ **gốc dự án**.
+Trước khi giản lược giá nút, người dùng đã yêu cầu **dừng nối dây, xuất riêng hai nửa vỏ để đi in**. Hai STL đã xuất, kiểm tra và đóng gói cho mốc đó. Sau đó đã sửa và lưu giá nút theo phần đầu tài liệu; **chưa xuất lại STL cho thay đổi mới**. Không tự tiếp tục CAD, nối dây hoặc firmware khi chưa có yêu cầu mới.
 
-### Bản 3D chính duy nhất
+Thư mục file in, tính từ gốc dự án:
 
 ```text
-3D/Enclosure_USB_Near_Wall_D50/Enclosure_USB_Near_Wall_D50.FCStd
+3D/Enclosure_USB_Near_Wall_D50/Print_2026-11-02/
 ```
 
-Đây là cụm đầy đủ, **44 đối tượng**, được cập nhật tại cùng đường dẫn sau lần thêm khung Type-C. Không có bản chính mới mang tên khác. Tìm document bằng `FileName`, không dựa vào tên tab vì FreeCAD có thể thêm hậu tố.
-
-Mốc của bản 3D đã được người dùng chốt:
-
-| Kiểm tra | Giá trị |
+| Tệp | Dùng để làm gì |
 |---|---|
-| Vỏ | Ø50 × cao 201 mm |
-| `Rear_half` | BRep hợp lệ, 1 solid, **84825,115296 mm³** |
-| `Front_half` | BRep hợp lệ, 1 solid, **71811,003421 mm³** |
-| Linh kiện/dây tham chiếu | 42 đối tượng còn lại giữ nguyên trong lần thêm khung Type-C |
-| SHA-256 FCStd đã chốt | `15e05ccf3de00d02bb7c4a52d04653c55a4297b78dbb221761041e18c6e42a40` |
+| `Hai_vo_LED3mm_STL.zip` | Gói in mốc trước giản lược giá nút: hai STL, hướng dẫn và báo cáo kiểm tra |
+| `Rear_half.stl` | Nửa vỏ sau; in 1 chiếc |
+| `Front_half_LED3mm.stl` | Nửa vỏ trước, có lỗ/ngàm giữ LED đơn Ø3 mm; in 1 chiếc |
+| `README.md` | Hướng dẫn nhập slicer và những thông số chưa chốt |
+| `export_validation.json` | Hash, nguồn xuất, kích thước và kết quả kiểm tra mesh |
+| `Print_source_LED3mm.FCStd` | **Nguồn hai shape đúng với bộ STL đã xuất**; chỉ có hai nửa vỏ, không phải toàn bộ assembly |
 
-SHA này nhận diện mốc bàn giao, không phải điều kiện buộc mọi lần sửa được người dùng cho phép sau này phải giữ nguyên. Không hoàn tác sửa đổi mới chỉ vì hash khác.
+Đơn vị **mm**, tỷ lệ **100% (1:1)**. Bao vỏ ghép Ø50 × 201 mm. Chỉ xuất nhựa vỏ, không chứa pin, bo, dây hoặc linh kiện phụ. Mỗi STL kín, cạnh manifold, hướng mặt nhất quán, một thành phần liên thông, không có tam giác suy biến. Đã đối chiếu thể tích mesh với BRep. **Đây là kiểm tra file, chưa phải xác nhận in/lắp thực tế.** Chưa tạo G-code, chọn profile máy, vật liệu, hướng in hoặc support.
 
-### Bộ bản vẽ kỹ thuật mới nhất
+Đỉnh Z168–201 là vùng đặc của hình học; infill do slicer quyết định. Khi chuẩn bị in FDM cần đặt modifier thích hợp nếu muốn vùng này đặc 100%. Chưa xác nhận dung sai, lực gài/nhả, độ bền gờ/ngàm/lẫy hoặc kích thước linh kiện thật. Không tự xuất lại STL, sửa hình học hoặc thay bộ file in đã chốt nếu chưa được yêu cầu.
 
-Thư mục:
+## 2. Chọn đúng nguồn CAD — cần đọc trước khi mở hoặc lưu
+
+Mọi đường dẫn CAD trong các phần dưới tính từ `3D/Enclosure_USB_Near_Wall_D50/`.
+
+- Assembly làm việc vẫn mang tên `Enclosure_USB_Near_Wall_D50.FCStd`, nhưng **file này đã được lưu tiếp trong lúc làm việc; không mặc định nội dung trên đĩa giống mốc xuất in hoặc báo cáo cũ**.
+- Lúc xuất STL, file chính trên đĩa có hash `1330f1d286a0f51a96c123c7ec43038625d501d13b4a8af6032e26f475cebf7c`, Document.xml không có LED. Hai shape trong GUI vẫn đúng mốc LED; đã đối chiếu hash BRep và lưu nguồn hai vỏ riêng để bảo toàn kết quả in.
+- Mốc trước sửa giá nút, hash file chính từng là `2dd980ffe8ca6b697d09aa23c8cb939d78fd66c59996d59186c01be94fc47eb7`, có **80 objects**, có `Status_LED_3mm` và `Complete_Wiring`. Sau sửa giá nút đã lưu hash `718f4e5f86de5c4ae2f2d962ae061e29d907d7df437ade1af9e2fd6c8e702ce3`; kiểm tra tính toàn vẹn FCStd và hash trên đĩa khớp báo cáo. Hệ dây nháp vẫn được giữ nguyên; không coi lần kiểm tra giá nút là xác nhận toàn bộ hệ dây.
+- `complete_wiring_validation.json` còn ghi `saved: false`: đó là trạng thái lần thao tác của agent dừng trước bước lưu cuối, **không còn đủ để kết luận file chính hiện không chứa dây**. Không sửa báo cáo lịch sử thành một lần kiểm tra chưa thực hiện.
+- **Muốn dùng đúng hai vỏ đã xuất in:** dùng `Print_2026-11-02/Print_source_LED3mm.FCStd` và `export_validation.json` cùng thư mục. Không lấy assembly đang thay đổi để thay thế bộ in đã chốt.
+- **Muốn sửa tiếp toàn bộ assembly:** kiểm tra heartbeat, đúng document/FileName và trạng thái hiện tại trước; đối chiếu hai nửa với nguồn in nếu thay đổi có liên quan. Dùng `resume_latest.py` để mở/hiện đúng assembly, nhưng script này không chứng minh assembly giống nguồn STL.
+- Không tự lưu đè document đang mở, hoàn tác file chính về backup, đóng các phiên khác hoặc dựng lại CAD từ đầu. Hash là mốc đối chiếu, không phải lý do tự hoàn tác khi người dùng đã lưu tiếp.
+
+SHA-256 nguồn hai vỏ in riêng đã kiểm tra:
 
 ```text
-3D/Enclosure_USB_Near_Wall_D50/Technical_Drawing/
+f1ca701454b961abe9d44eebf1b900aec12956cf3ddaccfc7a943da0902b56ce
 ```
 
-| File | Nội dung |
+BRep của hai vỏ đã xuất: mỗi nửa hợp lệ, một solid; Rear **86600,815315 mm³**, Front **73281,150269 mm³**. Giao thể tích khi đóng ở mốc LED **0 mm³**. Không áp dụng kết luận này cho một assembly mới chưa đối chiếu.
+
+## 3. Cấu hình cơ khí đã chốt và phải giữ
+
+**Giữ gờ giữ linh kiện trực tiếp trên khung, gân ngang nối thành trụ và sáu lẫy ghép vỏ; riêng giá PCB nút chỉ giữ hai thanh ngang theo chốt mới.** Không dùng cách chặn linh kiện nhờ đóng nắp.
+
+- Pin, SD, IP5306, ESP32-C3, micro và công tắc giữ gờ/bệ trên chính khung, hai điểm mỗi cụm. Gờ chỉ chồng mép trống, tránh IC/pad/chân hàn. PCB nút đã bỏ trụ, thanh dẫn dọc và gờ bên; không tự khôi phục.
+- Phương án `easy_insert` đã bỏ: mười thanh chặn trên nửa trước, cửa dẫn/rãnh và bốn lẫy linh kiện mới của phương án đó đã hoàn tác. Không đưa lại phương án này để “dễ lắp”; không áp dụng 22 kiểm tra đường lắp hoặc trình tự luồn PCB nút lên 100 mm của nó cho bản hiện tại.
+- Giữ gân ngang 13 tầng/26 nhánh tới thành cong; sáu lẫy ghép tại X±21/Z14,97,166. Lỗ vít ghép cũ và pilot giữ linh kiện đã lấp.
+- LED đơn Ø3 mm ở **mặt trước +Y, tâm X0/Z123**, dưới nút thấp nhất 17 mm. Lỗ Ø3,3; bệ Ø6,8 có bậc chặn và hai ngàm giữ liền nửa trước. Ngàm dày 0,8, tự do 8,4 mm, chân Z114,8–116; không cần nửa sau để giữ LED.
+- LED/vành/chân là kích thước danh nghĩa: vành Ø3,8 dày 0,6, bước chân 2,54, đầu LED Y25,05. Chưa có mã LED thật; màu xanh chỉ dùng nhận diện trong CAD.
+- Lần nối dây giữ nguyên hai nửa vỏ và 29 tham chiếu linh kiện; chỉ sửa 11 tuyến dây cũ và thêm dây/linh kiện phụ. Không tự bố trí lại linh kiện.
+
+Đơn vị mm; Z hướng lên, mặt ghép Y0, +Y là trước:
+
+| Hạng mục | Bố trí cần giữ |
 |---|---|
-| `Ban_ve_ky_thuat_Vo_tru_D50.pdf` | **Rev C, 4 tờ A3 ngang**, chữ và nét vector |
-| `Ban_ve_ky_thuat_Vo_tru_D50.FCStd` | Tài liệu bản vẽ riêng, **4 trang TechDraw**; 2 shape nguồn sao chép ẩn để đối chiếu |
-| `01_Tong_the.svg` | Hình chiếu, mặt cắt X0, mặt đỉnh và trục đo |
-| `02_Hai_nua_vo.svg` | Phía trong hai nửa, lỗ ghép, giá gá |
-| `03_Chi_tiet.svg` | Đỉnh, khe 20×3, đáy cần gạt và lỗ âm |
-| `04_Khung_TypeC.svg` | Biên dạng/cắt khung Type-C, hốc đầu cáp, tọa độ hai cổng |
-| `preview_01.png` … `preview_04.png` | Ảnh xem trước |
-| `geometry_metadata.json` | Nguồn 3D, SHA-256, Rev C, kích thước cổng và thể tích hiện tại |
-| `drawing_verification.json` | PDF 4 trang, TechDraw 4 trang, 3D nguồn không đổi, không sửa ngoài thư mục bản vẽ |
+| Vỏ | Ø50 × 201; khoang chính Ø44 dưới Z168; đáy Z0–3 |
+| Đỉnh | Đặc Z168–201; khe X20 × Y3 thông xuống khoang, giữ đáy; lỗ Ø4 theo Y tại X0/Z176,196 |
+| Pin | X/Y/Z = 28/8/38, Z6–44; lòng khay 29,4, hở cạnh 0,7; gờ rộng Z5, chồng mép 2, hở mặt 0,4 |
+| SD | Dọc, rộng 24, Z47–91,748, header trên |
+| IP5306 / ESP32-C3 | IP Z100–120; ESP Z131–148,803; USB hướng −X, đầu X−23, tâm Y−5,5/Z110 và 139,9016 |
+| Micro | Dựng đứng, tâm (0,−19,8,159); đường âm ra sau −Y; đệm mềm riêng, không nhập vào nhựa |
+| Nút / công tắc | PCB ba nút Z130–166 phía trước; tâm ba lỗ Ø4,6 tại X0/Z140,148,156; hai thanh ngang Z128,7–129,7 và Z166,3–167,3; công tắc ở đáy |
 
-Chữ và số đã tăng **40%** theo yêu cầu; số kích thước cao **3,92 mm**. Tỷ lệ ghi theo từng hình, đơn vị mm, in ở 100% kích thước trang. Hình chiếu bố trí độc lập theo nhãn. Các kích thước là **danh nghĩa, chưa có dung sai chế tạo**. Kích thước/chú thích SVG tĩnh, không tự liên kết tham số khi CAD đổi. Hai shape ẩn trong FCStd bản vẽ chỉ là bản sao đối chiếu, **không dùng tài liệu bản vẽ làm cụm 3D để sửa**.
+ESP giữ mép bên trống, tránh hàng pad hai đầu: gờ X−21,7/Z133,75–134,95 và X1/Z144,5–145,7. Micro giữ hai cạnh; công tắc giữ tai bích. Nút không còn hai gờ đối góc. Vùng tránh IC/pad/chân hàn 0,5 mm và USB kim loại 0,35 mm, xét hai mặt bo. IP5306 có mô hình dạng mặt rời. Chi tiết xem `DESIGN_NOTES.md` và `component_clearances.json` trong thư mục CAD.
 
-Hình chiếu/mặt cắt lấy từ BRep bản đã chốt; các nét chia mặt trụ thừa được lọc khi dựng bản vẽ. Biên dạng cửa Type-C phóng to dựng theo kích thước đặc trưng đã kiểm chứng của CAD, bỏ nét ghép của các trụ bo góc. Chưa ghi đủ mọi kích thước giá/rãnh nội bộ để dựng lại toàn bộ vỏ chỉ bằng PDF; khi cần chế tạo dùng kèm FCStd nguồn hiện tại.
+## 4. Hệ dây đã dừng — không tự tiếp tục
 
-### Những file chưa theo kịp lần thêm khung Type-C
+Kế hoạch có **33 dây, 5 linh kiện phụ**, thêm hai chân công tắc danh nghĩa, nhóm `Complete_Wiring`. 11 tuyến cũ sửa đầu nối + 22 dây mới. Bản nháp đã tạo trong GUI có 70 đối tượng mô hình, tổng 80 objects khi tính nhóm/phụ trợ. Bản chính đã lưu sau sửa giá nút vẫn có hệ dây này; lần sửa chỉ xác nhận giữ nguyên BRep/placement ngoài nửa trước, chưa kiểm tra lại toàn bộ va chạm dây.
 
-**STL, STEP, ảnh 3D và `validation.json` trong thư mục CAD vẫn là bản xuất trước khi thêm khung Type-C.** Người dùng đã giới hạn lần sửa đó chỉ vào FCStd, nên không được xuất lại các file này. Lần hoàn thiện bản vẽ sau đó chỉ cập nhật `Technical_Drawing/`.
+| Dữ liệu | Trạng thái |
+|---|---|
+| `complete_wiring_plan.json` | 33 tuyến, đầu chân, GPIO và linh kiện phụ dự kiến |
+| `wire_netlist.json` | Vẫn là **11 tuyến cũ**, không phải danh sách 33 tuyến |
+| `wire_netlist_before_complete_wiring.json` | Bản sao danh sách 11 tuyến trước thao tác |
+| `electrical_connectivity_audit.json` | Đủ 33 quan hệ kết nối logic, không trùng GPIO, không nối tắt trực tiếp nguồn/tín hiệu, không nối vòng qua điện trở LED |
+| `complete_wiring_validation.json` | Báo cáo nháp, có kiểm tra va chạm lưới và giới hạn; `saved:false` là trạng thái lần agent dừng |
+| `complete_wiring_overview.png` | Ảnh tổng quan dây, ẩn hai nửa vỏ |
+| `complete_wiring_detail.png` | **Chưa được tạo**; không dẫn file này làm bằng chứng |
+| `WIRING.md` | Mô tả sơ đồ tham chiếu và giả định, đã đánh dấu nháp dừng |
 
-- Không coi `STL/Rear_half.stl`, `STL/Front_half.stl`, `Two_shell_halves.step` hiện có là bản cuối đã có khung Type-C.
-- `validation.json` cũ ghi Rear **84187,632** / Front **71752,203 mm³**, STL **11848 / 11120** tam giác. Đây là mốc **trước khung Type-C**, không phải thể tích/STL hiện tại.
-- `usb_before.png`, `usb_after.png`, `usb_inside_full.png`, `usb_fit.json` và các ảnh xuất 3D cũ cũng có thể chưa có khung Type-C. Dùng viewport FCStd hoặc bản vẽ Rev C để xem trạng thái cuối.
-- `wire_netlist.json` vẫn mô tả các tuyến dây hiện có vì lần thêm khung không đổi dây. `button_module_spec.json` vẫn chứa các giả định phần cứng nút.
-- README trong thư mục CAD có thể còn mô tả trước khung Type-C; **file bàn giao này và `Technical_Drawing/geometry_metadata.json` là căn cứ hiện tại**.
+Kiểm tra lưới bề mặt vỏ (độ lệch tessellation 0,2 mm) phát hiện **6 đoạn thuộc 5 dây xuyên/chạm nhựa**, chưa sửa: `MIC_3V3` đoạn 3 và 4; `KEY1_signal`, `KEY2_signal`, `KEY3_signal`, `KEY1_GND` đoạn 4. Đây không phải bản đi dây đã xác nhận lắp được. Chưa kiểm tra đầy đủ va chạm giữa các dây, bán kính uốn, độ chùng mở nắp hoặc giữ/cách điện linh kiện phụ.
 
-Chỉ khi người dùng yêu cầu giao file in/xuất 3D mới kiểm tra và xuất lại đúng phạm vi đó.
+Danh sách `terminal_gaps` chỉ là khoảng cách từ điểm tới hình học; điểm nằm trong solid hoặc giữa lỗ pad vẫn có thể trả khoảng cách dương. Không dùng nó riêng lẻ để kết luận hở điện, cũng không coi khối cách điện chạm nhau trong CAD là nối điện thật. Pinout module, cực LED, tiếp điểm nút/công tắc và thông mạch phần cứng chưa xác minh.
 
-## 3. Mở lại để làm việc
+GPIO tham chiếu: SD SCK4/MISO5/MOSI6/CS7; micro BCLK3/WS2/DATA1, VDD3V3, GND/LR nối GND; nút dưới/giữa/trên GPIO0/20/21; LED GPIO10 qua 1 kΩ, cathode GND. Phụ trợ: R_KEY3 1 kΩ nối tiếp GPIO21, R_GPIO2_PU 10 kΩ, R_MIC_SD_PD 100 kΩ, C_MIC 100 nF. Nút nối trực tiếp chân công tắc tham chiếu, không gán chức năng giả cho bốn pad connector trên PCB nút. GPIO8/9 chưa dùng; GPIO20/21 cần nhả UART0, nút cần input pull-up trong firmware C3.
 
-Workspace WSL:
+**Firmware chưa khớp CAD:** `firmware/sdkconfig` vẫn nhắm `esp32s3`; `main.cpp` đã có pipeline thu âm/xử lý/inference, BCLK3/WS2/DIN1, yêu cầu PSRAM và dừng khi không có. Chưa chuyển/nạp C3 hoặc triển khai SD/nút/LED cho cấu hình CAD. Không flash binary S3 sang C3. Mức logic SD 3,3 V, dòng sạc, tự tắt tải thấp IP5306, tải ổn áp, bảo vệ pin và chống cấp ngược USB chưa xác nhận. Chế độ đã chốt: tắt SW1 trước khi nối USB nạp, rút USB trước khi RUN. Không tự triển khai điện/firmware trong việc CAD.
 
-```text
-/mnt/d/Hoc_tap_Sinh_Vien/Kien_thu_AI/Project/Duration_edge_ai
-```
+## 5. Kết nối FreeCAD Windows khi có yêu cầu mới
 
-Thư mục Windows tương ứng:
-
-```text
-D:Hoc_tap_Sinh_VienKien_thu_AIProjectDuration_edge_ai
-```
-
-FreeCAD đã dùng: **1.1.4**, executable `C:Program FilesFreeCAD 1.1inFreeCAD.exe`. Không có FreeCAD MCP riêng; cầu nối là macro Qt timer đọc/ghi file chung Windows–WSL.
-
-Khi có yêu cầu tiếp tục CAD, từ gốc dự án chạy lần lượt:
+Chạy từ gốc dự án. Mọi lệnh shell có tiền tố `rtk` theo `/home/nghung/.codex/RTK.md`. **Không chạy CAD bằng Python Linux.** Không cần kết nối hoặc mở CAD chỉ để lấy bộ STL đã xuất.
 
 ```bash
-rtk proxy python3 freecad_control/send.py freecad_control/inspect_connection.py
-rtk proxy python3 freecad_control/send.py freecad_control/resume_latest.py --timeout 60
+rtk proxy python3 freecad_control/easy_insert_session/send.py freecad_control/inspect_connection.py
+rtk proxy python3 freecad_control/easy_insert_session/send.py freecad_control/resume_latest.py --timeout 60
 ```
 
-`resume_latest.py` tìm/mở đúng FCStd theo đường dẫn, hiện linh kiện cùng nửa sau, ẩn nửa trước và khối thử cáp, kiểm tra sơ bộ. **Không sửa hình học hoặc tự lưu FCStd.** Kết quả đúng có `[50,201]`, SD dọc, micro đứng trên ESP, PCB nút Z130–166, hai lỗ trên theo Y/X0, hai mặt USB ở X−23; thể tích xem bảng mục 2. Đây không phải kiểm chứng bộ STL hiện có.
+Đọc mục 2 trước: `resume_latest.py` mở đúng assembly theo **FileName**, chuyển tab, kiểm tra bố trí và hiện toàn bộ nửa sau/linh kiện, ẩn nửa trước; không sửa hình học hoặc lưu. Nó không đối chiếu assembly với bộ STL đã chốt. Không dùng bản micro nằm ngang cũ hoặc chạy script thử lịch sử để dựng lại trạng thái.
 
-Để xem mặt trước đóng vỏ, hai lỗ ở giữa:
-
-```bash
-rtk proxy python3 freecad_control/send.py freecad_control/show_center_holes.py --timeout 60
-```
-
-Lệnh này cũng chỉ đổi hiển thị. Muốn xem bên trong trở lại, chạy `resume_latest.py`.
-
-Muốn **chỉ xem bản vẽ đã lưu**, mở PDF hoặc dùng File → Open trong FreeCAD với đường dẫn FCStd ở mục 2. **Không chạy công cụ tạo lại/lưu bản vẽ chỉ để xem.**
-
-Lưu ý hiển thị:
-
-- Chuyển thật sang đúng cửa sổ MDI của document theo `FileName`; `App.setActiveDocument()` đơn thuần có lúc chưa chuyển tab nhìn thấy.
-- Không nhầm tab `ICS43434_Module_13mm` (micro rời), cụm lịch sử hoặc FCStd bản vẽ với cụm 3D chính.
-- Hai nửa vỏ hiện dùng `DisplayMode='Shaded'` để ẩn các nét chia mặt thừa. Nửa sau không refine toàn bộ được vì OCC báo `Bnd_Box is void`. **Đó là đường chia mặt CAD, không phải tất cả đều là gờ nhựa; không tự cắt bỏ thân/giá theo các đường đó.**
-- Sau khi đổi shape/visibility, cần để viewport cập nhật và dùng `fitAll()` trước khi chụp. Khi đặt camera cận, đặt khoảng cắt phù hợp (đã dùng near=1, far=1000); ảnh trắng không chứng minh mô hình mất.
-- Không đóng document khác hoặc lưu đè khi chưa hiểu sửa đổi chưa lưu của người dùng. `saveCopy()` có thể để document còn dấu thay đổi trong GUI dù bản sao đã được thay đúng vào file đích; kiểm tra nội dung trước khi tự lưu thêm.
-
-Nếu mất kết nối/heartbeat:
-
-1. `connected:true` trong status cũ không đủ. `send.py` yêu cầu heartbeat mới trong vòng 10 giây.
-2. Một script CAD chạy lâu có thể chặn timer, hoặc vừa trả kết quả nhưng timer chưa kịp cập nhật. Kiểm tra lệnh đang chạy, UUID/phản hồi và heartbeat trước khi kết luận ứng dụng đã đóng.
-3. Nếu macro thực sự ngừng, chạy lại macro trong FreeCAD đang mở:
-
-   ```text
-   D:Hoc_tap_Sinh_VienKien_thu_AIProjectDuration_edge_aireecad_controlConnect.FCMacro
-   ```
-
-4. Nếu ứng dụng đã đóng, mở FreeCAD và macro trên. Mở GUI qua PowerShell `Start-Process` cần quyền phù hợp của phiên; không giả định quyền từ phiên trước. Ưu tiên giữ phiên có sửa đổi chưa lưu.
-
-## 4. Hình học đã chốt — không hỏi lại hoặc tự bố trí lại
-
-Z hướng lên, đáy có cần gạt tại Z0, đỉnh Z201. Hai nửa chia dọc tại Y0; phía trước là +Y. Linh kiện giữ tỷ lệ 1:1.
-
-| Hạng mục | Trạng thái cuối (mm) |
-|---|---|
-| Vỏ | Ø50 × 201; khoang chính Ø44 dưới Z168; vách chính 3, đáy 3 |
-| Đỉnh | Vùng Z168–201 đặc ngoài khe tâm và hai lỗ; đoạn thêm Z171–201 cao 30 |
-| Khe đỉnh | Chữ nhật **X20 × Y3**, tâm X0/Y0; khối cắt Z3–202, trên vật thể tới Z201; thông xuống khoang, **giữ đáy Z0–3 phía cần gạt** |
-| Hai lỗ trên | Ø4 xuyên **trước–sau theo Y**, X0, Z176/Z196, cách tâm 20; không ren/hốc đầu vít/hốc đai ốc |
-| Ốc ghép thân | 3 hàng mỗi bên, tổng 6 vị trí; X±21, Z14/97/166; đã bỏ hàng Z43/127 |
-| Lỗ ghép | Nửa trước Ø3,4/bậc Ø6,4; nửa sau pilot Ø2,6; chưa chọn bộ vít thật |
-| Pin | Tham chiếu 30×33×8; Z6–39 |
-| SD | Dựng dọc, rộng 24 × cao 44,748 × dày 4; Z47–91,748; header trên |
-| IP5306 | Kích thước bao 26×20×4; Z100–120; đã dịch **X−10** so với bố trí giữa cũ |
-| ESP32-C3 | Sau xoay bo, bao 24×17,803×4,2; Z131–148,803; đã dịch **X−11** so với bố trí giữa cũ |
-| Hai cổng USB | Cùng hướng −X, mặt đầu X−23; cùng tâm Y−5,5; sạc Z110, ESP Z139,9016; cách tâm 29,9016 |
-| Khoảng lùi USB | Tại đường tâm so mặt trụ ngoài khoảng **1,387 mm**; trước khi dịch bo là 11–12 mm |
-| Giá IP/ESP | Giá sau đã dời/nối vào thành cong; bỏ ngón ép trước tại vị trí bo cũ; hốc né mép PCB có vùng vách còn khoảng **1,2 mm** |
-| Micro ICS-43434 | **Dựng đứng phía trên ESP**, PCB Ø13 tạm dày 1,6; tâm (0,−19,8,159); Z≈152,5–165,5; cách ESP phía dưới ≈3,719 |
-| Đường âm | Thành **sau −Y**, tâm X0/Z159; 1 lỗ Ø1,2 + 6 lỗ Ø0,9 trên vòng tâm Ø2,4, đều 60° |
-| Công tắc | Chìm ở đáy; tâm X0/Y16; bích Z3–3,8, thân Z3,8–11,3; nút tới Z0 |
-| Hốc công tắc | Ngoài 24,2×10,2; cửa trong 13,4×6,4; hai pilot Ø1,6 tại X±9,5/Y16 |
-| PCB ba nút | X±7,5 / Y17,2–18,8 / Z130–166; sát dưới vùng đặc, hở 2 |
-| Lỗ bấm | 3×Ø4,6, X0, Z140/148/156; đầu nút nhô danh nghĩa 0,5 |
-| Giá nút | Hai trụ Ø6,8/pilot Ø2 tại X0/Z133,163; thanh dẫn/chặn liền nửa trước; không đổi trong lần thêm Type-C |
-
-Các thành phần xếp từ dưới lên: pin → SD → IP5306 → ESP32-C3 → micro. Mặt IC micro hướng +Y; mặt PCB có đường âm hướng −Y. Có giá micro, hai vít M2 tham chiếu, đệm cách điện và đệm âm mềm. Đệm mềm không được nhập vào nhựa in. BOOT/RESET ESP cần mở nửa trước; hai ống dẫn dụng cụ cũ đã bỏ.
-
-### Hai khung Type-C cuối cùng
-
-Người dùng xác nhận “bao nhựa” là **khung nhựa gắn với vỏ, ôm riêng từng cổng**, không phải đổi mô hình đầu nhựa dây cáp. Khung liền hai nửa vỏ, đã chừa mép ghép để hai nửa không chồng nhau. Hai vị trí cùng biên dạng:
-
-| Đặc trưng | Kích thước |
-|---|---|
-| Cửa trong dạng con nhộng | **Z10,8 × Y5,2**, hai đầu R2,6 |
-| Hốc đầu nhựa cáp | **Z13,2 × Y9,2**, bo góc R0,6 |
-| Bậc cuối hốc đầu cáp | X−23,4; mặt đầu cổng tham chiếu X−23 |
-| Bao phôi khung ngoài | Z16,8 × Y12,8, R2,4; được giao với mặt trụ Ø50 |
-
-Không hiểu bao phôi là tấm nhựa phẳng nhô ra tại X−25,4: biên ngoài đã cắt theo mặt trụ, **kích thước vỏ vẫn Ø50**. Giữ nguyên vị trí/kích thước các bo, dây và 42 đối tượng tham chiếu trong lần thêm khung. Đã kiểm tra một solid hợp lệ mỗi nửa, khung không cấn các tham chiếu đã xét, đầu cáp danh nghĩa vẫn đi vào được và hai nửa không chồng lấn vượt ngưỡng.
-
-## 5. Công cụ nào được dùng cho việc gì
-
-| Công cụ | Vai trò / giới hạn |
-|---|---|
-| `Connect.FCMacro`, `send.py` | Cầu nối; file runtime trong `inbox/`, `outbox/`, `status.json` |
-| `inspect_connection.py` | Đọc phiên bản và danh sách document |
-| `resume_latest.py` | Mở/hiện cụm đúng đường dẫn, kiểm tra sơ bộ; không lưu CAD |
-| `show_center_holes.py` | Hiện mặt trước; không xuất ảnh hoặc lưu CAD |
-| `show_center_slot.py` | **Có ghi đè ảnh** `center_slot_top.png`; không tự chạy nếu chỉ được xem/sửa file khác |
-| `show_usb_revision.py` | **Có ghi ảnh và `usb_fit.json`**, dựa bố trí trước khung; không dùng để xem đơn thuần hoặc làm báo cáo cuối |
-| `validate_latest.py` | Kiểm tra chỉ đọc, nhưng mặc định đọc **STL đang có trên đĩa**; độ kín STL không chứng minh STL trùng FCStd hiện tại. Chưa phải bộ kiểm tra chuyên biệt hoàn chỉnh cho khung Type-C cuối |
-| `export_center_holes.py` | **Ghi FCStd/STL/STEP/ảnh/JSON**; không chạy trừ khi người dùng cho phép xuất đúng các file này |
-| `prepare_drawing_sources.py`, `prepare_section_details.py`, `render_technical_drawing.py`, `open_technical_drawing.py` trong `freecad_control/` | Quy trình **cũ 3 tờ / Rev B**; không dùng để cập nhật bộ 4 tờ cuối |
-| `reduce_seam_screws.py`, `create_center_slot.py`, `move_usb_near_wall.py`, `refine_usb_revision.py` | Script sửa theo lịch sử; không chạy lại để mở phiên hoặc dựng lại bản đã chốt |
-
-Các script tạm đã dùng để thêm khung Type-C nằm trong `/tmp` của phiên trước và **không phải phụ thuộc cần giữ để mở/sửa CAD**. FCStd tự chứa đầy đủ shape. Khi cần sửa tiếp, viết script tự đủ imports/biến trên các shape hiện tại; không tìm/chạy lại chuỗi dựng lịch sử.
-
-### Chỉ khi được yêu cầu cập nhật bản vẽ
-
-Nguồn 3D phải đang mở đúng đường dẫn. Dùng **ba công cụ trong chính `Technical_Drawing/`**, lần lượt:
-
-```bash
-rtk proxy python3 freecad_control/send.py 3D/Enclosure_USB_Near_Wall_D50/Technical_Drawing/prepare_final_drawing.py --timeout 180
-rtk proxy python3 3D/Enclosure_USB_Near_Wall_D50/Technical_Drawing/render_final_drawing.py
-rtk proxy python3 freecad_control/send.py 3D/Enclosure_USB_Near_Wall_D50/Technical_Drawing/open_final_drawing.py --timeout 120
-```
-
-- Lệnh 1 chạy trong FreeCAD Windows, chỉ đọc hình học nguồn và ghi nguồn bản vẽ/metadata.
-- Lệnh 2 chạy bằng Python cục bộ có **PyQt5**, tạo 4 SVG, PDF và ảnh xem trước; giữ `TEXT_SCALE=1.4`.
-- Lệnh 3 cập nhật 4 trang TechDraw và hai shape đối chiếu **trong tài liệu bản vẽ**, kiểm tra SHA nguồn không đổi và lưu riêng FCStd bản vẽ. Đây là lệnh ghi, không chỉ mở để xem.
-- Sau khi tạo lại: rà cả bốn ảnh, PDF/TechDraw đều 4 trang, chữ không chồng, biên dạng không mất nét bao. Các nét chia mặt trụ có thể trùng nét cấu tạo ở độ sâu khác; không lọc mù toàn bộ nét và làm mất đường bao hoặc giá bên trong.
-- Chỉ sửa bộ bản vẽ; không tiện tay xuất lại STL/STEP hoặc lưu 3D nguồn.
-
-## 6. Cách sửa CAD an toàn và giữ đúng phạm vi
-
-Script gửi qua cầu nối chạy **trong Python FreeCAD Windows**, có `App`, `Gui`; tự import `Part`, `Mesh` khi cần. Không chạy script CAD bằng Python Linux trực tiếp.
-
-```bash
-rtk proxy python3 freecad_control/send.py /tmp/TEN_SCRIPT_TU_DU.py --timeout 120
-```
-
-Đường dẫn script đầu vào được `send.py` đọc ở WSL rồi gửi nội dung, nên script tạm `/tmp/...` dùng được. Bên trong script CAD phải dùng đường dẫn Windows khi đọc/ghi dự án. Trả kết quả JSON qua biến `result`.
-
-Các đối tượng ổn định:
+Cầu nối đang dùng là `easy_insert_session`; tên không có nghĩa phương án cơ khí `easy_insert` còn áp dụng. `send.py` chỉ nhận khi heartbeat mới dưới 10 giây. Nếu mất kết nối, chạy macro trong đúng phiên FreeCAD:
 
 ```text
-Rear_half, Front_half, Battery, MicroSD, IP5306, ESP32_C3, SW1
-Mic_PCB, Mic_ICS43434, Mic_Pads, Mic_Passives, Mic_Acoustic_Gasket
-Key_PCB, Key_Mount_Rings, Key_Pads
-Key_Case_1..3, Key_Body_1..3, Key_Stem_1..3, Key_Leads_1..3
-Key_Screw_55, Key_Screw_85
-Charge_plug_envelope, Code_plug_envelope
+D:\Hoc_tap_Sinh_Vien\Kien_thu_AI\Project\Duration_edge_ai\freecad_control\easy_insert_session\Connect.FCMacro
 ```
 
-Hai tên vít `Key_Screw_55/85` là tên lịch sử; vị trí thật Z133/163. Không suy tọa độ từ tên.
+FreeCAD 1.1.4: `C:\Program Files\FreeCAD 1.1\bin\FreeCAD.exe`. Khi dọn thư mục, cả ba cầu nối đều có heartbeat mới: `easy_insert_session` PID156496, gốc PID23396, `open_tray_session` PID131024. Đây chỉ là mốc quan sát; kiểm tra heartbeat thực tế ở lần tiếp tục. Giữ cả ba bộ cầu nối vì các phiên vẫn hoạt động; không tự đóng/lưu phiên khác, dùng cầu nối gốc hoặc đổi sang `open_tray_session/`. PID210936 từng có sửa chưa lưu; không suy luận trạng thái hiện tại từ PID lịch sử.
 
-Trình tự cho một yêu cầu sửa mới:
+**Timeout không hủy lệnh.** Theo dõi đúng UUID/outbox trước khi gửi lại. Script mới phải đủ imports/biến, không phụ thuộc globals phiên trước. Script lịch sử `check_wiring_geometry.py` lấy mẫu trực tiếp quá chậm, đã dừng ở checkpoint và nay đã xóa; không dựng lại để chạy lại. Kết quả thay thế đã có ở `complete_wiring_validation.json` trong thư mục CAD, tính từ mesh do Windows FreeCAD xuất. File tiến độ phần đã kiểm tra vẫn giữ ngoài phạm vi dọn thư mục này.
 
-1. Xác định đúng phạm vi và đúng `FileName`; giữ sửa đổi chưa lưu. Không dựng lại từ đầu.
-2. Ghi nhận trạng thái các phần ngoài phạm vi (shape/placement hoặc hash file khi phù hợp).
-3. Sửa đúng vùng yêu cầu bằng script tự chứa. Không phụ thuộc biến `doc`, `rear`, `OUT` hoặc hàm còn sót trong namespace phiên trước.
-4. Kiểm tra phù hợp thay đổi: BRep hợp lệ, số solid, BoundBox, thể tích đủ thân; giao thoa/đường cắm cáp/đường âm nếu liên quan. Xem viewport thật.
-5. Chỉ lưu file được phép; không tự xuất các định dạng khác hoặc cập nhật tài liệu. Khi cần chỉ thay một FCStd, đã dùng `saveCopy()` ra file tạm rồi thay đúng file đích để không xoay/ghi đè các backup khác; không để lại file tạm trong dự án.
-6. Đối chiếu các phần/file ngoài phạm vi không đổi, mở đúng tab cho người dùng.
+## 6. Quy tắc sửa tiếp và tài liệu lịch sử
 
-Lỗi hình học đã gặp:
+1. Chỉ sửa phần được yêu cầu; giữ shape/placement ngoài phạm vi. Trước khi lưu, kiểm tra BRep, số solid, kích thước, giao thoa liên quan và viewport. Khi người dùng chốt thay đổi, cập nhật README này cùng README CAD tương ứng. Không tự sửa `.gitignore`, commit/push hoặc xóa lịch sử CAD.
+2. Không Boolean toàn bộ các cụm nhập phức tạp gần giống nhau hoặc lặp nhiều lần; từng làm treo GUI. Ưu tiên kiểm tra cục bộ. Với IP5306 dạng mặt, `common.Volume == 0` không đủ để kết luận hết cấn; xét diện tích giao/khoảng cách.
+3. Dùng `optimalBoundingBox(False,False)` để kiểm tra bao. BoundBox nhanh của spline đã cắt có thể rộng giả. `removeSplitter()` trên nửa sau từng báo `Bnd_Box is void`. Vỏ dùng Shaded; nét chia mặt không phải gờ nhựa. Camera có animation; chờ ổn định hoặc đặt camera đầy đủ khi chụp. Import `from pivy import coin` trước `getCameraNode()` ở phiên mới.
+4. Giữ backup/bằng chứng cuối/cầu nối. Các script tạo/sửa/xuất dùng một lần trong `freecad_control/` đã xóa sau khi hoàn tất; không cần chúng để mở bản chính. Nếu dọn log, chỉ xóa request đã có phản hồi hợp lệ, inbox trước rồi outbox; phản hồi lẻ được xóa khi không còn request tương ứng. Giữ request đang chạy. `3D/` và `freecad_control/` là dữ liệu cục bộ bị Git bỏ qua.
+5. `status_led_validation.json`, `status_led_front.png`, `status_led_socket.png` là mốc LED trước nối dây. `restored_frame_lips_*` là mốc khôi phục gờ trước LED. Các mốc `easy_insert_*`, `frame_ribs_*`, `shell_snaps_*`, `screwless_*`, FCStd/FCBak khác là lịch sử; không lấy chúng thay bộ in hiện tại.
+6. Bản vẽ Rev C bốn tờ A3 trong `Technical_Drawing/`, STL/STEP lịch sử ngoài `Print_2026-11-02/` chưa đồng bộ với bộ vỏ LED đã xuất. Không tự xuất lại. Chỉ khi người dùng yêu cầu bản vẽ: giữ 3D; chạy `prepare_final_drawing.py` qua cầu nối → `render_final_drawing.py` bằng Python có PyQt5 → `open_final_drawing.py` qua cầu nối. Giữ `TEXT_SCALE=1.4`, kiểm tra đủ bốn trang A3.
 
-- `isValid()` và “1 solid” chưa đủ: từng có lỗi fuse làm mất thân, chỉ còn giá ≈444 mm³. Luôn kiểm tra kích thước/thể tích, không bỏ assertion để ép xuất.
-- `removeSplitter()` trên nửa sau có thể báo **`Bnd_Box is void`** dù shape ban đầu hợp lệ. Không sửa toàn bộ hình học chỉ để xóa nét. Bản cuối giữ shape hợp lệ và dùng Shaded; bản vẽ xử lý nét riêng trên dữ liệu bản vẽ.
-- Boolean của các shape gần trùng nhau có thể tạo kết quả rỗng hoặc topology suy biến. Khi tính thể tích giao/hiệu, kiểm tra `isNull()`/`Solids` trước; đọc lỗi để phân biệt lỗi phép kiểm tra với giao thoa thật. Không nâng ngưỡng hoặc bỏ kiểm tra để ép đạt.
-- Khi dịch đối tượng, cộng độ dịch vào placement đang có; không gán placement mới làm bo về gốc. Không thu nhỏ bo để vừa vỏ.
+## 7. Dọn thư mục `freecad_control` — 02/11/2026
 
-### Hàng đợi và timeout
+Theo yêu cầu, chỉ cập nhật/xóa bên trong `freecad_control/`; không sửa CAD, STL, backup, ảnh hay báo cáo trong `3D/`. Thư mục này chỉ có một file Markdown là `README.md`; đã sửa các mô tả cũ về gờ nút, hash bản chính và trạng thái bộ in để khớp lần giản lược mới.
 
-Macro chạy trên GUI thread; không thêm vòng chờ chặn GUI. **Timeout không hủy lệnh**: lệnh có thể đang chạy hoặc vẫn chờ trong hàng đợi. Xác định UUID và đọc phản hồi tương ứng trước khi gửi lại lệnh tạo/sửa hình.
+Đã xóa **26 script dùng một lần**, **82 cặp request/response đã xử lý** và **31 response lẻ hợp lệ** — tổng **221 file**. Nhóm script đã bỏ gồm thử/tạo/sửa LED, đi dây, kiểm tra/xuất mesh/STL và giản lược giá nút; kết quả CAD và bằng chứng cuối vẫn nằm trong thư mục CAD. Khi dọn không có request chưa có phản hồi. Không xóa thư mục cầu nối hoặc `inbox/`, `outbox/` đang được các macro dùng.
 
-**Không xóa riêng `outbox/` khi vẫn giữ `inbox/` và macro đang chạy.** Yêu cầu không còn phản hồi cùng UUID có thể bị coi là chưa xử lý và chạy lại. Không xóa hàng đợi để “reset” một script timeout.
+Các file vận hành giữ lại:
 
-## 7. Điện và các việc chưa chốt
-
-Đây là thông tin bàn giao, **không phải yêu cầu tự triển khai**.
-
-| Phần | Trạng thái |
+| Đường dẫn trong `freecad_control/` | Vai trò |
 |---|---|
-| Nguồn | Pin 3,7 V/800 mAh → IP5306; OUT+ qua SW1 tới ESP 5V/VBUS và SD VCC; GND chung |
-| Sạc | Người dùng xác nhận USB-C; chưa chốt dòng sạc và đo bo/cáp thật |
-| SD | Xác nhận module VCC/5 V có ổn áp; mức logic 3,3 V vẫn cần xác nhận |
-| Dây | 11 tuyến nguồn/GND/SPI tham chiếu; tọa độ/chiều dài ở `wire_netlist.json` trong thư mục CAD chính |
-| SPI đề xuất | SCK GPIO4, MOSI GPIO6, MISO GPIO5, CS GPIO7 |
-| Nạp code | USB-OFF trước khi nối PC; rút USB trước khi RUN, cách ly thủ công |
-| Micro I²S | Chưa thêm dây, chưa chốt GPIO/firmware; không báo đã đấu xong |
-| Ba nút | Mới là cơ khí; chưa đi dây/chốt GPIO/chức năng. PCB 36×15, các số còn lại như dày PCB 1,6, switch 6×6, bước 8, lỗ PCB Ø3,2 cách 30, tổng dày 8,3 là giả định |
-| Micro | Ø13 theo ảnh; PCB dày 1,6, pad và lỗ âm giữa bo còn là giả định |
-| Công tắc | Vỏ tham chiếu 12,6×6×7,5; bích 23, hai vít cách 19; chưa chọn mã thật |
-| Chế tạo | Chưa chốt vật liệu/dung sai/co ngót/vít/độ nén đệm, chưa in/lắp/thử điện/lực/rung/âm học |
+| `README.md` | Bàn giao hiện trạng và cách tiếp tục |
+| `resume_latest.py` | Mở/hiện đúng assembly; không sửa hình học hoặc lưu |
+| `inspect_connection.py` | Xem phiên bản và danh sách document qua cầu nối |
+| `easy_insert_session/{Connect.FCMacro,send.py,status.json,inbox/,outbox/}` | Cầu nối dùng cho bản chính |
+| `{Connect.FCMacro,send.py,status.json,inbox/,outbox/}` | Cầu nối gốc, giữ để không ảnh hưởng phiên khác |
+| `open_tray_session/{Connect.FCMacro,send.py,status.json,inbox/,outbox/}` | Cầu nối phiên cũ còn heartbeat |
+| `.gitignore` | Giữ nguyên |
 
-`firmware/sdkconfig` tại lần bàn giao vẫn **`CONFIG_IDF_TARGET="esp32s3"`**, trong khi CAD dùng **ESP32-C3 SuperMini**. Chưa chuyển/nạp firmware C3; không flash binary S3 sang C3. Hình học đỉnh đặc không tự đặt infill; khi được yêu cầu chuẩn bị in phải cấu hình vùng đỉnh phù hợp trong slicer.
-
-## 8. File cục bộ và lịch sử
-
-- `3D/` và `freecad_control/` bị `.gitignore` bỏ qua, hiện tồn tại cục bộ trên máy này. Clone Git mới không tự có CAD/cầu nối; giữ/sao lưu hai thư mục khi chuyển máy.
-- Các bản `Enclosure_Center_Slot_D50`, `Enclosure_Three_Seam_Screws_D50`, `Enclosure_Center_Holes_D50` là mốc trước. Các bản Face/Mount_Holes khoan theo X là cách hiểu đã bị sửa, không dùng tiếp.
-- Các bản SD ngang, micro ngang (`Enclosure_With_ICS43434`), các cụm clamshell cũ và module micro/nút riêng đều là lịch sử/tham chiếu. Không mở mặc định hoặc dựng lại thay cho bản chính.
-- Đã dọn `freecad_control/` ngày 29/10/2026, xóa 86 file thử/tạm và `iterations/`; không cần phục hồi chuỗi đó để sửa FCStd hiện tại. Không tự dọn tiếp các bản trong `3D/`.
-- Có các thay đổi Git ngoài CAD từ trước; kiểm tra trạng thái mới khi thực sự cần, không hoàn tác chúng theo README này.
-- Dự án dùng tiếng gõ trái cây để phân loại độ chín; AI ở `src/`, `models/`, `notebook/`, `ONNX/`, firmware ở `firmware/`. Không cần đọc README gốc hoặc lịch sử chat để tiếp tục CAD.
-
-**Điểm bắt đầu phiên sau:** đọc tài liệu này → tuân thủ phạm vi người dùng yêu cầu → khi cần thao tác CAD, kiểm tra kết nối và mở đúng FCStd ở mục 3 → làm trên trạng thái cuối đã có, không chạy lại script dựng lịch sử.
+Không commit/push. Khi cần sửa tiếp, đọc tài liệu này rồi dùng bản chính đã lưu; không chạy lại request lịch sử hoặc dựng lại CAD từ các bước cũ.
