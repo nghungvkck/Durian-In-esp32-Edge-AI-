@@ -79,21 +79,19 @@ esp_err_t Ics43434::begin(const Config &config)   // Ham khoi tao micrphone
     return ESP_OK;
 }
 
-esp_err_t Ics43434::read(int32_t *samples, size_t capacity, size_t &samples_read,
-                       uint32_t timeout_ms)
+esp_err_t Ics43434::read(int32_t *samples, size_t capacity, size_t &samples_read, uint32_t timeout_ms)
 {
     samples_read = 0;
     if (!running_) {
         return ESP_ERR_INVALID_STATE;
     }
-    if (samples == nullptr || capacity == 0 ||
-        capacity > std::numeric_limits<size_t>::max() / sizeof(*samples)) {
+
+    if (samples == nullptr || capacity == 0 || capacity > std::numeric_limits<size_t>::max() / sizeof(*samples)) {
         return ESP_ERR_INVALID_ARG;
     }
 
     size_t bytes_read = 0;
-    const esp_err_t err = i2s_channel_read(rx_, samples, capacity * sizeof(*samples),
-                                         &bytes_read, timeout_ms);
+    const esp_err_t err = i2s_channel_read(rx_, samples, capacity * sizeof(*samples), &bytes_read, timeout_ms);
     samples_read = bytes_read / sizeof(*samples);
     for (size_t i = 0; i < samples_read; ++i) {
         // ESP32 GCC uses arithmetic right shift: preserve the signed PCM value,
