@@ -1,8 +1,8 @@
 # Chức năng các file trong firmware
 
 **Cấu hình board mới N16R8:** `sdkconfig` và `sdkconfig.defaults` đã chuyển
-sang Octal PSRAM (8 MB, 40 MHz, auto-detect) và Flash 16 MB. Chưa build/flash
-hoặc xác nhận board mới; mô tả Quad PSRAM 2 MB/Flash 4 MB bên dưới thuộc
+sang Octal PSRAM (8 MB, 40 MHz, auto-detect) và Flash 16 MB. Log ngày
+09/11/2026 đã xác nhận build/flash, PSRAM memory test OK và chạy WAV test; mô tả Quad PSRAM 2 MB/Flash 4 MB bên dưới thuộc
 board trước. Bảng phân vùng factory vẫn 1500 KiB. Xem đầu README.md.
 
 **Cập nhật 07/11/2026:** CMake hiện chọn `test/model_only.cpp` bằng
@@ -12,13 +12,16 @@ chính với log chi tiết và in kết quả; không khởi tạo các ngoại
 Pipeline dùng chung các module xử lý âm thanh, Mel và resize đã có.
 Đổi biến trên thành `OFF` để chọn lại `main/src/main.cpp` và bỏ nhúng WAV test.
 API theo đường dẫn file của ứng dụng chính vẫn giữ nguyên.
-Chưa build/flash/chạy board theo yêu cầu. Các mô tả chọn source bên dưới
+Chế độ WAV test đã chạy trên board theo log 09/11/2026. Các mô tả chọn source bên dưới
 là của chế độ ứng dụng chính (`OFF`).
 
 Cập nhật 09/11/2026: đã đổi đường dẫn nhúng, symbol linker và tên log sang
 `20260717_172242.wav` (mono PCM16 16 kHz, 118784 mẫu, 7,424 giây).
-Đã kiểm tra file có tín hiệu biến thiên và đỉnh ở cả hai cửa sổ; chưa build/flash
-cho lần thay WAV này.
+Đã chạy WAV này trên N16R8: 5 đoạn, trung bình model **343,5638 ms/đoạn**,
+4 phiếu XANH / 1 phiếu CHÍN, kết quả XANH theo mapping hiện tại. Firmware
+1474,75 KiB, phân vùng app còn 25,25 KiB. PSRAM 8 MB đã nhận và test OK;
+chưa đo RAM/PSRAM tiêu thụ khi suy luận. Bảng số liệu, điều kiện đo và log
+nguồn nằm ở mục “Chỉ số triển khai thực tế” trong [README.md](README.md).
 
 Tài liệu này mô tả cấu trúc `firmware/` theo cập nhật ngày 05/11/2026 (chưa build/chạy trên board). Quy trình build, nạp code/model và xử lý lỗi nằm trong [README.md](README.md).
 

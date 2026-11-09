@@ -14,7 +14,7 @@ Cập nhật tổng quan: **09/11/2026**. Tài liệu này mô tả mã nguồn 
 | Board đang cấu hình | ESP32-S3 N16R8: Flash 16 MB, Octal PSRAM 8 MB ở 40 MHz; phân vùng app factory vẫn 1500 KiB |
 | Chế độ build hiện tại | `FIRMWARE_MODEL_TEST ON`, chạy WAV nhúng, không khởi tạo micro, SD, nút hoặc LED |
 | WAV test mới | `firmware/test/20260717_172242.wav`, mono PCM16 16 kHz, 118784 mẫu, 7,424 giây; đã kiểm tra có tín hiệu biến thiên |
-| Kiểm thử trên board | Bản kiểm thử model cũ đã báo `Model test PASSED` trên board Quad PSRAM 2 MB. Log WAV test cũ chạy tới phát hiện đỉnh nhưng không có dự đoán vì toàn bộ mẫu bằng -1. Chưa có kết quả suy luận cho WAV mới |
+| Kiểm thử trên board | Bản kiểm thử model cũ đã báo `Model test PASSED` trên board Quad PSRAM 2 MB. WAV mới đã suy luận thành công trên N16R8: 5 đoạn, trung bình 343,5638 ms/đoạn, kết quả XANH (4/5 phiếu). WAV cũ không có đỉnh vì toàn bộ mẫu bằng -1 |
 | Thu âm / SD / nút / LED | Đã có code ứng dụng chính, chưa có xác nhận kiểm thử đầy đủ trên board trong tài liệu bàn giao |
 | Backend | FastAPI phân tích âm thanh và trả waveform, đỉnh, đoạn cắt, Mel, thống kê |
 | Frontend | React + TypeScript + Vite + Tailwind; `App.tsx` hiện chỉ hiển thị trang kiểm tra Tailwind, chưa nối API |
@@ -189,7 +189,33 @@ Chọn trong [firmware/main/CMakeLists.txt](firmware/main/CMakeLists.txt):
 | `FIRMWARE_MODEL_TEST ON` | `test/model_only.cpp`: đọc `20260717_172242.wav` nhúng trong flash, chạy pipeline chung, in cấu trúc model, tensor, đỉnh, thời gian, điểm số và kết quả |
 | `FIRMWARE_MODEL_TEST OFF` | `main/src/main.cpp`: thu micro ICS-43434 xuống SD theo nút bấm, suy luận file hoàn tất gần nhất, hiển thị trạng thái bằng LED |
 
-Sau khi đổi chế độ hoặc WAV, reconfigure/build/flash lại. Bản test chạy một lần sau reset. File WAV mới đã kiểm tra trên máy có biên độ từ -31341 đến 31222 và có cực đại cục bộ ở cả hai cửa sổ; điều này chưa xác nhận kết quả phân loại trên board.
+Sau khi đổi chế độ hoặc WAV, reconfigure/build/flash lại. Bản test chạy một lần sau reset. File WAV mới đã kiểm tra trên máy có biên độ từ -31341 đến 31222 và có cực đại cục bộ ở cả hai cửa sổ; log board đã xác nhận pipeline trả kết quả XANH; độ chính xác nhãn vẫn cần kiểm chứng với nhãn thực và mapping.
+
+### Chỉ số triển khai thực tế — 09/11/2026
+
+Nguồn: [log suy luận đầy đủ](firmware/build/log/idf_py_stdout_output_20020) và [log build/flash](firmware/build/log/idf_py_stdout_output_76056). Đo ở chế độ WAV nhúng `FIRMWARE_MODEL_TEST ON`, ESP32-S3 CPU **160 MHz**, Flash DIO **16 MB**, Octal PSRAM **8 MB / 40 MHz**, ESP-IDF **5.3.6**. Đây là một lượt chạy WAV với 5 đoạn cắt, chưa phải benchmark trên nhiều file hoặc nhiều phiên chạy.
+
+| Nhóm | Chỉ số | Kết quả / phạm vi |
+| --- | --- | --- |
+| Đầu vào | WAV | `20260717_172242.wav`, mono PCM16 16 kHz, 118784 mẫu, 7,424 giây; file 237612 byte |
+| Đầu vào | Số đoạn suy luận | 5 đỉnh: 3 ở cửa sổ đầu, 2 ở cửa sổ sau; mỗi đoạn 3840 mẫu (0,24 giây) |
+| Inference latency | Trung bình chạy model | **343,5638 ms/đoạn**, trung bình 5 lần gọi `model->run()` |
+| Inference latency | Nhỏ nhất / lớn nhất | **343,304 / 344,445 ms/đoạn** |
+| Inference latency | Từng lần chạy | 344,445; 343,353; 343,325; 343,304; 343,392 ms |
+| Pipeline | Xử lý WAV tới kết quả | Khoảng **5,62 giây**, ước lượng từ timestamp log WAV 1364 ms tới kết quả 6984 ms; gồm nạp model, tiền xử lý, suy luận và log, không tính thời gian boot |
+| Tiền xử lý | Tạo Mel | Khoảng **650–660 ms/đoạn**, suy ra từ khoảng giữa log cửa sổ/đỉnh trước và log Mel; chưa đo riêng bằng timer nên không coi là số đo chính xác của hàm Mel |
+| Memory usage | PSRAM được nhận | **8 MB**, `SPI SRAM memory test OK` |
+| Memory usage | PSRAM trống trước nạp model | **8385720 byte**; khối trống liên tục lớn nhất **8257536 byte** |
+| Memory usage | RAM/PSRAM dùng khi suy luận | **Chưa đo** mức dùng thực tế và mức đỉnh; số PSRAM trống trước nạp model không đại diện bộ nhớ tiêu thụ của model |
+| Flash usage | Firmware ứng dụng | **1510144 byte = 1474,75 KiB** (`0x170b00`), gồm code, model và WAV test |
+| Flash usage | Phân vùng app factory | **1536000 byte = 1500 KiB** (`0x177000`) |
+| Flash usage | Phân vùng app còn trống | **25856 byte = 25,25 KiB**, công cụ build báo 2% trống; đây là phần trống của phân vùng app, không phải toàn Flash 16 MB |
+| Hardware deployment | Kết quả chạy thực tế | Đã build, flash và suy luận WAV nhúng thành công trên ESP32-S3; **4 phiếu XANH, 1 phiếu CHÍN**, `FINAL RESULT: XANH (class 0)` |
+| Chất lượng phân loại | Accuracy/F1 trên board | **Chưa xác định**; cần nhãn thực, đối chiếu mapping và tập kiểm thử độc lập. Tỷ lệ phiếu 4/5 không phải accuracy hoặc xác suất 80% |
+
+Tensor trong log ESP-DL: input INT8 `[1, 128, 128, 1]` (NHWC), output INT8 `[1, 2]`. Điểm của 5 đoạn lần lượt là `(8, -11)`, `(6, -9)`, `(13, -16)`, `(-5, 1)`, `(19, -22)`; nhãn trên dùng mapping firmware hiện tại `0=XANH`, `1=CHÍN`.
+
+Model đã qua chưng cất kiến thức, pruning và INT8; các số trên ghi nhận hiệu năng hiện tại, chưa xác nhận pipeline đã tối ưu. Chưa có phép đo điện năng hoặc kết quả CPU 240 MHz. WAV test chiếm Flash và sẽ không được nhúng khi chọn ứng dụng chính (`OFF`). Log còn cảnh báo căn địa chỉ model 16 byte; phiên chạy vẫn hoàn tất. Monitor có báo mất kết nối USB sau phiên chạy, không có bằng chứng crash ứng dụng trong log suy luận đầy đủ. Log monitor mới hơn `idf_py_stdout_output_76241` chỉ lưu một phần nên không dùng để tính trung bình hoặc kết luận kết quả cuối.
 
 ### GPIO của ứng dụng thu âm
 
@@ -243,7 +269,7 @@ Lịch sử thiết kế và dọn thư mục ở [freecad_control/HISTORY.md](f
 
 ## 9. Các việc cần xác nhận tiếp
 
-- Build/flash WAV mới, kiểm tra số đỉnh, thời gian suy luận, điểm số và nhãn đầu ra.
+- Đo thêm RAM/PSRAM ở các mốc nạp model và xử lý, mức đỉnh bộ nhớ, cùng thời gian từng bước bằng timer; lặp lại benchmark trên nhiều WAV có nhãn.
 - Đối chiếu mapping nhãn, chuẩn hóa và Mel giữa dữ liệu huấn luyện/calibration với firmware.
 - Đánh giá model INT8 trên tập test độc lập; ghi checkpoint, dữ liệu và cấu hình đi kèm kết quả.
 - Kiểm thử thu âm, chất lượng WAV, microSD, nút, LED và suy luận sau reboot trên board thực.

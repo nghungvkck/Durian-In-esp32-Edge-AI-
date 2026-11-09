@@ -10,7 +10,8 @@ Quad PSRAM của board 2 MB trước đây, không phù hợp N16R8.
 Đã đổi `sdkconfig` và `sdkconfig.defaults` sang `CONFIG_SPIRAM_MODE_OCT=y`,
 giữ 40 MHz, auto-detect, kiểm tra bộ nhớ lúc boot và cấp phát qua heap.
 Flash image đổi từ 2 MB sang 16 MB; chế độ Flash vẫn DIO, bảng phân vùng
-factory vẫn 1500 KiB. Chưa build/flash/xác nhận chạy trên board mới.
+factory vẫn 1500 KiB. Log ngày 09/11/2026 đã xác nhận build/flash, nhận 8 MB
+PSRAM, memory test OK và suy luận WAV nhúng thành công; xem chỉ số bên dưới.
 Người dùng tự chạy `idf.py reconfigure`, `idf.py build`, rồi
 `idf.py -p /dev/ttyACM0 flash monitor`. Kiểm tra log nhận 8 MB PSRAM và
 memory test OK. Không dùng cấu hình Octal này khi quay về board Quad cũ.
@@ -28,7 +29,8 @@ micro, microSD, nút hoặc LED. Vẫn chạy trên ESP32-S3 có PSRAM.
 Cập nhật 09/11/2026: thay WAV test bằng `20260717_172242.wav`. Đã kiểm tra
 header 44 byte đúng định dạng ứng dụng; biên độ PCM từ -31341 đến 31222,
 có đỉnh ở cả hai cửa sổ. WAV cũ chỉ chứa mẫu -1 nên không phát hiện được
-đỉnh. Lần thay WAV này chưa build/flash hoặc xác nhận kết quả model trên board.
+đỉnh. WAV mới đã chạy thành công trên board: 5 đoạn, 4 phiếu XANH và
+1 phiếu CHÍN, kết quả XANH theo mapping hiện tại của firmware.
 
 File test mở WAV trong flash bằng `fmemopen(..., "rb")`, gọi
 `infer_wav(FILE*, prediction, true)` trong `main/src/inference_pipeline.cpp`.
@@ -42,12 +44,39 @@ không phải xác suất. Không có đỉnh hoặc phiếu hòa thì không tr
 trong CMake rồi reconfigure/build; WAV test không được nhúng ở chế độ này.
 API `infer_latest_wav(path, prediction)` của ứng dụng chính giữ nguyên và gọi
 chung `infer_wav`. File test hiện chạy WAV thực thay cho `model->test()`.
-Thay đổi này **chưa build, chưa flash, chưa chạy trên board** theo yêu cầu.
+Chế độ WAV test đã được build/flash và chạy trên N16R8 theo log 09/11/2026;
+chưa xác nhận đầy đủ ứng dụng thu âm với ngoại vi.
 Các mục bên dưới mô tả cấu hình và luồng ứng dụng chính.
 
-Tài liệu ghi lại cấu hình đã chạy thành công, quy trình nạp và các lỗi đã xử lý ngày 31/10/2026. Code điều khiển nút bấm, ghi microSD và suy luận WAV được cập nhật ngày 05/11/2026. Theo yêu cầu, chưa build hoặc chạy trên board sau lần sửa này.
+Tài liệu ghi lại cấu hình đã chạy thành công, quy trình nạp và các lỗi đã xử lý ngày 31/10/2026. Code điều khiển nút bấm, ghi microSD và suy luận WAV được cập nhật ngày 05/11/2026. Chế độ test WAV dùng pipeline chung đã chạy trên board; ứng dụng thu âm với microSD/nút/LED chưa được xác nhận đầy đủ.
 
-## 1. Phần cứng và kết quả đã xác nhận
+## Chỉ số triển khai thực tế — 09/11/2026
+
+Nguồn: [log suy luận đầy đủ](build/log/idf_py_stdout_output_20020) và [log build/flash](build/log/idf_py_stdout_output_76056). Đo ở chế độ WAV nhúng `FIRMWARE_MODEL_TEST ON`, ESP32-S3 CPU **160 MHz**, Flash DIO **16 MB**, Octal PSRAM **8 MB / 40 MHz**, ESP-IDF **5.3.6**. Đây là một lượt chạy WAV với 5 đoạn cắt, chưa phải benchmark trên nhiều file hoặc nhiều phiên chạy.
+
+| Nhóm | Chỉ số | Kết quả / phạm vi |
+| --- | --- | --- |
+| Đầu vào | WAV | `20260717_172242.wav`, mono PCM16 16 kHz, 118784 mẫu, 7,424 giây; file 237612 byte |
+| Đầu vào | Số đoạn suy luận | 5 đỉnh: 3 ở cửa sổ đầu, 2 ở cửa sổ sau; mỗi đoạn 3840 mẫu (0,24 giây) |
+| Inference latency | Trung bình chạy model | **343,5638 ms/đoạn**, trung bình 5 lần gọi `model->run()` |
+| Inference latency | Nhỏ nhất / lớn nhất | **343,304 / 344,445 ms/đoạn** |
+| Inference latency | Từng lần chạy | 344,445; 343,353; 343,325; 343,304; 343,392 ms |
+| Pipeline | Xử lý WAV tới kết quả | Khoảng **5,62 giây**, ước lượng từ timestamp log WAV 1364 ms tới kết quả 6984 ms; gồm nạp model, tiền xử lý, suy luận và log, không tính thời gian boot |
+| Tiền xử lý | Tạo Mel | Khoảng **650–660 ms/đoạn**, suy ra từ khoảng giữa log cửa sổ/đỉnh trước và log Mel; chưa đo riêng bằng timer nên không coi là số đo chính xác của hàm Mel |
+| Memory usage | PSRAM được nhận | **8 MB**, `SPI SRAM memory test OK` |
+| Memory usage | PSRAM trống trước nạp model | **8385720 byte**; khối trống liên tục lớn nhất **8257536 byte** |
+| Memory usage | RAM/PSRAM dùng khi suy luận | **Chưa đo** mức dùng thực tế và mức đỉnh; số PSRAM trống trước nạp model không đại diện bộ nhớ tiêu thụ của model |
+| Flash usage | Firmware ứng dụng | **1510144 byte = 1474,75 KiB** (`0x170b00`), gồm code, model và WAV test |
+| Flash usage | Phân vùng app factory | **1536000 byte = 1500 KiB** (`0x177000`) |
+| Flash usage | Phân vùng app còn trống | **25856 byte = 25,25 KiB**, công cụ build báo 2% trống; đây là phần trống của phân vùng app, không phải toàn Flash 16 MB |
+| Hardware deployment | Kết quả chạy thực tế | Đã build, flash và suy luận WAV nhúng thành công trên ESP32-S3; **4 phiếu XANH, 1 phiếu CHÍN**, `FINAL RESULT: XANH (class 0)` |
+| Chất lượng phân loại | Accuracy/F1 trên board | **Chưa xác định**; cần nhãn thực, đối chiếu mapping và tập kiểm thử độc lập. Tỷ lệ phiếu 4/5 không phải accuracy hoặc xác suất 80% |
+
+Tensor trong log ESP-DL: input INT8 `[1, 128, 128, 1]` (NHWC), output INT8 `[1, 2]`. Điểm của 5 đoạn lần lượt là `(8, -11)`, `(6, -9)`, `(13, -16)`, `(-5, 1)`, `(19, -22)`; nhãn trên dùng mapping firmware hiện tại `0=XANH`, `1=CHÍN`.
+
+Model đã qua chưng cất kiến thức, pruning và INT8; các số trên ghi nhận hiệu năng hiện tại, chưa xác nhận pipeline đã tối ưu. Chưa có phép đo điện năng hoặc kết quả CPU 240 MHz. WAV test chiếm Flash và sẽ không được nhúng khi chọn ứng dụng chính (`OFF`). Log còn cảnh báo căn địa chỉ model 16 byte; phiên chạy vẫn hoàn tất. Monitor có báo mất kết nối USB sau phiên chạy, không có bằng chứng crash ứng dụng trong log suy luận đầy đủ. Log monitor mới hơn `idf_py_stdout_output_76241` chỉ lưu một phần nên không dùng để tính trung bình hoặc kết luận kết quả cuối.
+
+## 1. Phần cứng và kết quả đã xác nhận (board cũ)
 
 Đã đọc trực tiếp thông tin board qua `/dev/ttyACM0` bằng esptool:
 
