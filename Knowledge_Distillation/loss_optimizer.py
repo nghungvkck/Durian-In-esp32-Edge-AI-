@@ -27,14 +27,7 @@ class Loss_OP:
 
 
     @staticmethod
-    def create_optimizer(
-        student,
-        lr=0.001,
-        weight_decay=1e-4,
-        factor=0.5,
-        patience=10,
-        mode="min",
-    ):
+    def create_optimizer(student, lr=0.001, weight_decay=1e-4, factor=0.5, patience=10, mode="min",):
         """Trả về Adam và scheduler: mode='min' cho loss, 'max' cho F1."""
         optimizer = optim.Adam(student.parameters(), lr=lr, weight_decay=weight_decay)
         scheduler = optim.lr_scheduler.ReduceLROnPlateau(

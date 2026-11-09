@@ -1,0 +1,1498 @@
+{
+  "date": "2026-11-06",
+  "timezone": "Asia/Bangkok",
+  "authorization": "User explicitly requested updating .md and deleting unnecessary files within freecad_control",
+  "status": "completed",
+  "archive": "freecad_control/archive/cleanup_2026-11-06/session_cleanup.zip",
+  "delete_count": 57,
+  "one_use_count": 19,
+  "successful_pair_count": 19,
+  "entries": [
+    {
+      "path": "freecad_control/build_d36_wiring.py",
+      "archive_member": "freecad_control/build_d36_wiring.py",
+      "size_bytes": 8646,
+      "sha256": "518a404d7e138189bbeda29ac50c7f26a778d266216a02a351112a2333f6eab4",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/build_tidy_d36_wiring.py",
+      "archive_member": "freecad_control/build_tidy_d36_wiring.py",
+      "size_bytes": 8654,
+      "sha256": "997d23df21377697fe3b2dde49e24142dadedc58376c9e12fcbc0b84a9d1a277",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/capture_d36_wiring.py",
+      "archive_member": "freecad_control/capture_d36_wiring.py",
+      "size_bytes": 584,
+      "sha256": "9b619f8a5114321eab8a7ac433b8967cd7d193a6275c4a34a761bc549c332d0b",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/capture_tidy_d36_wiring.py",
+      "archive_member": "freecad_control/capture_tidy_d36_wiring.py",
+      "size_bytes": 589,
+      "sha256": "417720b5e2d5b723cfcc62576df37adb9344555eaf24baa7767c20215c39a469",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/debug_wiring_validation.py",
+      "archive_member": "freecad_control/debug_wiring_validation.py",
+      "size_bytes": 781,
+      "sha256": "eafb1dc91ad991716fef1af6b00ede3bfa9006d7f17a67ebc0c1e6ab96e4e467",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/export_wiring_obstacles.py",
+      "archive_member": "freecad_control/export_wiring_obstacles.py",
+      "size_bytes": 408,
+      "sha256": "4776a965a891875d5e4728b383317790850346b869a6fe7386da25b8618d9679",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/inspect_wiring.py",
+      "archive_member": "freecad_control/inspect_wiring.py",
+      "size_bytes": 977,
+      "sha256": "a7ee807d7485a53b80f5e516f55ae8deaec8870cde252471cd48313831c55c68",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/inspect_wiring_ports.py",
+      "archive_member": "freecad_control/inspect_wiring_ports.py",
+      "size_bytes": 817,
+      "sha256": "7aa2b8d69c0612a9fe37f87da4896266752e4bb8d3da4e6cbd1f97815ed063fe",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/plan_d36_wiring.py",
+      "archive_member": "freecad_control/plan_d36_wiring.py",
+      "size_bytes": 8631,
+      "sha256": "8c5403f2aae3befdb8b8b3ba9523e9d1e8d151623a401fad11608e427569a647",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/plan_tidy_d36_wiring.py",
+      "archive_member": "freecad_control/plan_tidy_d36_wiring.py",
+      "size_bytes": 4513,
+      "sha256": "ad277af8817ec5d154ec7f0250548d178d2ed8c6d30b26e9742dbbfc91cd239c",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/save_d36_wiring.py",
+      "archive_member": "freecad_control/save_d36_wiring.py",
+      "size_bytes": 2867,
+      "sha256": "4cd3a004a582b1eec01393e9d6af5255e61b051b8e85297d5005e9a030ca3c10",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/save_tidy_d36_wiring.py",
+      "archive_member": "freecad_control/save_tidy_d36_wiring.py",
+      "size_bytes": 3075,
+      "sha256": "5b50199f00ac2f9a7dedf286e8b65cc64b463c5dcabc5a32c977a0c1869eda0b",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/verify_saved_d36_wiring.py",
+      "archive_member": "freecad_control/verify_saved_d36_wiring.py",
+      "size_bytes": 2063,
+      "sha256": "b3e3af9de7459c19d021a2654d11154b9a7f8e15c14e2a0496c0815db5115025",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/verify_saved_tidy_d36_wiring.py",
+      "archive_member": "freecad_control/verify_saved_tidy_d36_wiring.py",
+      "size_bytes": 2120,
+      "sha256": "15755c8d8fcf8aaa38211a36100ae2dac195ce2fd4ee83e2c1eb54bb08953114",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/view_tidy_d36_wiring.py",
+      "archive_member": "freecad_control/view_tidy_d36_wiring.py",
+      "size_bytes": 750,
+      "sha256": "3e0dfed03935523116e4cdfaf62e0b5f08a539d552d1fa3f1f987dbe8d2f5cc4",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/wiring_before.png",
+      "archive_member": "freecad_control/wiring_before.png",
+      "size_bytes": 36413,
+      "sha256": "c1f7aee2bc6ca7743c4af128f9eb658afaa6432cdad06b485473b7ce49294b5f",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/wiring_ports.png",
+      "archive_member": "freecad_control/wiring_ports.png",
+      "size_bytes": 17354,
+      "sha256": "55590fffd68e462bc36ddead5aa01b3ab96decf855fc1168f011f42ec74b63ec",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/wiring_inspection.json",
+      "archive_member": "freecad_control/wiring_inspection.json",
+      "size_bytes": 254501,
+      "sha256": "1a4850f8514e29d83e533b5798e16d290c2821ec3834a35fdbbad8279e436639",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/wiring_obstacles.json",
+      "archive_member": "freecad_control/wiring_obstacles.json",
+      "size_bytes": 2412276,
+      "sha256": "33315032dab106c705b364122360800c2ad0110f4d727a130406bcc8ff54aa90",
+      "action": "delete_after_verification",
+      "reason": "One-use wiring/inspection script or intermediate image/mesh; final evidence remains under 3D"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/04a2077bd3e14d8b88b725a50c61afdc.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/04a2077bd3e14d8b88b725a50c61afdc.json",
+      "size_bytes": 2983,
+      "sha256": "69a86bc36d6dbb56a75012bce8787590c8a05e04235e5a4c8a8115b0cb11f734",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/04a2077bd3e14d8b88b725a50c61afdc.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/04a2077bd3e14d8b88b725a50c61afdc.json",
+      "size_bytes": 928,
+      "sha256": "daab946cb5b04c6dcdd7696677f09478d62765e6d6c354cc3999bebb456ed080",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/07a650f02e2d4e1491ba9e4d04a7f4f2.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/07a650f02e2d4e1491ba9e4d04a7f4f2.json",
+      "size_bytes": 611,
+      "sha256": "4228d12c696664221e839755cad9df5e9357f13898f0824e126c4e374dd5e81f",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/07a650f02e2d4e1491ba9e4d04a7f4f2.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/07a650f02e2d4e1491ba9e4d04a7f4f2.json",
+      "size_bytes": 158,
+      "sha256": "5bbdd6fc05b716d9d4022eab3b206c07fc93d27fd6c249047af4d78e0e6f7942",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/1ca9898a1cca42ddbfd5972b4b3c058e.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/1ca9898a1cca42ddbfd5972b4b3c058e.json",
+      "size_bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/1ca9898a1cca42ddbfd5972b4b3c058e.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/1ca9898a1cca42ddbfd5972b4b3c058e.json",
+      "size_bytes": 423,
+      "sha256": "ccc816d0cb9791e3560073a1dd713742bdf88f159861bb1c3166c8b53e41c41e",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/1eb3e943a6444247a45093d7ba98b82d.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/1eb3e943a6444247a45093d7ba98b82d.json",
+      "size_bytes": 777,
+      "sha256": "ae6804b6b9a1d55522fa2862bef9a2f4de1b3f6fa8f8570b3571f5ceb1fafd3f",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/1eb3e943a6444247a45093d7ba98b82d.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/1eb3e943a6444247a45093d7ba98b82d.json",
+      "size_bytes": 107,
+      "sha256": "f0c6ed2ee783afccec20144c3677a531c76322d951de10dca249b9f0fe9ac357",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/3beb0a343c454ce8b070d92005525c51.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/3beb0a343c454ce8b070d92005525c51.json",
+      "size_bytes": 2172,
+      "sha256": "3a94e6b447d429340ed7feb56db16ae87209dc8726e8e75ff744fd5ab0946405",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/3beb0a343c454ce8b070d92005525c51.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/3beb0a343c454ce8b070d92005525c51.json",
+      "size_bytes": 186,
+      "sha256": "b6f5d12880a3ee098c85cb9ba4b0e748d5c78648ce6d725deaf398c6364bbfe8",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/479e602d07fb42ed910d7d03b7eb9e64.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/479e602d07fb42ed910d7d03b7eb9e64.json",
+      "size_bytes": 436,
+      "sha256": "d128b4a4d6987fd51e89418597f2bb35e5d471e867141fc807d4a9e56843ea7e",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/479e602d07fb42ed910d7d03b7eb9e64.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/479e602d07fb42ed910d7d03b7eb9e64.json",
+      "size_bytes": 58,
+      "sha256": "fb46bb46e25939d29a7724116759bc03ca4d153cccf37ae2715e6bf099997b97",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/57720239cdec4740b2584c8cf84a43de.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/57720239cdec4740b2584c8cf84a43de.json",
+      "size_bytes": 1014,
+      "sha256": "7caa125378709054309fa00641f1fb8793d9395162e4cfe78d0a569b18c4cd4e",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/57720239cdec4740b2584c8cf84a43de.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/57720239cdec4740b2584c8cf84a43de.json",
+      "size_bytes": 285192,
+      "sha256": "2bcdd513903d575c43e83a489de71102f2870ab964606019eaeea24b59f13884",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/57806f4ffa9f42cf9dac11e7a50aa19c.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/57806f4ffa9f42cf9dac11e7a50aa19c.json",
+      "size_bytes": 810,
+      "sha256": "946448533e60ac5c9ee40c44fc200816cfb7a3982b3a8c954fa974a9dc42af01",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/57806f4ffa9f42cf9dac11e7a50aa19c.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/57806f4ffa9f42cf9dac11e7a50aa19c.json",
+      "size_bytes": 8564,
+      "sha256": "a6b5ee259feea97c285fd23bc466af907a9f74840170b9f1849e6295abc6770b",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/622dfeeb321a42e08693da9c777c79ac.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/622dfeeb321a42e08693da9c777c79ac.json",
+      "size_bytes": 3146,
+      "sha256": "d55873c2d2204af84c818afa8c7d6aab0c3c578d5db44c813363a5adc8c6d37a",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/622dfeeb321a42e08693da9c777c79ac.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/622dfeeb321a42e08693da9c777c79ac.json",
+      "size_bytes": 313,
+      "sha256": "a2ee880a4beb897b7321a90e7da92481fd25e7af3b4e6fd09e0f0d7ce0a9e277",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/6c020ddba17d4d09b3a8facc2c1ced1f.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/6c020ddba17d4d09b3a8facc2c1ced1f.json",
+      "size_bytes": 2115,
+      "sha256": "b444134ec9f559ab8d579c5a80dbc490e0828ec8318e8d006b2c174c744e647e",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/6c020ddba17d4d09b3a8facc2c1ced1f.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/6c020ddba17d4d09b3a8facc2c1ced1f.json",
+      "size_bytes": 186,
+      "sha256": "79b7d62cba155f60e73357ac4e23ea6aa79a424a549402bca51419515b4b1bdc",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/9259bb2a58a047ef89f84ff468262066.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/9259bb2a58a047ef89f84ff468262066.json",
+      "size_bytes": 616,
+      "sha256": "173fe6b3546371b19ea9bbe51f77e982e1d64522aa10bf0c4c8ac2ee8a60b2df",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/9259bb2a58a047ef89f84ff468262066.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/9259bb2a58a047ef89f84ff468262066.json",
+      "size_bytes": 158,
+      "sha256": "5bbdd6fc05b716d9d4022eab3b206c07fc93d27fd6c249047af4d78e0e6f7942",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/930fb903c61f4af7ac591a4cb4930e82.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/930fb903c61f4af7ac591a4cb4930e82.json",
+      "size_bytes": 8829,
+      "sha256": "26764ad29f905dd2b62787b511119413e50e414d98cc210b3b2cad5dbfb194fd",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/930fb903c61f4af7ac591a4cb4930e82.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/930fb903c61f4af7ac591a4cb4930e82.json",
+      "size_bytes": 130,
+      "sha256": "dcced05610dd598e63f22a4c89cb684db7a3ceadb192e4f49dc045f6dc9aea60",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/a6ec5c0afffb4cfe8905b28b74c56112.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/a6ec5c0afffb4cfe8905b28b74c56112.json",
+      "size_bytes": 8821,
+      "sha256": "1c4efbdce79e5a5b43abde3cbb2cb5d4e944c703893f119a18d745e7424264bc",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/a6ec5c0afffb4cfe8905b28b74c56112.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/a6ec5c0afffb4cfe8905b28b74c56112.json",
+      "size_bytes": 130,
+      "sha256": "dcced05610dd598e63f22a4c89cb684db7a3ceadb192e4f49dc045f6dc9aea60",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/a87cf521b3534e04993e9bbfd2e4746b.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/a87cf521b3534e04993e9bbfd2e4746b.json",
+      "size_bytes": 616,
+      "sha256": "173fe6b3546371b19ea9bbe51f77e982e1d64522aa10bf0c4c8ac2ee8a60b2df",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/a87cf521b3534e04993e9bbfd2e4746b.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/a87cf521b3534e04993e9bbfd2e4746b.json",
+      "size_bytes": 158,
+      "sha256": "5bbdd6fc05b716d9d4022eab3b206c07fc93d27fd6c249047af4d78e0e6f7942",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/b5595ea91c76479381dc1708699bf736.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/b5595ea91c76479381dc1708699bf736.json",
+      "size_bytes": 855,
+      "sha256": "c904cde55678babc3fbd52e18f81c530e5d41c7579d5289142059c2fc4afb5ab",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/b5595ea91c76479381dc1708699bf736.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/b5595ea91c76479381dc1708699bf736.json",
+      "size_bytes": 32655,
+      "sha256": "9a436327c466222a6423baccb1cb47c447ba8d72fc8b579632e733ae35a3574a",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/c17b5dd9177d4b44af99b0aa02d8eec6.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/c17b5dd9177d4b44af99b0aa02d8eec6.json",
+      "size_bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/c17b5dd9177d4b44af99b0aa02d8eec6.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/c17b5dd9177d4b44af99b0aa02d8eec6.json",
+      "size_bytes": 423,
+      "sha256": "fe0c8440f907b38b4b7f6921ef60a513e0ec32ef674c17698b512fcc8f40d3a1",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/c8d0d280d0c545ff903411a968adc7cd.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/c8d0d280d0c545ff903411a968adc7cd.json",
+      "size_bytes": 611,
+      "sha256": "4228d12c696664221e839755cad9df5e9357f13898f0824e126c4e374dd5e81f",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/c8d0d280d0c545ff903411a968adc7cd.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/c8d0d280d0c545ff903411a968adc7cd.json",
+      "size_bytes": 158,
+      "sha256": "5bbdd6fc05b716d9d4022eab3b206c07fc93d27fd6c249047af4d78e0e6f7942",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/d69b3e4270aa4971bf32979c0ee7055a.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/d69b3e4270aa4971bf32979c0ee7055a.json",
+      "size_bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/d69b3e4270aa4971bf32979c0ee7055a.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/d69b3e4270aa4971bf32979c0ee7055a.json",
+      "size_bytes": 423,
+      "sha256": "fe0c8440f907b38b4b7f6921ef60a513e0ec32ef674c17698b512fcc8f40d3a1",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/f5321b218027482c8555e9df8e59520c.json",
+      "archive_member": "freecad_control/easy_insert_session/inbox/f5321b218027482c8555e9df8e59520c.json",
+      "size_bytes": 2935,
+      "sha256": "fcfd351cd80b2b0051a528445d357477eefed3c1aca6eccd56fc0de49e744f24",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/f5321b218027482c8555e9df8e59520c.json",
+      "archive_member": "freecad_control/easy_insert_session/outbox/f5321b218027482c8555e9df8e59520c.json",
+      "size_bytes": 977,
+      "sha256": "36a5421065a03ec8b4d7eaff86c5264f5e231f42fb5ddb4a04885eb5ce11ba14",
+      "action": "delete_after_verification",
+      "reason": "Completed successful bridge request/response; remove request before response"
+    },
+    {
+      "path": "freecad_control/README.md",
+      "archive_member": "snapshots/freecad_control/README.md",
+      "size_bytes": 17798,
+      "sha256": "fe3d02e67247d6edec560e3daa53a1573a215e36cdaeb68f793d009efe5e2e14",
+      "action": "snapshot_only",
+      "reason": "Snapshot before documentation cleanup; keep original operational script"
+    },
+    {
+      "path": "freecad_control/HISTORY.md",
+      "archive_member": "snapshots/freecad_control/HISTORY.md",
+      "size_bytes": 3562,
+      "sha256": "4a10ef7c05dceed394d70afc488cec67f92c86f849aac81dd7b1134b308f49ce",
+      "action": "snapshot_only",
+      "reason": "Snapshot before documentation cleanup; keep original operational script"
+    },
+    {
+      "path": "freecad_control/CLEANUP_PLAN.md",
+      "archive_member": "snapshots/freecad_control/CLEANUP_PLAN.md",
+      "size_bytes": 4786,
+      "sha256": "edf33875bdf1eb781199b90bc861ff8c5a0f6cda2ca19a990251107c54133998",
+      "action": "snapshot_only",
+      "reason": "Snapshot before documentation cleanup; keep original operational script"
+    },
+    {
+      "path": "freecad_control/resume_latest.py",
+      "archive_member": "snapshots/freecad_control/resume_latest.py",
+      "size_bytes": 3196,
+      "sha256": "5d4ab2875b706e0839e2cc64674aacde58d67205adbe5240100d727ad228fe75",
+      "action": "snapshot_only",
+      "reason": "Snapshot before documentation cleanup; keep original operational script"
+    }
+  ],
+  "retained_requests": [
+    {
+      "request": "freecad_control/easy_insert_session/inbox/319de6812a8d44a29e970421c1c6976c.json",
+      "reason": "response_error_or_failed_validation"
+    },
+    {
+      "request": "freecad_control/easy_insert_session/inbox/453b7b51329147969b53042748dc7da2.json",
+      "reason": "response_error_or_failed_validation"
+    },
+    {
+      "request": "freecad_control/easy_insert_session/inbox/4d0d34c2d69e4c2fa473d5aa7a1618d4.json",
+      "reason": "response_error_or_failed_validation"
+    },
+    {
+      "request": "freecad_control/easy_insert_session/inbox/4eaab309d44b45d98248598d66e164dc.json",
+      "reason": "response_error_or_failed_validation"
+    },
+    {
+      "request": "freecad_control/easy_insert_session/inbox/511e655f639b4bf4bd57ebc08ef55691.json",
+      "reason": "response_error_or_failed_validation"
+    },
+    {
+      "request": "freecad_control/easy_insert_session/inbox/5d655f8466fd4510b7c30d593db39ad9.json",
+      "reason": "response_error_or_failed_validation"
+    },
+    {
+      "request": "freecad_control/easy_insert_session/inbox/7100252f6a0a4e1ca6d10a30f95f49ec.json",
+      "reason": "response_error_or_failed_validation"
+    },
+    {
+      "request": "freecad_control/easy_insert_session/inbox/77f32ab97bef45009fe7577737196f7d.json",
+      "reason": "response_error_or_failed_validation"
+    },
+    {
+      "request": "freecad_control/easy_insert_session/inbox/829ac3622c4f4b8ca9475e4524f7da53.json",
+      "reason": "response_error_or_failed_validation"
+    },
+    {
+      "request": "freecad_control/easy_insert_session/inbox/82ce8b2b9179486ea81dfc0c5e7815e7.json",
+      "reason": "response_error_or_failed_validation"
+    },
+    {
+      "request": "freecad_control/easy_insert_session/inbox/85baaf2f022c4d3ba4acf8433419b2f5.json",
+      "reason": "response_error_or_failed_validation"
+    },
+    {
+      "request": "freecad_control/easy_insert_session/inbox/b817fe0e8da940e6887ff6856393f166.json",
+      "reason": "response_error_or_failed_validation"
+    },
+    {
+      "request": "freecad_control/easy_insert_session/inbox/c7d7309e053d401eaea35b2db52686c9.json",
+      "reason": "response_error_or_failed_validation"
+    },
+    {
+      "request": "freecad_control/easy_insert_session/inbox/f3bebd867947441692142e5221782bf6.json",
+      "reason": "response_error_or_failed_validation"
+    },
+    {
+      "request": "freecad_control/easy_insert_session/inbox/f59db3e848fd4fb78b54488a9a4d0b35.json",
+      "reason": "response_error_or_failed_validation"
+    },
+    {
+      "request": "freecad_control/easy_insert_session/inbox/f963575d8e48476abac75cd6c8f2f312.json",
+      "reason": "response_error_or_failed_validation"
+    }
+  ],
+  "cad_disk_audit": {
+    "cad_sha256": "7ffc4262b453c2585239551817bba8d1cc305e709a64e4abfb961d7eeb396e66",
+    "objects": {
+      "Battery": {
+        "label": {
+          "value": "Battery 38 x 28 x 8 mm | upright | Z6-44"
+        },
+        "shape_hash": "cf37c4f39c567588bb1042aa68c1a17ffd3e2e1c7ae7fde10eb763953761fbb9",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "5.1759259259259256",
+          "Pz": "9.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "MicroSD": {
+        "label": {
+          "value": "MicroSD | long edge vertical, 24 x 44.748 mm"
+        },
+        "shape_hash": "3e1d1f27ca5a6b0115b29ba47c077e7c094892c4229cd96e609c3beadf3bd693",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "4.6759259259259256",
+          "Pz": "35.5000000000000142",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.7071067811865476",
+          "Q2": "0.0000000000000000",
+          "Q3": "0.7071067811865476",
+          "A": "1.5707963267948966",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.9999999999999999",
+          "Oz": "0.0000000000000000"
+        }
+      },
+      "IP5306": {
+        "label": {
+          "value": "IP5306 · upright"
+        },
+        "shape_hash": "ae8bfc4eb3bc079247dc5331647a77e7b0c4f080cc0c9f091ced511f87aaf5e1",
+        "placement": {
+          "Px": "-14.5000000000000000",
+          "Py": "-5.0000000000000000",
+          "Pz": "84.0000000000000000",
+          "Q0": "-0.7071067811865476",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "0.7071067811865476",
+          "A": "1.5707963267948966",
+          "Ox": "-0.9999999999999999",
+          "Oy": "0.0000000000000000",
+          "Oz": "0.0000000000000000"
+        }
+      },
+      "ESP32_C3": {
+        "label": {
+          "value": "ESP32_C3 · upright"
+        },
+        "shape_hash": "7b2ddc7110fece22646ee909dd890ee2c1ceacd4f38dda916a335e652c850ead",
+        "placement": {
+          "Px": "-3.6236646226332745",
+          "Py": "8.2999999999999989",
+          "Pz": "92.8305831467845906",
+          "Q0": "0.7071067811865476",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.7071067811865475",
+          "Q3": "0.0000000000000001",
+          "A": "3.1415926535897931",
+          "Ox": "0.7071067811865476",
+          "Oy": "0.0000000000000000",
+          "Oz": "0.7071067811865475"
+        }
+      },
+      "SW1": {
+        "label": {
+          "value": "SW1 RUN / USB-OFF · required power isolation"
+        },
+        "shape_hash": "1907cdfff58e1df41834f34f57edc9a7d2d16cbc48a96c1b53c18cc70fb9c974",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "-42.0000000000000000",
+          "Pz": "33.2999999999999972",
+          "Q0": "-0.7071067811865476",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "0.7071067811865476",
+          "A": "1.5707963267948966",
+          "Ox": "-0.9999999999999999",
+          "Oy": "0.0000000000000000",
+          "Oz": "0.0000000000000000"
+        }
+      },
+      "SW1_Terminals": {
+        "label": {
+          "value": "SW1 nominal terminals - actual switch pinout unverified"
+        },
+        "shape_hash": "88e037992d97eb81d07e712b093227a0deee5a92c876f765420712107d67d1cb",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "-16.0000000000000000",
+          "Pz": "0.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Key_PCB": {
+        "label": {
+          "value": "PCB 36 x 15 | assumed thickness 1.6"
+        },
+        "shape_hash": "8c6cf53df5c17df8786c93bb5263b2ca76aa31d9cd21148f5236cf36ce03084f",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "10.1999999999999993",
+          "Pz": "82.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Key_Mount_Rings": {
+        "label": {
+          "value": "Two mounting annuli | assumed holes diameter 3.2"
+        },
+        "shape_hash": "8adc8c185c3bf523308a63494b8bf35db0a38403c7bee5ae42139059117aa3a5",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "10.1999999999999993",
+          "Pz": "82.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Key_Pads": {
+        "label": {
+          "value": "Four unwired terminal pads | positions provisional"
+        },
+        "shape_hash": "bc4f34a1e535e956c22fc9cc8110332244493181a899d7cb62a463699f7cebea",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "10.1999999999999993",
+          "Pz": "82.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Key_Case_1": {
+        "label": {
+          "value": "K1 tactile metal case | provisional 6 x 6"
+        },
+        "shape_hash": "c2b4b1533ee768edcaff017bdd391a21e20836dad25b8514ee9603fc0fbbf6a5",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "10.1999999999999993",
+          "Pz": "82.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Key_Body_1": {
+        "label": {
+          "value": "K1 switch body"
+        },
+        "shape_hash": "0bb6918a9ec9153a282cc4b00c34137d041591bcb28e707d3007bf723478e83e",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "10.1999999999999993",
+          "Pz": "82.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Key_Stem_1": {
+        "label": {
+          "value": "K1 push stem | assumed 8.3 above PCB rear"
+        },
+        "shape_hash": "89aea725df880e61e69a2a01e3a3253537c4946a54c2f4955defa078c4950d5e",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "10.1999999999999993",
+          "Pz": "82.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Key_Leads_1": {
+        "label": {
+          "value": "K1 solder leads | visual reference"
+        },
+        "shape_hash": "f33c1586b2e4818869d72f5979780da19854e08bbf58458165db37fab0bf5fda",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "10.1999999999999993",
+          "Pz": "82.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Key_Case_2": {
+        "label": {
+          "value": "K2 tactile metal case | provisional 6 x 6"
+        },
+        "shape_hash": "6905252a5b7d5871c5a60e101f28860516bff756d1caa449e34b1e8725e96a3f",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "10.1999999999999993",
+          "Pz": "82.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Key_Body_2": {
+        "label": {
+          "value": "K2 switch body"
+        },
+        "shape_hash": "45a6c74fd94a9b8b6a562f8ee1eccf1b869dc42690fdf27cbfba45c0a3d04eb3",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "10.1999999999999993",
+          "Pz": "82.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Key_Stem_2": {
+        "label": {
+          "value": "K2 push stem | assumed 8.3 above PCB rear"
+        },
+        "shape_hash": "6a3b363dc4b07c1bbe6c959b3279dc9f4d34ef9bf65bc1b79aef1e1b92959904",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "10.1999999999999993",
+          "Pz": "82.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Key_Leads_2": {
+        "label": {
+          "value": "K2 solder leads | visual reference"
+        },
+        "shape_hash": "68c06ccfa2366262762aa5ac9be7ff0b4c14ff711676ed052f4499c051316bb6",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "10.1999999999999993",
+          "Pz": "82.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Key_Case_3": {
+        "label": {
+          "value": "K3 tactile metal case | provisional 6 x 6"
+        },
+        "shape_hash": "f865112d0d2a4e6a9f18a7b69c4e49a097e7b1efb472e29068aec7ccb4d6e314",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "10.1999999999999993",
+          "Pz": "82.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Key_Body_3": {
+        "label": {
+          "value": "K3 switch body"
+        },
+        "shape_hash": "f65f772161a190c0bc3db3c83624340d79d5a576b2655e7044edc58b0936ffe5",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "10.1999999999999993",
+          "Pz": "82.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Key_Stem_3": {
+        "label": {
+          "value": "K3 push stem | assumed 8.3 above PCB rear"
+        },
+        "shape_hash": "7b404230a000c2e815cd00a58b33898fee7577ca131d287d6775eee4b738036d",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "10.1999999999999993",
+          "Pz": "82.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Key_Leads_3": {
+        "label": {
+          "value": "K3 solder leads | visual reference"
+        },
+        "shape_hash": "49bb65d5847e106051a861511ef103862f727c6507ad7b7e560f8d8a9e1c97a6",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "10.1999999999999993",
+          "Pz": "82.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Mic_PCB": {
+        "label": {
+          "value": "ICS-43434 breakout · Ø13 × 1.6 reference · UPRIGHT"
+        },
+        "shape_hash": "cdfd4eefc31ea1fdcc7a9356520190f55bc6ac6a0fab39af44ad1090ab72b5df",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "121.9999999999999858",
+          "Pz": "99.9999999999999716",
+          "Q0": "0.7071067811865476",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "0.7071067811865476",
+          "A": "1.5707963267948966",
+          "Ox": "0.9999999999999999",
+          "Oy": "0.0000000000000000",
+          "Oz": "0.0000000000000000"
+        }
+      },
+      "Mic_ICS43434": {
+        "label": {
+          "value": "ICS-43434 IC · underside / facing down · UPRIGHT"
+        },
+        "shape_hash": "49683130301069837b735fd07833b29f0633d2bba5ccef48b87d1627c8ec2a50",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "121.9999999999999858",
+          "Pz": "99.9999999999999716",
+          "Q0": "0.7071067811865476",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "0.7071067811865476",
+          "A": "1.5707963267948966",
+          "Ox": "0.9999999999999999",
+          "Oy": "0.0000000000000000",
+          "Oz": "0.0000000000000000"
+        }
+      },
+      "Mic_Pads": {
+        "label": {
+          "value": "6 solder pads / no upright headers fitted · UPRIGHT"
+        },
+        "shape_hash": "0cf50afb8ac50e067d5ad1b2a406a70bd7e3fae7aafdd519ca30beb0e0b6c53d",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "121.9999999999999858",
+          "Pz": "99.9999999999999716",
+          "Q0": "0.7071067811865476",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "0.7071067811865476",
+          "A": "1.5707963267948966",
+          "Ox": "0.9999999999999999",
+          "Oy": "0.0000000000000000",
+          "Oz": "0.0000000000000000"
+        }
+      },
+      "Mic_Passives": {
+        "label": {
+          "value": "Reference passive components · underside · UPRIGHT"
+        },
+        "shape_hash": "3b810a00c7c4e474a8cd5022775efe4a91cbbf0ebc9604f9016eaa9e41bd4b39",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "121.9999999999999858",
+          "Pz": "99.9999999999999716",
+          "Q0": "0.7071067811865476",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "0.7071067811865476",
+          "A": "1.5707963267948966",
+          "Ox": "0.9999999999999999",
+          "Oy": "0.0000000000000000",
+          "Oz": "0.0000000000000000"
+        }
+      },
+      "Mic_Acoustic_Gasket": {
+        "label": {
+          "value": "Soft acoustic gasket · rear sidewall"
+        },
+        "shape_hash": "b2ecdcdb99ed40acfd382a765229e1ddc357b378f172df187b4b801d804c1d39",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "13.7999999999999989",
+          "Pz": "-44.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Status_LED_3mm": {
+        "label": {
+          "value": "Status LED - 3 mm (nominal package)"
+        },
+        "shape_hash": "f522f766489a0df0b4df928a72e83b019e9776bec502ef4fed0cd4d5d9356dd6",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "-7.0000000000000000",
+          "Pz": "-61.7999999999999972",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Status_LED_Leads": {
+        "label": {
+          "value": "LED legs - nominal, electrical routing pending"
+        },
+        "shape_hash": "0f1861be85a20c5968e9fd1d1ab9ef8806b09586c9cbf1611a6a660b15748f48",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "-7.0000000000000000",
+          "Pz": "-61.7999999999999972",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "R_LED": {
+        "label": {
+          "value": "R_LED"
+        },
+        "shape_hash": "cdf94a94d8fc1d7df80c291f50d88e581157b13cd399099b1c64f66137db1e9f",
+        "placement": {
+          "Px": "5.0000000000000000",
+          "Py": "-3.0000000000000000",
+          "Pz": "-55.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "R_GPIO2_PU": {
+        "label": {
+          "value": "R_GPIO2_PU"
+        },
+        "shape_hash": "71b6a8f7f8cbf4305e99f59a09366a4e7d325c851ef675b51ee9b4360a931bee",
+        "placement": {
+          "Px": "14.0000000000000000",
+          "Py": "8.0000000000000000",
+          "Pz": "-79.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "R_KEY3": {
+        "label": {
+          "value": "R_KEY3"
+        },
+        "shape_hash": "9fc21cd7f96afb36fc8c09265f54a816715d67207d5d2819b44e52476f8ce51d",
+        "placement": {
+          "Px": "3.0000000000000000",
+          "Py": "-2.0000000000000000",
+          "Pz": "-58.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "R_MIC_SD_PD": {
+        "label": {
+          "value": "R_MIC_SD_PD"
+        },
+        "shape_hash": "85ef8e58b620d276ab424968b95eaefbe7f7ac2c7b6f34936dc93d41c6c64850",
+        "placement": {
+          "Px": "-9.0000000000000000",
+          "Py": "7.5000000000000000",
+          "Pz": "-65.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "C_MIC": {
+        "label": {
+          "value": "C_MIC"
+        },
+        "shape_hash": "6443693197367334622549b10bf0740b1135eb95988abb921efd446b8d7dbc98",
+        "placement": {
+          "Px": "8.0000000000000000",
+          "Py": "8.0000000000000000",
+          "Pz": "-65.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Rear_half": {
+        "label": {
+          "value": "Rear_half | D36 | PROTOTYPE"
+        },
+        "shape_hash": "e70de06a046002d63cf639fd84e461e86851b0ddb2d9ba59b609a884074fd94b",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "0.0000000000000000",
+          "Pz": "0.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Front_half": {
+        "label": {
+          "value": "Front_half | D36 | PROTOTYPE"
+        },
+        "shape_hash": "e119a29bc007075ee5b3a6819a3005dafe03e03286eaec3a18f807b7f7d75d4c",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "0.0000000000000000",
+          "Pz": "0.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Preview_Rear_Separated": {
+        "label": {
+          "value": "XEM TACH ROI - Rear (khong phai chi tiet them)"
+        },
+        "shape_hash": null,
+        "placement": {
+          "Px": "-24.0000000000000000",
+          "Py": "0.0000000000000000",
+          "Pz": "0.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "1.0000000000000000",
+          "Q3": "0.0000000000000001",
+          "A": "3.1415926535897931",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Preview_Front_Separated": {
+        "label": {
+          "value": "XEM TACH ROI - Front (khong phai chi tiet them)"
+        },
+        "shape_hash": null,
+        "placement": {
+          "Px": "24.0000000000000000",
+          "Py": "0.0000000000000000",
+          "Pz": "0.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "TPU_Battery_Installed": {
+        "label": {
+          "value": "TPU in roi - khay mem lien mach - trang thai lap"
+        },
+        "shape_hash": "7583c2b7edb3ea9cf550b74a5aef316a56794c9a5ab54656e53334c1317c8a4f",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "0.0000000000000000",
+          "Pz": "0.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "TPU_Battery_Print": {
+        "label": {
+          "value": "IN TPU - khay pin - tu do co du 0.15mm"
+        },
+        "shape_hash": "28c88954dd9d44e26fd388ee8ac45714608eb8fe320c1c8bccd77e96373d6e70",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "0.0000000000000000",
+          "Pz": "0.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "TPU_Board_Installed": {
+        "label": {
+          "value": "TPU chen go bo - trang thai lap - 8 mieng"
+        },
+        "shape_hash": "5c27ae287b84081ff81e0dfcff060053a5abe8ef3ef2b34bad30510db7e39116",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "0.0000000000000000",
+          "Pz": "0.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "TPU_Board_Print": {
+        "label": {
+          "value": "IN TPU - 8 mieng chen - da trai phang"
+        },
+        "shape_hash": "d17d2596f2a4792f6743c3de8f1bd4272ac247641eba4b56f73a2cd2bcc481c2",
+        "placement": {
+          "Px": "0.0000000000000000",
+          "Py": "0.0000000000000000",
+          "Pz": "0.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Preview_TPU_Rear": {
+        "label": {
+          "value": "XEM THU - Preview_TPU_Rear"
+        },
+        "shape_hash": "83cbb97dc881dda89fa2073f25b16c63ae49430c9fc9323703155b090e953712",
+        "placement": {
+          "Px": "-24.0000000000000000",
+          "Py": "0.0000000000000000",
+          "Pz": "0.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "1.0000000000000000",
+          "Q3": "0.0000000000000001",
+          "A": "3.1415926535897931",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      },
+      "Preview_TPU_Front": {
+        "label": {
+          "value": "XEM THU - Preview_TPU_Front"
+        },
+        "shape_hash": "729b474a8d884c5174cfb74b8826e5c8e407594f852fc449ac913f53c8e0af0a",
+        "placement": {
+          "Px": "24.0000000000000000",
+          "Py": "0.0000000000000000",
+          "Pz": "0.0000000000000000",
+          "Q0": "0.0000000000000000",
+          "Q1": "0.0000000000000000",
+          "Q2": "0.0000000000000000",
+          "Q3": "1.0000000000000000",
+          "A": "0.0000000000000000",
+          "Ox": "0.0000000000000000",
+          "Oy": "0.0000000000000000",
+          "Oz": "1.0000000000000000"
+        }
+      }
+    },
+    "removed_since_validation": [
+      "Nut_M3_1",
+      "Nut_M3_2",
+      "Nut_M3_Lower",
+      "Screw_M3_1",
+      "Screw_M3_2",
+      "Screw_M3_Lower",
+      "Wire_Battery_Negative",
+      "Wire_Battery_Positive",
+      "Wire_Boost_Ground",
+      "Wire_Boost_To_Switch",
+      "Wire_Button_1",
+      "Wire_Button_2",
+      "Wire_Button_3",
+      "Wire_Buttons_Ground",
+      "Wire_Mic_Ground",
+      "Wire_Mic_Left_Channel",
+      "Wire_Mic_SCK",
+      "Wire_Mic_SD",
+      "Wire_Mic_Supply",
+      "Wire_Mic_WS",
+      "Wire_SD_CS",
+      "Wire_SD_Ground",
+      "Wire_SD_MISO",
+      "Wire_SD_MOSI",
+      "Wire_SD_SCK",
+      "Wire_SD_Supply",
+      "Wire_Switch_To_ESP",
+      "Wiring_D36_20261106"
+    ],
+    "added_since_validation": [
+      "C_MIC",
+      "Mic_Acoustic_Gasket",
+      "Preview_Front_Separated",
+      "Preview_Rear_Separated",
+      "Preview_TPU_Front",
+      "Preview_TPU_Rear",
+      "R_GPIO2_PU",
+      "R_KEY3",
+      "R_LED",
+      "R_MIC_SD_PD",
+      "Status_LED_3mm",
+      "Status_LED_Leads",
+      "TPU_Battery_Installed",
+      "TPU_Battery_Print",
+      "TPU_Board_Installed",
+      "TPU_Board_Print"
+    ]
+  },
+  "archive_sha256": "68adf67f25edc359863a8c6802962a512a5fc192acc897a484656c987d1e463d",
+  "archive_crc_and_all_entry_hashes_verified": true,
+  "deleted_count": 57,
+  "deleted_paths": [
+    "freecad_control/easy_insert_session/inbox/04a2077bd3e14d8b88b725a50c61afdc.json",
+    "freecad_control/easy_insert_session/outbox/04a2077bd3e14d8b88b725a50c61afdc.json",
+    "freecad_control/easy_insert_session/inbox/07a650f02e2d4e1491ba9e4d04a7f4f2.json",
+    "freecad_control/easy_insert_session/outbox/07a650f02e2d4e1491ba9e4d04a7f4f2.json",
+    "freecad_control/easy_insert_session/inbox/1ca9898a1cca42ddbfd5972b4b3c058e.json",
+    "freecad_control/easy_insert_session/outbox/1ca9898a1cca42ddbfd5972b4b3c058e.json",
+    "freecad_control/easy_insert_session/inbox/1eb3e943a6444247a45093d7ba98b82d.json",
+    "freecad_control/easy_insert_session/outbox/1eb3e943a6444247a45093d7ba98b82d.json",
+    "freecad_control/easy_insert_session/inbox/3beb0a343c454ce8b070d92005525c51.json",
+    "freecad_control/easy_insert_session/outbox/3beb0a343c454ce8b070d92005525c51.json",
+    "freecad_control/easy_insert_session/inbox/479e602d07fb42ed910d7d03b7eb9e64.json",
+    "freecad_control/easy_insert_session/outbox/479e602d07fb42ed910d7d03b7eb9e64.json",
+    "freecad_control/easy_insert_session/inbox/57720239cdec4740b2584c8cf84a43de.json",
+    "freecad_control/easy_insert_session/outbox/57720239cdec4740b2584c8cf84a43de.json",
+    "freecad_control/easy_insert_session/inbox/57806f4ffa9f42cf9dac11e7a50aa19c.json",
+    "freecad_control/easy_insert_session/outbox/57806f4ffa9f42cf9dac11e7a50aa19c.json",
+    "freecad_control/easy_insert_session/inbox/622dfeeb321a42e08693da9c777c79ac.json",
+    "freecad_control/easy_insert_session/outbox/622dfeeb321a42e08693da9c777c79ac.json",
+    "freecad_control/easy_insert_session/inbox/6c020ddba17d4d09b3a8facc2c1ced1f.json",
+    "freecad_control/easy_insert_session/outbox/6c020ddba17d4d09b3a8facc2c1ced1f.json",
+    "freecad_control/easy_insert_session/inbox/9259bb2a58a047ef89f84ff468262066.json",
+    "freecad_control/easy_insert_session/outbox/9259bb2a58a047ef89f84ff468262066.json",
+    "freecad_control/easy_insert_session/inbox/930fb903c61f4af7ac591a4cb4930e82.json",
+    "freecad_control/easy_insert_session/outbox/930fb903c61f4af7ac591a4cb4930e82.json",
+    "freecad_control/easy_insert_session/inbox/a6ec5c0afffb4cfe8905b28b74c56112.json",
+    "freecad_control/easy_insert_session/outbox/a6ec5c0afffb4cfe8905b28b74c56112.json",
+    "freecad_control/easy_insert_session/inbox/a87cf521b3534e04993e9bbfd2e4746b.json",
+    "freecad_control/easy_insert_session/outbox/a87cf521b3534e04993e9bbfd2e4746b.json",
+    "freecad_control/easy_insert_session/inbox/b5595ea91c76479381dc1708699bf736.json",
+    "freecad_control/easy_insert_session/outbox/b5595ea91c76479381dc1708699bf736.json",
+    "freecad_control/easy_insert_session/inbox/c17b5dd9177d4b44af99b0aa02d8eec6.json",
+    "freecad_control/easy_insert_session/outbox/c17b5dd9177d4b44af99b0aa02d8eec6.json",
+    "freecad_control/easy_insert_session/inbox/c8d0d280d0c545ff903411a968adc7cd.json",
+    "freecad_control/easy_insert_session/outbox/c8d0d280d0c545ff903411a968adc7cd.json",
+    "freecad_control/easy_insert_session/inbox/d69b3e4270aa4971bf32979c0ee7055a.json",
+    "freecad_control/easy_insert_session/outbox/d69b3e4270aa4971bf32979c0ee7055a.json",
+    "freecad_control/easy_insert_session/inbox/f5321b218027482c8555e9df8e59520c.json",
+    "freecad_control/easy_insert_session/outbox/f5321b218027482c8555e9df8e59520c.json",
+    "freecad_control/build_d36_wiring.py",
+    "freecad_control/build_tidy_d36_wiring.py",
+    "freecad_control/capture_d36_wiring.py",
+    "freecad_control/capture_tidy_d36_wiring.py",
+    "freecad_control/debug_wiring_validation.py",
+    "freecad_control/export_wiring_obstacles.py",
+    "freecad_control/inspect_wiring.py",
+    "freecad_control/inspect_wiring_ports.py",
+    "freecad_control/plan_d36_wiring.py",
+    "freecad_control/plan_tidy_d36_wiring.py",
+    "freecad_control/save_d36_wiring.py",
+    "freecad_control/save_tidy_d36_wiring.py",
+    "freecad_control/verify_saved_d36_wiring.py",
+    "freecad_control/verify_saved_tidy_d36_wiring.py",
+    "freecad_control/view_tidy_d36_wiring.py",
+    "freecad_control/wiring_before.png",
+    "freecad_control/wiring_ports.png",
+    "freecad_control/wiring_inspection.json",
+    "freecad_control/wiring_obstacles.json"
+  ]
+}

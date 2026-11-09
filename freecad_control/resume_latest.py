@@ -31,6 +31,7 @@ assert all(assembly.getObject(name) is not None for name in visible_names), 'Ass
 visible_names += ('Battery','MicroSD','IP5306','ESP32_C3','SW1','SW1_Terminals',
                   'Key_PCB','Key_Mount_Rings','Key_Pads','Mic_PCB','Mic_ICS43434','Mic_Pads','Mic_Passives')
 visible_names += tuple('Key_%s_%s' % (part,i) for i in (1,2,3) for part in ('Case','Body','Stem','Leads'))
+visible_names += tuple(obj.Name for obj in assembly.Objects if obj.Name.startswith('Wire_') or obj.Name == 'Wiring_D36_20261106')
 for obj in assembly.Objects:
     if hasattr(obj, 'ViewObject'):
         obj.Visibility = obj.Name in visible_names
@@ -51,8 +52,8 @@ result = {
     'file': str(assembly_path),
     'shells': shells,
     'dimensions_mm': [36, 146],
-    'view': 'Closed assembled shells, screws/nuts and selected electronics at installed coordinates. No TPU or separated previews.',
-    'status': 'Selected electronics restored; physical joint and print validation unfinished. No D36 STL.',
+    'view': 'Closed assembled shells, screws/nuts, selected electronics and 21 reference harness wires at installed coordinates. S3 uses user-approved C3 geometry; physical pad order unverified.',
+    'status': 'Reinforced D36 with three aligned M3 fasteners and S3 harness grouped into parallel routes 2026-11-06. SD supply is 3V3. See Wiring_Tidy_2026-11-06 for validation and unverified physical terminals. Shell STL exports remain in Print_2026-11-03.',
     'geometry_changed': False,
     'saved': False,
 }

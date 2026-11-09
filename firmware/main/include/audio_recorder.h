@@ -1,48 +1,46 @@
 #pragma once
 
+#include <atomic>
 #include <cstddef>
 #include <cstdint>
 #include <cstdio>
-#include "driver/gpio.h"
-#include "esp_err.h"
 #include "ics43434.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
+#include "freertos/semphr.h"
 
+// The control task owns start/stop. Only the capture task reads the microphone;
+// only the writer task writes PCM. stop() joins both before closing the WAV.
 class AudioRecorder {
 public:
-    // MicroSD SPI pins.
-    static constexpr gpio_num_t SD_MISO_PIN = GPIO_NUM_4;
-    static constexpr gpio_num_t SD_MOSI_PIN = GPIO_NUM_5;
-    static constexpr gpio_num_t SD_SCK_PIN = GPIO_NUM_6;
-    static constexpr gpio_num_t SD_CS_PIN = GPIO_NUM_7;
-
-    static constexpr uint32_t SAMPLE_RATE_HZ = 16000;      // Sample rate in Hz
-
+    static constexpr uint32_t SAMPLE_RATE_HZ = 16000;
     AudioRecorder() = default;
     ~AudioRecorder();
-
     AudioRecorder(const AudioRecorder &) = delete;
     AudioRecorder &operator=(const AudioRecorder &) = delete;
-
-    esp_err_t init();  // Initializes the audio recorder and allocates buffer in PSRAM.
+    esp_err_t init();
     esp_err_t start(Ics43434 &mic, const char *file_path);
-    esp_err_t stop();  // Stops recording audio from the microphone.
-    bool is_recording() const;
+    esp_err_t stop();
+    bool is_recording() const { return active_; }
+    esp_err_t error() const { return error_.load(); }
 
 private:
     static constexpr size_t CHUNK_SAMPLES = 1024;
-    static constexpr size_t BUFFER_COUNT = 8;
+    static constexpr size_t BUFFER_COUNT = 16; // About one second of SD latency.
+    struct AudioChunk { int16_t *data; size_t sample_count; };
+    static void capture_task(void *context);
+    static void writer_task(void *context);
+    void set_error(esp_err_t error);
+    void clear();
+    Ics43434 *mic_ = nullptr;
     FILE *file_ = nullptr;
-
-    struct AudioChunk {
-        int16_t *data;
-        size_t sample_count;
-    };
-
     int16_t *buffer_ = nullptr;
     size_t samples_recorded_ = 0;
     QueueHandle_t free_buffers_ = nullptr;
     QueueHandle_t ready_buffers_ = nullptr;
-    bool initialized_ = false;
+    SemaphoreHandle_t capture_done_ = nullptr;
+    SemaphoreHandle_t writer_done_ = nullptr;
+    std::atomic<bool> stop_requested_{false};
+    std::atomic<esp_err_t> error_{ESP_OK};
+    bool active_ = false;
 };

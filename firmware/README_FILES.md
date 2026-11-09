@@ -1,6 +1,26 @@
 # Chức năng các file trong firmware
 
-Tài liệu này mô tả cấu trúc `firmware/` theo hiện trạng ngày 02/11/2026. Quy trình build, nạp code/model và xử lý lỗi nằm trong [README.md](README.md).
+**Cấu hình board mới N16R8:** `sdkconfig` và `sdkconfig.defaults` đã chuyển
+sang Octal PSRAM (8 MB, 40 MHz, auto-detect) và Flash 16 MB. Chưa build/flash
+hoặc xác nhận board mới; mô tả Quad PSRAM 2 MB/Flash 4 MB bên dưới thuộc
+board trước. Bảng phân vùng factory vẫn 1500 KiB. Xem đầu README.md.
+
+**Cập nhật 07/11/2026:** CMake hiện chọn `test/model_only.cpp` bằng
+`set(FIRMWARE_MODEL_TEST ON)`. File này đọc WAV nhúng
+`test/20260717_172242.wav` qua `fmemopen`, gọi `infer_wav` trong pipeline
+chính với log chi tiết và in kết quả; không khởi tạo các ngoại vi ứng dụng.
+Pipeline dùng chung các module xử lý âm thanh, Mel và resize đã có.
+Đổi biến trên thành `OFF` để chọn lại `main/src/main.cpp` và bỏ nhúng WAV test.
+API theo đường dẫn file của ứng dụng chính vẫn giữ nguyên.
+Chưa build/flash/chạy board theo yêu cầu. Các mô tả chọn source bên dưới
+là của chế độ ứng dụng chính (`OFF`).
+
+Cập nhật 09/11/2026: đã đổi đường dẫn nhúng, symbol linker và tên log sang
+`20260717_172242.wav` (mono PCM16 16 kHz, 118784 mẫu, 7,424 giây).
+Đã kiểm tra file có tín hiệu biến thiên và đỉnh ở cả hai cửa sổ; chưa build/flash
+cho lần thay WAV này.
+
+Tài liệu này mô tả cấu trúc `firmware/` theo cập nhật ngày 05/11/2026 (chưa build/chạy trên board). Quy trình build, nạp code/model và xử lý lỗi nằm trong [README.md](README.md).
 
 ## 1. Sơ đồ thư mục
 
@@ -16,12 +36,15 @@ firmware/
 │   ├── CMakeLists.txt
 │   ├── idf_component.yml
 │   ├── include/
+│   │   ├── wav_file.h
+│   │   ├── inference_pipeline.h
 │   │   ├── audio_processor.h
 │   │   ├── audio_recorder.h
 │   │   ├── ics43434.h
 │   │   ├── mel_extractor.h
 │   │   └── spectrogram_resize.h
 │   └── src/
+│       ├── inference_pipeline.cpp
 │       ├── main.cpp
 │       ├── firmware.cpp
 │       ├── audio_processor.cpp
@@ -87,17 +110,22 @@ Header nằm trong `main/include/`, phần cài đặt C++ nằm trong `main/src
 
 ### `main/src/main.cpp`
 
-Đây là file chứa `app_main()` đang được CMake chọn để build. Luồng trong mã nguồn hiện tại:
+Đây là điểm vào CMake chọn để build. Khởi tạo GPIO, task LED, microSD SPI và bộ đệm thu âm, tìm WAV mới nhất trong `CHIN/` và `XANH/`, rồi chờ nút:
 
-1. Kiểm tra PSRAM, nạp model nhúng trong flash và kiểm tra tensor input/output.
-2. Khởi tạo micro ICS-43434 ở 16 kHz với BCLK GPIO3, WS GPIO2 và DIN GPIO1, nhận kênh trái.
-3. Thu âm 5 giây bằng `AudioRecorder`.
-4. Phát hiện đỉnh và cắt các đoạn âm thanh bằng `AudioProcessor`.
-5. Tính Mel-Spectrogram cho từng đoạn, chuẩn hóa về `[0, 1]` và resize thành `128 × 128`.
-6. Lượng tử hóa input INT8 theo exponent của model, gọi `model->run()` và đọc hai điểm số đầu ra.
-7. In dự đoán `XANH` (class 0) hoặc `CHIN` (class 1), giải phóng bộ nhớ xử lý rồi chờ.
+1. Nút 1 GPIO1 thu/dừng nhãn CHÍN; nút 2 GPIO2 thu/dừng nhãn XANH. Khi đang thu chỉ chính nút đã bắt đầu có thể dừng; bỏ qua nút còn lại và Play.
+2. Micro dùng SD GPIO4, SCK GPIO5, WS GPIO6; chỉ bật trong lúc thu. Ghi WAV liên tục xuống SD (CS13/SCK12/MOSI11/MISO10), hoàn tất `.TMP` → `.WAV` khi dừng thành công.
+3. Nút 3 GPIO3 gọi `infer_latest_wav()` cho WAV hoàn tất gần nhất.
+4. LED đơn GPIO7: sáng khi thu, nháy chậm khi xử lý, 1 nháy=XANH, 2 nháy=CHÍN, nháy nhanh=lỗi. Task LED hoạt động độc lập.
 
-Mô tả này dựa trên mã nguồn; kết quả test model trên board ngày 31/10/2026 trong [README.md](README.md) thuộc bản kiểm thử trước, chưa xác nhận luồng thu âm và suy luận hiện tại.
+Giả định nút active-low, LED active-high. Xem mục 7 [README.md](README.md) để biết cách đấu, định dạng file và quy ước thao tác. Code cập nhật chưa được build/flash theo yêu cầu.
+
+### `main/src/inference_pipeline.cpp` và `main/include/inference_pipeline.h`
+
+`infer_latest_wav(path, prediction)` nạp model và kiểm tra tensor, đọc WAV theo lõi 4 giây với ngữ cảnh 0,24 giây hai phía, rồi dùng AudioProcessor → MelExtractor → resize 128 × 128 → lượng tử hóa INT8 → ESP-DL. Ngưỡng đỉnh tính riêng từng cửa sổ; không nạp toàn bộ bản thu vào RAM. Chỉ tính phiếu cho đỉnh thuộc lõi, lọc khoảng cách đỉnh qua biên. Đa số phiếu cho kết quả 0=XANH hoặc 1=CHÍN; không có đỉnh/phiếu hòa trả lỗi. Bộ nhớ model và xử lý được giải phóng sau mỗi lần chạy.
+
+### `main/include/wav_file.h`
+
+Hàm inline ghi/đọc header 44 byte của định dạng ứng dụng: WAV mono PCM16 little-endian 16 kHz. Kiểm tra định dạng và độ dài thực của file trước suy luận. Không hỗ trợ WAV có chunk mở rộng hoặc định dạng tùy ý từ bên ngoài.
 
 ### `main/src/firmware.cpp`
 
@@ -108,7 +136,7 @@ Giữ bản code kiểm thử model: kiểm tra PSRAM/tensor, gọi `model->test
 | Header trong `main/include/` | Source trong `main/src/` | Chức năng |
 | --- | --- | --- |
 | `ics43434.h` | `ics43434.cpp` | Driver I2S thu PCM mono 24 bit trong `int32_t`, cấu hình chân/kênh và quản lý tài nguyên micro |
-| `audio_recorder.h` | `audio_recorder.cpp` | Thu âm 5 giây ở 16 kHz vào buffer PCM `int16_t` |
+| `audio_recorder.h` | `audio_recorder.cpp` | Hai task thu PCM16 16 kHz và ghi WAV liên tục; queue 16 × 1024 mẫu, stop drain và hoàn tất header |
 | `audio_processor.h` | `audio_processor.cpp` | Phát hiện đỉnh, quản lý tối đa 32 đoạn cắt dài 0,24 giây |
 | `mel_extractor.h` | `mel_extractor.cpp` | Tạo Mel-Spectrogram: FFT 2048, hop 256, 128 dải Mel, miền 50–2000 Hz, tối đa 32 frame |
 | `spectrogram_resize.h` | `spectrogram_resize.cpp` | Resize spectrogram sang kích thước đầu ra do phía gọi truyền vào |
@@ -119,12 +147,12 @@ Xem mục 6 trong [README.md](README.md) để biết API micro và ví dụ ki�
 
 Cấu hình riêng cho component ứng dụng `main`:
 
-- `SRCS`: chọn sáu file `src/main.cpp`, `src/ics43434.cpp`, `src/audio_recorder.cpp`, `src/audio_processor.cpp`, `src/mel_extractor.cpp` và `src/spectrogram_resize.cpp` để biên dịch; không chọn `src/firmware.cpp`.
+- `SRCS`: chọn bảy file `src/main.cpp`, `src/inference_pipeline.cpp`, `src/ics43434.cpp`, `src/audio_recorder.cpp`, `src/audio_processor.cpp`, `src/mel_extractor.cpp` và `src/spectrogram_resize.cpp` để biên dịch; không chọn `src/firmware.cpp`.
 - `INCLUDE_DIRS "include"`: thêm `main/include/` vào đường dẫn tìm header. Vì vậy source trong `src/` vẫn dùng `#include "ics43434.h"`, không cần đổi thành đường dẫn tương đối.
-- `REQUIRES esp-dl esp_driver_i2s esp_driver_gpio`: khai báo phụ thuộc ESP-DL và driver I2S/GPIO.
+- `REQUIRES esp-dl esp_driver_i2s esp_driver_gpio esp_driver_spi esp_driver_sdspi sdmmc fatfs`: khai báo ESP-DL, driver I2S/GPIO/SPI và filesystem microSD.
 - `target_add_binary_data(...)`: nhúng `models/durian_student_pruned.espdl` dưới dạng dữ liệu nhị phân vào component.
 
-Nhờ bước nhúng này, linker tạo được symbol mà `main/src/main.cpp` sử dụng. Nếu đổi tên model, cần cập nhật cả đường dẫn tại đây và tên symbol trong C++.
+Nhờ bước nhúng này, linker tạo được symbol mà `main/src/inference_pipeline.cpp` sử dụng. Nếu đổi tên model, cần cập nhật cả đường dẫn tại đây và tên symbol trong C++.
 
 ### `main/idf_component.yml`
 

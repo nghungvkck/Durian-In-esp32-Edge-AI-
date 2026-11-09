@@ -1,0 +1,1555 @@
+{
+  "date": "2026-11-03",
+  "timezone": "Asia/Bangkok",
+  "root": "/mnt/d/hoc_tap_sinh_vien/kien_thu_ai/project/Duration_edge_ai",
+  "archive": "freecad_control/archive/cleanup_2026-11-03/session_cleanup.zip",
+  "entries": [
+    {
+      "path": "freecad_control/README.md",
+      "bytes": 26859,
+      "sha256": "fade4f575dbce189eb7fdefba019c7c2e477769092cc80a57975bf4d2e043652",
+      "reason": "Original handoff before consolidation",
+      "action": "replace"
+    },
+    {
+      "path": "freecad_control/resume_latest.py",
+      "bytes": 2849,
+      "sha256": "9763f5d27711625074f428a96d941d6aa274289d295a9f3e1f8eded84666ba08",
+      "reason": "Original status text before correcting STL availability",
+      "action": "replace"
+    },
+    {
+      "path": "freecad_control/add_lower_screw.py",
+      "bytes": 6548,
+      "sha256": "6d4a0df88926b8c79be9c20467eb0a5c01f7c0a39486112446ec25a5f260a762",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/add_recessed_fasteners.py",
+      "bytes": 7160,
+      "sha256": "853d7b9ef97c8a2a3a5a343b670be88882dd0e83219e290b2e0e6bd2cee199cd",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/capture_centered_m3.py",
+      "bytes": 319,
+      "sha256": "321ba830d982dc1e11da357bf8256f31f2268f094cf1af971c62e48a6acce798",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/capture_clean_assembly.py",
+      "bytes": 300,
+      "sha256": "053d91cd9e066827ea5d9fe6675385a4ddc7769d1fec6ab4b7954956f7968048",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/capture_fasteners.py",
+      "bytes": 949,
+      "sha256": "471963aa925f96ba3fdd38c4deb63781c9f3ba3fcee8f4825b36b2a45fd6484f",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/capture_lower_screw.py",
+      "bytes": 308,
+      "sha256": "a4cd8050373235a135eaf33c4ff1d50dcf9eb8c3381dffa0ae65e68f56f5caaf",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/capture_reinforced_frame.py",
+      "bytes": 318,
+      "sha256": "7cdfa3caeb7ea03a37247ef8e9b8ceb4ba2f417a63a50fc56ee5b36249cd0848",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/center_lower_m3.py",
+      "bytes": 7381,
+      "sha256": "bc92588832c810b05eeda0d32cac5be3214735c176125bd6ef690879d160ed9d",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/export_shells_2026_11_03.py",
+      "bytes": 2848,
+      "sha256": "b831d9306f1d8d841c20e1ddb1c73b932a1f57fdc0a0af4b6b03573ce02e546f",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/finalize_simplified_holders.py",
+      "bytes": 1012,
+      "sha256": "9c1989ed8f75d0d22b1f2de30810e23364e77dc5513785ac1bbab0abf41f5244",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/finish_recessed_fasteners.py",
+      "bytes": 4086,
+      "sha256": "29ea6053277f045e5f9b2e91540f033060b9a6f050776e6f4f318d61245a3b02",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/inspect_fastener_holes.py",
+      "bytes": 750,
+      "sha256": "0c3f63828f25f3fd1498b22233b1dff74c5494f088e735b007b0fbe935d8642d",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/inspect_frame_bars.py",
+      "bytes": 913,
+      "sha256": "a2814e8a9e582357ce37e98ac0009c4a76e8d89f54ebce9a1dff242259da73d5",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/inspect_lower_screw.py",
+      "bytes": 446,
+      "sha256": "09850620802c13099075bcd38e26cab2384100edacfc7a3062c7cfa4ce1ac7d6",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/inspect_shell_steps.py",
+      "bytes": 946,
+      "sha256": "7bd00daa77306d3628ec2e686b8610e5b2ef790508c2acd66231cca5e53d571d",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/keep_shells_only.py",
+      "bytes": 2431,
+      "sha256": "a185c610631572ba46bce2b5d68539a084153e40b128035fcfe9713765ea198f",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/reinforce_frame_bars.py",
+      "bytes": 6142,
+      "sha256": "d4ba2c4a3a6367e36754de974f87c1b5e0fcaac6588c6b087253999cb91d20e9",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/restore_selected_components.py",
+      "bytes": 3657,
+      "sha256": "b83202af0fe919b6324f94acd6a162760da6e539712e9d7c5866dfa3e99742f5",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/save_fastener_view.py",
+      "bytes": 310,
+      "sha256": "ad943a932aa2a3330b6c96c610496c92bf04c1c97c7b1a0c5552b5b35a92fdd4",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/show_clean_assembly.py",
+      "bytes": 2459,
+      "sha256": "b24dbc5d2a834048639d1b7ccd5d53cbc5e9bcc0449232782cf73013d4702f1c",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/show_lower_screw.py",
+      "bytes": 1221,
+      "sha256": "824c11637d2b39e89d4f57ca6bff04714968135a7bf47ab55d957e4c1f818be1",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/simplify_holder_steps.py",
+      "bytes": 4875,
+      "sha256": "9c1627177b7afcce2409caebfb7565772c662572525ffd30cdbab60ef8e2b290",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/validate_clean_view.py",
+      "bytes": 2135,
+      "sha256": "243acab51ec85036cbb8f02f3236fe429c33510e6af9951ba40ad1f304434bf0",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/validate_saved_fasteners.py",
+      "bytes": 4353,
+      "sha256": "f1b1ed5956677236f766484bee1c89e049ee09c19e2610ab10e4f4e88e1551de",
+      "reason": "One-off historical edit/capture/validation; not the resume entry point",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/restart_screen.png",
+      "bytes": 141564,
+      "sha256": "6bfeaeb8a5f69237769a7e020eff82b8fe21be13d57c285562425d7e79e0ffc2",
+      "reason": "Historical restart screenshot; current evidence remains in CAD folders",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/0c1e06f5550d4b658a1d0db5e1ee2df0.json",
+      "bytes": 3100,
+      "sha256": "12b41b4a396f49a897a559329c945306fc951c4c27f5fe6d4d32db319c549474",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/0c1e06f5550d4b658a1d0db5e1ee2df0.json",
+      "bytes": 377,
+      "sha256": "bd87f16bf05b2c9c4a785669956273d756ca186ca11c5b533eb44c301edff809",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/1024555d01e2417d92502b2756e981de.json",
+      "bytes": 943,
+      "sha256": "a40bdb51040a621ea4cd961c20a7b3ade3043c256df1b397468e43544027af27",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/1024555d01e2417d92502b2756e981de.json",
+      "bytes": 4341,
+      "sha256": "613ff31baaadadd1344b5e6bc720c7e935a1cc889deb78d51ddc4d54dd7dbf9f",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/1130db805d504bada7ecadd58f0c9d67.json",
+      "bytes": 6929,
+      "sha256": "64c2cb4f5110798118c382e167c1fd061cfba8dd4119037c9fd0ef67ea9a6c47",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/1130db805d504bada7ecadd58f0c9d67.json",
+      "bytes": 1192,
+      "sha256": "ad5af34ad35dc4ee3ac13917360d77a121a4f5da8fd11d56aa5d63a4ed7d8e16",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/225374390cbc489f872f8771cd475ba0.json",
+      "bytes": 345,
+      "sha256": "25a7b4472b1f454ca8a1300f096bed8d8b97066de4b48af23687325d9221d014",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/225374390cbc489f872f8771cd475ba0.json",
+      "bytes": 219,
+      "sha256": "4c25bcfe657d57472cb690a56d0fe93d98eadbc641b23f26b7f82fc60b43dbe3",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/238664b748c44a7792d3e2acc9722e02.json",
+      "bytes": 334,
+      "sha256": "6b9271bc8513fed6c8bee83bc6844540c12c4f083dfdf5c712f417c3a7c9c022",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/238664b748c44a7792d3e2acc9722e02.json",
+      "bytes": 208,
+      "sha256": "a97539438a9b1e41c16631c0ebf16f848a339e6928ef5966ba5d61959d9771f2",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/2a2c4216c3b740f6960467af1edf71ab.json",
+      "bytes": 2911,
+      "sha256": "3ec2f59335cd39c929cacf252c5e98ec164230fd228054dfa947b7f33dac2f5b",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/2a2c4216c3b740f6960467af1edf71ab.json",
+      "bytes": 1847,
+      "sha256": "57e77b57ff91e225340faa1588a2020f86463b04cd84e77f34fd74dce41cd6f8",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/2a47991e25ba471481ace5d08a563934.json",
+      "bytes": 4982,
+      "sha256": "4667c3921f0bdd94cca80337731051b093e0d7c065f539b8155d26f4bd9942c6",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/2a47991e25ba471481ace5d08a563934.json",
+      "bytes": 2265,
+      "sha256": "d99fccd17d0f55f8bfcf5937f396090ae534ecac3c63793cd041f2195bff60e4",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/2bedc22a311240509a6350879093aed3.json",
+      "bytes": 1179,
+      "sha256": "814aa59c3e10559eeacdb020e5947e8d3c348913421e145eb41432215ddb5cc8",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/2bedc22a311240509a6350879093aed3.json",
+      "bytes": 496,
+      "sha256": "14ee1d12dfe857cba63c97312c16df7cec74439002fba0d064de6abe35df9ca2",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/2daaa7d89260475998004c8d02559029.json",
+      "bytes": 1256,
+      "sha256": "14f10544481b19237cf9f271f09999bede8adbe45d62cda2a001fef4fbb1b868",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/2daaa7d89260475998004c8d02559029.json",
+      "bytes": 198,
+      "sha256": "8f5ec1f5c02b826e3c3acf5f2ae5fa88d77aa246b3b52c9141b1047885f7bbc2",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/2dfa841c1e7d41649295909e41ecc313.json",
+      "bytes": 377,
+      "sha256": "ae5ea02dc214f41b88f747613233adb71586b9d2e290339b46fee2a8a291ceb2",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/2dfa841c1e7d41649295909e41ecc313.json",
+      "bytes": 213,
+      "sha256": "faba7fc35ead9c0f98722ac2065697a442e39fd032d6589d6e0bcefb523c9a48",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/2e7465411f4f4b00a327a77dfadf8301.json",
+      "bytes": 528,
+      "sha256": "51f9b2c7eac030f83da96aae67ddc7953fb2643c33be9538cf0377d354c8a97e",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/2e7465411f4f4b00a327a77dfadf8301.json",
+      "bytes": 200,
+      "sha256": "609a2b92c9b5ebcdd3e11927aa96df6f98ef87efc0987166cffc32e234a3d6b5",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/2f95ca606e954e0e908d97e9cbeb3d7f.json",
+      "bytes": 3209,
+      "sha256": "726674ed541900f2900a527b56a55881a6bcb054b0a1ec252953da9ee67991b6",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/2f95ca606e954e0e908d97e9cbeb3d7f.json",
+      "bytes": 1032,
+      "sha256": "983ad2d72c729877422b0e46b11d7237830f4cbd7f0905a099c1dee707eb4a10",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/34e546ba9db74638aa6bbe68f33aea8e.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/34e546ba9db74638aa6bbe68f33aea8e.json",
+      "bytes": 423,
+      "sha256": "ccc816d0cb9791e3560073a1dd713742bdf88f159861bb1c3166c8b53e41c41e",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/3aa23a7edfc14cabbee93fc8ab0668d0.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/3aa23a7edfc14cabbee93fc8ab0668d0.json",
+      "bytes": 856,
+      "sha256": "744c13eeae5e17d704d2f5e2434b2be3515303fd37574f57281756b93412eba6",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/4231a0f907eb4c6fa472ca4e99419ad1.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/4231a0f907eb4c6fa472ca4e99419ad1.json",
+      "bytes": 423,
+      "sha256": "ccc816d0cb9791e3560073a1dd713742bdf88f159861bb1c3166c8b53e41c41e",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/427c6e41bc1348ab8113f1fdb8ff8fb1.json",
+      "bytes": 530,
+      "sha256": "7a51e56e56f944c5cac82acbd65b9159c9645853614aefc65193bc7a3aaf0eef",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/427c6e41bc1348ab8113f1fdb8ff8fb1.json",
+      "bytes": 201,
+      "sha256": "d1216a7a36a037ed57204bc469636d408653464e9e2d4530aeb4aeb3542e15cd",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/4773a457430d4a17a18add002d721723.json",
+      "bytes": 984,
+      "sha256": "b510f4fed06a5649627bcced25ea3e54d1438fef4e4c0fa901403c11051322c4",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/4773a457430d4a17a18add002d721723.json",
+      "bytes": 154,
+      "sha256": "19910f80c58965a943a458c2b07593e0488e00e109d48afa47ffb87e0bbda03a",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/48bceefdcf374cb6b55fedf1993f4e5a.json",
+      "bytes": 8259,
+      "sha256": "e9853f4b915f983db8d97e4840b8422a9dd298ae7468f4ffc0475bee66256fda",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/48bceefdcf374cb6b55fedf1993f4e5a.json",
+      "bytes": 1437,
+      "sha256": "2199073bdd02dd544a237cbee59a92a6d4f602bb528a2c5942935d3fdbfceb28",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/4a4b3d521fd3494b8d3267ad909d04ca.json",
+      "bytes": 5310,
+      "sha256": "35b644b988b31f94896ceb04f9cada532976ba2daa9e76f8843cb425bf7e4a7e",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/4a4b3d521fd3494b8d3267ad909d04ca.json",
+      "bytes": 826,
+      "sha256": "32c686b360687e95e09f649532ae0dc7c2735192ecee38c779986b030018a824",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/4ae50d85b0164549b6010ecd170e3191.json",
+      "bytes": 5581,
+      "sha256": "539e184689041b8b4fc44b8553ce670ff74cc15c55c598ff7b12f20f96a504c5",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/4ae50d85b0164549b6010ecd170e3191.json",
+      "bytes": 916,
+      "sha256": "ce422d141ee971890087db9d6abcb01be0181f39941d44210911ba59f7ce7a6e",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/4c3a00bf6b2041f29fbd79470dbfb3e7.json",
+      "bytes": 336,
+      "sha256": "2db3503830d37c849f6eeb84df7a91da76d38c5a24453e35b89ac75853216a88",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/4c3a00bf6b2041f29fbd79470dbfb3e7.json",
+      "bytes": 213,
+      "sha256": "e8b55c2b7f8af9b3552876241aa31eff985ae472bb5546281383f2762c5e425c",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/4fb9dc31022047738863429d233dc806.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/4fb9dc31022047738863429d233dc806.json",
+      "bytes": 1105,
+      "sha256": "5517bbc98bd1e34fca7e279cdde587100b7e888d8841a8c98da5541c6173cc8d",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/5137ac12f14e48be9c3beb06f9c835d0.json",
+      "bytes": 607,
+      "sha256": "8c64ecf4179a23bea23eaee7c7ffac034ffaac6a4f43763c29002ba92b85c49f",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/5137ac12f14e48be9c3beb06f9c835d0.json",
+      "bytes": 61,
+      "sha256": "2a99c02c1019c188ddf629a357d11d32bfa2a7b738f1e833d9128a7aff7a4cb3",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/61aade79062b469cade898ef47db7b13.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/61aade79062b469cade898ef47db7b13.json",
+      "bytes": 423,
+      "sha256": "ccc816d0cb9791e3560073a1dd713742bdf88f159861bb1c3166c8b53e41c41e",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/68347828d59446d985e833971c04d38d.json",
+      "bytes": 1189,
+      "sha256": "87365701c0af9f6629bf900fb932fb09fcba73c12f22fd19c00000fc1e656d43",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/68347828d59446d985e833971c04d38d.json",
+      "bytes": 496,
+      "sha256": "14ee1d12dfe857cba63c97312c16df7cec74439002fba0d064de6abe35df9ca2",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/6a33593a14a541639e646c442c9c504f.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/6a33593a14a541639e646c442c9c504f.json",
+      "bytes": 423,
+      "sha256": "e9cf9e34a7c5c9dbb2a94bb8d4fef5b311e9f1388004a60b02a32ff5a1a0688b",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/6cd603c693a14879b073b46ce999aaa1.json",
+      "bytes": 6267,
+      "sha256": "d13f7fc0a682cb7a3cff9d1742e096c570b1a081843a35e1af9eeab7ed7c0af7",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/6cd603c693a14879b073b46ce999aaa1.json",
+      "bytes": 7764,
+      "sha256": "63a8a86476d2564cce8533b3815d3213d88026682a7567297e7b5dbb3b34c432",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/6d6def125551496d8bfb424776a40253.json",
+      "bytes": 8253,
+      "sha256": "385e0cc42edffbad526e7b57938ce81af194f85872aa03fd14fae86b40f5e3ad",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/6d6def125551496d8bfb424776a40253.json",
+      "bytes": 1465,
+      "sha256": "de2932dbb8e71009d7051d6fea0e720d96fe6fdada4f7e23b794e3c1c307d437",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/72e19b5551dd40f6b6122767aafc59fd.json",
+      "bytes": 469,
+      "sha256": "ec16f9409384a6e9c7be211420b802475c7593fe6c931485c226c298529ba3f3",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/72e19b5551dd40f6b6122767aafc59fd.json",
+      "bytes": 5421,
+      "sha256": "04693fd8899f0893cb3682e8dfbdcea787f05504cb976f08782244e35948cea4",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/74aa729ad34d474da32820a7467c017e.json",
+      "bytes": 3354,
+      "sha256": "f59e6e93eebf29e3ef6a6f5cda680f14cc68b0dd1fd4ff46ea687339af1ae724",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/74aa729ad34d474da32820a7467c017e.json",
+      "bytes": 1028,
+      "sha256": "20bb6b9e75f68a368f08f188d41ee5893c5b3cc5d44978c884015acea75ad266",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/74c5bf26ad2248ebb26c6afffc708dec.json",
+      "bytes": 1241,
+      "sha256": "1be3a30b890b5239906840e2ff24cbb461850b7a244852a0f7596e539b35df5e",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/74c5bf26ad2248ebb26c6afffc708dec.json",
+      "bytes": 89,
+      "sha256": "ef31efc62ec45400f3a5246a94a8ebdd2f7798138ea7255e7c7f4151e2a9e59b",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/7738060948204c6d94bf6bb267602f6c.json",
+      "bytes": 789,
+      "sha256": "8cc2ea26be18b04eaafc3d6f6a86fc00231a4afbbd234bf9e812e5e2f82a35fb",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/7738060948204c6d94bf6bb267602f6c.json",
+      "bytes": 235,
+      "sha256": "f719acf515cc9c14c4bc14a3bd8cdafd41d726df3f52deff57d87186e92d8841",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/789b87c5d9c04a50814298165cf5137c.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/789b87c5d9c04a50814298165cf5137c.json",
+      "bytes": 423,
+      "sha256": "45a07df64b1560089fdc64f9bd5cb28a6c9c7314969e3c10b2949ef7b839eaaa",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/81e9f656b9434234b70295b96aa0aa54.json",
+      "bytes": 1036,
+      "sha256": "c817964ea25bf29fea6d448b7b7406b7305d1ee70138316feff654f162f1215b",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/81e9f656b9434234b70295b96aa0aa54.json",
+      "bytes": 2005,
+      "sha256": "1a63b4acc858eff5c752872a53735ddf3f311812a4045961aa0ea9e1addba510",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/84e193d12d2b496eaa89bd2fecdb1ffc.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/84e193d12d2b496eaa89bd2fecdb1ffc.json",
+      "bytes": 423,
+      "sha256": "45a07df64b1560089fdc64f9bd5cb28a6c9c7314969e3c10b2949ef7b839eaaa",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/8c4450d3e5774b33966fde794bdd9698.json",
+      "bytes": 1042,
+      "sha256": "7dc1b375d36b38388e83cfb0202c5bf55279c525228c2c1ffa1252c677778d47",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/8c4450d3e5774b33966fde794bdd9698.json",
+      "bytes": 292,
+      "sha256": "6eea61b9299e0834d121c649b06d6a6ed3f6b01ade39dc684f6e8eb590686b0c",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/8d74895b14544be492ae0eebbe114af6.json",
+      "bytes": 1435,
+      "sha256": "5eaed41716518e4d0a555ee376b0877beae4e41797a16ffcd92f4b0f8c3cbddd",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/8d74895b14544be492ae0eebbe114af6.json",
+      "bytes": 243,
+      "sha256": "e5becb61ac4edd56ff1645aea7449e451ace842a62bfdd494b5d7fc8e771da8c",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/8ee2095c611c48f8b7bd7822e47a455c.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/8ee2095c611c48f8b7bd7822e47a455c.json",
+      "bytes": 423,
+      "sha256": "e9cf9e34a7c5c9dbb2a94bb8d4fef5b311e9f1388004a60b02a32ff5a1a0688b",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/94a61e9f8219474e842ffd6e18795895.json",
+      "bytes": 528,
+      "sha256": "51f9b2c7eac030f83da96aae67ddc7953fb2643c33be9538cf0377d354c8a97e",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/94a61e9f8219474e842ffd6e18795895.json",
+      "bytes": 200,
+      "sha256": "609a2b92c9b5ebcdd3e11927aa96df6f98ef87efc0987166cffc32e234a3d6b5",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/969765ecfc3841d897ad5a7852af5d14.json",
+      "bytes": 344,
+      "sha256": "888f5750ea9159cf7c7cce9206535a2cf8eb2c9c448cf80273569e14e1d9f756",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/969765ecfc3841d897ad5a7852af5d14.json",
+      "bytes": 218,
+      "sha256": "df5c77c301d5931c8a2f6f1907556306b56de7da1103ab4ca6232c288f4d777f",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/9dd4b5bde836414582b0a00b29893b8c.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/9dd4b5bde836414582b0a00b29893b8c.json",
+      "bytes": 423,
+      "sha256": "a29c07357b11ea2c242e2f75ab4ea569217bde3bc25cb22d7bec8cc70d0c8236",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/9ed9001bc8ff406e8fd79fd47c85de3f.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/9ed9001bc8ff406e8fd79fd47c85de3f.json",
+      "bytes": 423,
+      "sha256": "45a07df64b1560089fdc64f9bd5cb28a6c9c7314969e3c10b2949ef7b839eaaa",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/a464fa45223149c9a8768c0fa0740f26.json",
+      "bytes": 388,
+      "sha256": "ac84effe60d0464f8cde3487b5363931ff3d7d0d04d6cda8d6cd99348e544168",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/a464fa45223149c9a8768c0fa0740f26.json",
+      "bytes": 218,
+      "sha256": "65be8cea62cc29a2cdfe775f1ff1d2c2e0c8a5332731a24d726c1c40fbf1d12d",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/a8c7401e72db4126a46b3516dbc24b73.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/a8c7401e72db4126a46b3516dbc24b73.json",
+      "bytes": 422,
+      "sha256": "e8e6f8fc106d29fda000fc392d195c4aff9cf5149fbe8e461e6e98f41484af42",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/ab85e37987e243e7ac275a8d39e73974.json",
+      "bytes": 3746,
+      "sha256": "55f735b84dc4243a87b64cc5f0d02fdb02690c41d9a3a48c1d8c5db3c018e71e",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/ab85e37987e243e7ac275a8d39e73974.json",
+      "bytes": 1171,
+      "sha256": "f8ca335a8b7dd99c9dc099c289a362a1d8c8d359c9fd7cc50169bb3456854ed9",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/ae1e4798abc7468782c317e2da288940.json",
+      "bytes": 336,
+      "sha256": "2db3503830d37c849f6eeb84df7a91da76d38c5a24453e35b89ac75853216a88",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/ae1e4798abc7468782c317e2da288940.json",
+      "bytes": 213,
+      "sha256": "e8b55c2b7f8af9b3552876241aa31eff985ae472bb5546281383f2762c5e425c",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/b2a946184b3844918e830005e55a5224.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/b2a946184b3844918e830005e55a5224.json",
+      "bytes": 1105,
+      "sha256": "5517bbc98bd1e34fca7e279cdde587100b7e888d8841a8c98da5541c6173cc8d",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/b42911768195451a97cb6643f8b45965.json",
+      "bytes": 2498,
+      "sha256": "ae05d4a348c081e1bdf3e2712b29b3dbfa7793ee7fd17f8f22b169c669926500",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/b42911768195451a97cb6643f8b45965.json",
+      "bytes": 2349,
+      "sha256": "be36fa83ccb29337b6b0f702a3430fc1bff786454cf1334b0cef592f6fe68b97",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/bafbf98b7cfb44948a48d5083a36343e.json",
+      "bytes": 975,
+      "sha256": "51f242c8eab698e932e9ea3e2ed00b32df9ac095afe489fb9334e2dd772af616",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/bafbf98b7cfb44948a48d5083a36343e.json",
+      "bytes": 186145,
+      "sha256": "940f57bce91894af249efc3faa4a2f9a2da86c719148d18087e01e940a835d19",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/bd17b5ff221148caae1789fd1fb694ba.json",
+      "bytes": 789,
+      "sha256": "8cc2ea26be18b04eaafc3d6f6a86fc00231a4afbbd234bf9e812e5e2f82a35fb",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/bd17b5ff221148caae1789fd1fb694ba.json",
+      "bytes": 235,
+      "sha256": "f719acf515cc9c14c4bc14a3bd8cdafd41d726df3f52deff57d87186e92d8841",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/bdf89568af1a438c9828afc0c9c88183.json",
+      "bytes": 975,
+      "sha256": "51f242c8eab698e932e9ea3e2ed00b32df9ac095afe489fb9334e2dd772af616",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/bdf89568af1a438c9828afc0c9c88183.json",
+      "bytes": 181697,
+      "sha256": "239bdcd8dd4e943ce34d39bc59b44f5f470a534b888d4d90ebd9c50a04f3b918",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/c03d47459ca54ddfbaec3facddb4b4fd.json",
+      "bytes": 528,
+      "sha256": "51f9b2c7eac030f83da96aae67ddc7953fb2643c33be9538cf0377d354c8a97e",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/c03d47459ca54ddfbaec3facddb4b4fd.json",
+      "bytes": 200,
+      "sha256": "609a2b92c9b5ebcdd3e11927aa96df6f98ef87efc0987166cffc32e234a3d6b5",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/c1e5b67ae7884ca397f218438b9e09ed.json",
+      "bytes": 778,
+      "sha256": "2ee0414b9f8c68f0624d182e0e83e7fbb9854cafb7613ec1c6df76e2ad2f02c8",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/c1e5b67ae7884ca397f218438b9e09ed.json",
+      "bytes": 15677,
+      "sha256": "5ab95df3748375170d47628f03598c5779b6d493830f8e22e67b47c9cd5773fe",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/c3152b683fd540d0a29114752c77e635.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/c3152b683fd540d0a29114752c77e635.json",
+      "bytes": 737,
+      "sha256": "de45e7e62d56ff30e292ebe49507ba3c2def16a7e15d88232d666d8169a6b11c",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/c752c73f07ff4f69a22b812da9d0b96a.json",
+      "bytes": 744,
+      "sha256": "c5aec95c389a6eb28d97f222c24b128c54243d2fc7ddace5166de3520eac7757",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/c752c73f07ff4f69a22b812da9d0b96a.json",
+      "bytes": 154,
+      "sha256": "19910f80c58965a943a458c2b07593e0488e00e109d48afa47ffb87e0bbda03a",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/cda8724ec2684508aec2087aedbaa4d5.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/cda8724ec2684508aec2087aedbaa4d5.json",
+      "bytes": 1105,
+      "sha256": "5517bbc98bd1e34fca7e279cdde587100b7e888d8841a8c98da5541c6173cc8d",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/ce7535513e904df6bf64186d5ddd4ee5.json",
+      "bytes": 2795,
+      "sha256": "d31a99fe67c693e69728f73a4e952c42f6638ca7c8863fb7b22dc600cf72d92c",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/ce7535513e904df6bf64186d5ddd4ee5.json",
+      "bytes": 848,
+      "sha256": "59afa72c29773e95edaf99fba0f3d299baecd934afd580e71315af8ddb302b46",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/d5b027de5ac14cb69d9aaf19ffa7d0e0.json",
+      "bytes": 326,
+      "sha256": "c0c7bbfcf3b5ad12bf258f3698539404a93b19105aa7a0587a2356964b316128",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/d5b027de5ac14cb69d9aaf19ffa7d0e0.json",
+      "bytes": 209,
+      "sha256": "cd39a3f685a335773a941a10c6ad76b566e734e506928a941a62ad84708f0e6f",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/e0e92ee6a1274da5b66a393945eb5ea3.json",
+      "bytes": 6708,
+      "sha256": "6b6ea140dd414e8f798c9e441ffe45b542ac7ba9db4d6ea1cbe4eda2acca0516",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/e0e92ee6a1274da5b66a393945eb5ea3.json",
+      "bytes": 1876,
+      "sha256": "428537a48859942389894db33b088090c8d15f2b28579bc3fc3125e91d0dfe2f",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/e19488ca5d824d83afcce959d79c316a.json",
+      "bytes": 675,
+      "sha256": "4d08368523200e2825757611b4c6313a0de0fbf7a0fb902d0a2ecfc093c5a4d1",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/e19488ca5d824d83afcce959d79c316a.json",
+      "bytes": 894,
+      "sha256": "d4253c32922e33e0b3f6090537714032d172056d0a3e73ab908b4f2e079c18ac",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/e34cc48681d04b998973e0024e637fd3.json",
+      "bytes": 4434,
+      "sha256": "7572129fd8f2514a0fe384e4a8b9fc82eb08d6e3533c3357318970b3b5b12b83",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/e34cc48681d04b998973e0024e637fd3.json",
+      "bytes": 3442,
+      "sha256": "b8fb07e3f367a5e511a04a6aedc284e83eb76870254c0ef9d408be5ee3a6264f",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/e544bffe81bd48aab564db9bd940b2d6.json",
+      "bytes": 750,
+      "sha256": "628114782b25f2fc073a92c78597c26d096ca9c17b5d36c226733cf419564b43",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/e544bffe81bd48aab564db9bd940b2d6.json",
+      "bytes": 2092,
+      "sha256": "d46c9f8e0ed3d049053f8564909fc23f77b615f608de68410db93a5062d1dcb5",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/e55be620520a4dfdba9b6902d6be0c14.json",
+      "bytes": 219,
+      "sha256": "c6ee17051974515efe443832984af835a2b09c42df7ab13fb8bf9b8e27dfa064",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/e55be620520a4dfdba9b6902d6be0c14.json",
+      "bytes": 627,
+      "sha256": "bcf8f42a14aebfc8efd96b4586aaf19bf750f662e871ca28b0a867dda5cf3db6",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/edb1b5557aea4b73bf0e17e7cc291715.json",
+      "bytes": 7566,
+      "sha256": "e66cf27779925ff1f3091b423eb62104b00f8fef0b78bfa9f2f6ab0846e981a6",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/edb1b5557aea4b73bf0e17e7cc291715.json",
+      "bytes": 5195,
+      "sha256": "a3cfd86e1e57de3dc6873bcd8ce4b225ceda57d405e6a1f6e1d6f16cfb78ac98",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/inbox/ff94ffa86a44462eb9e42d090ab4c19c.json",
+      "bytes": 3209,
+      "sha256": "726674ed541900f2900a527b56a55881a6bcb054b0a1ec252953da9ee67991b6",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    },
+    {
+      "path": "freecad_control/easy_insert_session/outbox/ff94ffa86a44462eb9e42d090ab4c19c.json",
+      "bytes": 1032,
+      "sha256": "db7967412639cd97d12ff92e9d9f4186adc8d85f65d9cddd40ca6c3b76da5d4b",
+      "reason": "Completed successful bridge transaction; archive only, never replay",
+      "action": "delete"
+    }
+  ],
+  "successful_pairs": [
+    [
+      "freecad_control/easy_insert_session/inbox/0c1e06f5550d4b658a1d0db5e1ee2df0.json",
+      "freecad_control/easy_insert_session/outbox/0c1e06f5550d4b658a1d0db5e1ee2df0.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/1024555d01e2417d92502b2756e981de.json",
+      "freecad_control/easy_insert_session/outbox/1024555d01e2417d92502b2756e981de.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/1130db805d504bada7ecadd58f0c9d67.json",
+      "freecad_control/easy_insert_session/outbox/1130db805d504bada7ecadd58f0c9d67.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/225374390cbc489f872f8771cd475ba0.json",
+      "freecad_control/easy_insert_session/outbox/225374390cbc489f872f8771cd475ba0.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/238664b748c44a7792d3e2acc9722e02.json",
+      "freecad_control/easy_insert_session/outbox/238664b748c44a7792d3e2acc9722e02.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/2a2c4216c3b740f6960467af1edf71ab.json",
+      "freecad_control/easy_insert_session/outbox/2a2c4216c3b740f6960467af1edf71ab.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/2a47991e25ba471481ace5d08a563934.json",
+      "freecad_control/easy_insert_session/outbox/2a47991e25ba471481ace5d08a563934.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/2bedc22a311240509a6350879093aed3.json",
+      "freecad_control/easy_insert_session/outbox/2bedc22a311240509a6350879093aed3.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/2daaa7d89260475998004c8d02559029.json",
+      "freecad_control/easy_insert_session/outbox/2daaa7d89260475998004c8d02559029.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/2dfa841c1e7d41649295909e41ecc313.json",
+      "freecad_control/easy_insert_session/outbox/2dfa841c1e7d41649295909e41ecc313.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/2e7465411f4f4b00a327a77dfadf8301.json",
+      "freecad_control/easy_insert_session/outbox/2e7465411f4f4b00a327a77dfadf8301.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/2f95ca606e954e0e908d97e9cbeb3d7f.json",
+      "freecad_control/easy_insert_session/outbox/2f95ca606e954e0e908d97e9cbeb3d7f.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/34e546ba9db74638aa6bbe68f33aea8e.json",
+      "freecad_control/easy_insert_session/outbox/34e546ba9db74638aa6bbe68f33aea8e.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/3aa23a7edfc14cabbee93fc8ab0668d0.json",
+      "freecad_control/easy_insert_session/outbox/3aa23a7edfc14cabbee93fc8ab0668d0.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/4231a0f907eb4c6fa472ca4e99419ad1.json",
+      "freecad_control/easy_insert_session/outbox/4231a0f907eb4c6fa472ca4e99419ad1.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/427c6e41bc1348ab8113f1fdb8ff8fb1.json",
+      "freecad_control/easy_insert_session/outbox/427c6e41bc1348ab8113f1fdb8ff8fb1.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/4773a457430d4a17a18add002d721723.json",
+      "freecad_control/easy_insert_session/outbox/4773a457430d4a17a18add002d721723.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/48bceefdcf374cb6b55fedf1993f4e5a.json",
+      "freecad_control/easy_insert_session/outbox/48bceefdcf374cb6b55fedf1993f4e5a.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/4a4b3d521fd3494b8d3267ad909d04ca.json",
+      "freecad_control/easy_insert_session/outbox/4a4b3d521fd3494b8d3267ad909d04ca.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/4ae50d85b0164549b6010ecd170e3191.json",
+      "freecad_control/easy_insert_session/outbox/4ae50d85b0164549b6010ecd170e3191.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/4c3a00bf6b2041f29fbd79470dbfb3e7.json",
+      "freecad_control/easy_insert_session/outbox/4c3a00bf6b2041f29fbd79470dbfb3e7.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/4fb9dc31022047738863429d233dc806.json",
+      "freecad_control/easy_insert_session/outbox/4fb9dc31022047738863429d233dc806.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/5137ac12f14e48be9c3beb06f9c835d0.json",
+      "freecad_control/easy_insert_session/outbox/5137ac12f14e48be9c3beb06f9c835d0.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/61aade79062b469cade898ef47db7b13.json",
+      "freecad_control/easy_insert_session/outbox/61aade79062b469cade898ef47db7b13.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/68347828d59446d985e833971c04d38d.json",
+      "freecad_control/easy_insert_session/outbox/68347828d59446d985e833971c04d38d.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/6a33593a14a541639e646c442c9c504f.json",
+      "freecad_control/easy_insert_session/outbox/6a33593a14a541639e646c442c9c504f.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/6cd603c693a14879b073b46ce999aaa1.json",
+      "freecad_control/easy_insert_session/outbox/6cd603c693a14879b073b46ce999aaa1.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/6d6def125551496d8bfb424776a40253.json",
+      "freecad_control/easy_insert_session/outbox/6d6def125551496d8bfb424776a40253.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/72e19b5551dd40f6b6122767aafc59fd.json",
+      "freecad_control/easy_insert_session/outbox/72e19b5551dd40f6b6122767aafc59fd.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/74aa729ad34d474da32820a7467c017e.json",
+      "freecad_control/easy_insert_session/outbox/74aa729ad34d474da32820a7467c017e.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/74c5bf26ad2248ebb26c6afffc708dec.json",
+      "freecad_control/easy_insert_session/outbox/74c5bf26ad2248ebb26c6afffc708dec.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/7738060948204c6d94bf6bb267602f6c.json",
+      "freecad_control/easy_insert_session/outbox/7738060948204c6d94bf6bb267602f6c.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/789b87c5d9c04a50814298165cf5137c.json",
+      "freecad_control/easy_insert_session/outbox/789b87c5d9c04a50814298165cf5137c.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/81e9f656b9434234b70295b96aa0aa54.json",
+      "freecad_control/easy_insert_session/outbox/81e9f656b9434234b70295b96aa0aa54.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/84e193d12d2b496eaa89bd2fecdb1ffc.json",
+      "freecad_control/easy_insert_session/outbox/84e193d12d2b496eaa89bd2fecdb1ffc.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/8c4450d3e5774b33966fde794bdd9698.json",
+      "freecad_control/easy_insert_session/outbox/8c4450d3e5774b33966fde794bdd9698.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/8d74895b14544be492ae0eebbe114af6.json",
+      "freecad_control/easy_insert_session/outbox/8d74895b14544be492ae0eebbe114af6.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/8ee2095c611c48f8b7bd7822e47a455c.json",
+      "freecad_control/easy_insert_session/outbox/8ee2095c611c48f8b7bd7822e47a455c.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/94a61e9f8219474e842ffd6e18795895.json",
+      "freecad_control/easy_insert_session/outbox/94a61e9f8219474e842ffd6e18795895.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/969765ecfc3841d897ad5a7852af5d14.json",
+      "freecad_control/easy_insert_session/outbox/969765ecfc3841d897ad5a7852af5d14.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/9dd4b5bde836414582b0a00b29893b8c.json",
+      "freecad_control/easy_insert_session/outbox/9dd4b5bde836414582b0a00b29893b8c.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/9ed9001bc8ff406e8fd79fd47c85de3f.json",
+      "freecad_control/easy_insert_session/outbox/9ed9001bc8ff406e8fd79fd47c85de3f.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/a464fa45223149c9a8768c0fa0740f26.json",
+      "freecad_control/easy_insert_session/outbox/a464fa45223149c9a8768c0fa0740f26.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/a8c7401e72db4126a46b3516dbc24b73.json",
+      "freecad_control/easy_insert_session/outbox/a8c7401e72db4126a46b3516dbc24b73.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/ab85e37987e243e7ac275a8d39e73974.json",
+      "freecad_control/easy_insert_session/outbox/ab85e37987e243e7ac275a8d39e73974.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/ae1e4798abc7468782c317e2da288940.json",
+      "freecad_control/easy_insert_session/outbox/ae1e4798abc7468782c317e2da288940.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/b2a946184b3844918e830005e55a5224.json",
+      "freecad_control/easy_insert_session/outbox/b2a946184b3844918e830005e55a5224.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/b42911768195451a97cb6643f8b45965.json",
+      "freecad_control/easy_insert_session/outbox/b42911768195451a97cb6643f8b45965.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/bafbf98b7cfb44948a48d5083a36343e.json",
+      "freecad_control/easy_insert_session/outbox/bafbf98b7cfb44948a48d5083a36343e.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/bd17b5ff221148caae1789fd1fb694ba.json",
+      "freecad_control/easy_insert_session/outbox/bd17b5ff221148caae1789fd1fb694ba.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/bdf89568af1a438c9828afc0c9c88183.json",
+      "freecad_control/easy_insert_session/outbox/bdf89568af1a438c9828afc0c9c88183.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/c03d47459ca54ddfbaec3facddb4b4fd.json",
+      "freecad_control/easy_insert_session/outbox/c03d47459ca54ddfbaec3facddb4b4fd.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/c1e5b67ae7884ca397f218438b9e09ed.json",
+      "freecad_control/easy_insert_session/outbox/c1e5b67ae7884ca397f218438b9e09ed.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/c3152b683fd540d0a29114752c77e635.json",
+      "freecad_control/easy_insert_session/outbox/c3152b683fd540d0a29114752c77e635.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/c752c73f07ff4f69a22b812da9d0b96a.json",
+      "freecad_control/easy_insert_session/outbox/c752c73f07ff4f69a22b812da9d0b96a.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/cda8724ec2684508aec2087aedbaa4d5.json",
+      "freecad_control/easy_insert_session/outbox/cda8724ec2684508aec2087aedbaa4d5.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/ce7535513e904df6bf64186d5ddd4ee5.json",
+      "freecad_control/easy_insert_session/outbox/ce7535513e904df6bf64186d5ddd4ee5.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/d5b027de5ac14cb69d9aaf19ffa7d0e0.json",
+      "freecad_control/easy_insert_session/outbox/d5b027de5ac14cb69d9aaf19ffa7d0e0.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/e0e92ee6a1274da5b66a393945eb5ea3.json",
+      "freecad_control/easy_insert_session/outbox/e0e92ee6a1274da5b66a393945eb5ea3.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/e19488ca5d824d83afcce959d79c316a.json",
+      "freecad_control/easy_insert_session/outbox/e19488ca5d824d83afcce959d79c316a.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/e34cc48681d04b998973e0024e637fd3.json",
+      "freecad_control/easy_insert_session/outbox/e34cc48681d04b998973e0024e637fd3.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/e544bffe81bd48aab564db9bd940b2d6.json",
+      "freecad_control/easy_insert_session/outbox/e544bffe81bd48aab564db9bd940b2d6.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/e55be620520a4dfdba9b6902d6be0c14.json",
+      "freecad_control/easy_insert_session/outbox/e55be620520a4dfdba9b6902d6be0c14.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/edb1b5557aea4b73bf0e17e7cc291715.json",
+      "freecad_control/easy_insert_session/outbox/edb1b5557aea4b73bf0e17e7cc291715.json"
+    ],
+    [
+      "freecad_control/easy_insert_session/inbox/ff94ffa86a44462eb9e42d090ab4c19c.json",
+      "freecad_control/easy_insert_session/outbox/ff94ffa86a44462eb9e42d090ab4c19c.json"
+    ]
+  ],
+  "protected": {
+    "3D/Enclosure_Compact_Layout_D36/Printed_Retention_35x25x6/D36_Printed_Retention_35x25x6.FCStd": "9c08bf20382902c3c63c73057a5198aed6180d2e375f15898e6718bc947cc806",
+    "3D/Enclosure_Compact_Layout_D36/Printed_Retention_35x25x6/D36_Printed_Retention_35x25x6.20261103-092358.FCBak": "30ffa569b3b1985c07a908fed7001bee70d0980014a19a7e67fb60a15af345c7",
+    ".gitignore": "6e7518fdea7cdc4d860d82aba8a06acc4abcfb4e7b2f4dc90bd944a76711647b",
+    "AGENTS.md": "e3b90ef684f522ea4d9284587cb1971d340263bec10e73c75db1643fd094d3f0",
+    "3D/Enclosure_Compact_Layout_D36/Printed_Retention_35x25x6/Print_2026-11-03/D36_Front_half_2026-11-03.stl": "a22ef03c5108e645dceb502ebabb76d9f4aacc86228a0269e32caa72df422ae4",
+    "3D/Enclosure_Compact_Layout_D36/Printed_Retention_35x25x6/Print_2026-11-03/D36_Rear_half_2026-11-03.stl": "fb28b9829afbdebd1c7371fa1708fe5e101627fd5579744606966499e0edb812",
+    "3D/Enclosure_Compact_Layout_D36/Printed_Retention_35x25x6/Print_2026-11-03/README.md": "d5b8f6c04e2258ac1333b7fd9c8142b674240ac066604bc7787f31adf84da112",
+    "3D/Enclosure_Compact_Layout_D36/Printed_Retention_35x25x6/Print_2026-11-03/validation.json": "a0bf757726fc4a32f52d4d701742a264c633c590ecb05dd7e476c80907a2baeb",
+    "freecad_control/Connect.FCMacro": "0a6114ff01d3e05dc555a1cbdc2529f28b0ed5607e1ddb6adee3479401c5571c",
+    "freecad_control/send.py": "9bec63659385201287b5fedb0080c0024114dd454adcaa6651aa06f4a3a356dd",
+    "freecad_control/.gitignore": "64bd11a09cd0aeb520ba9056601d399e9f3ab33779fa396ed9c68919a6123071",
+    "freecad_control/restart_current.FCMacro": "79054da006f9cbd0efcd8b4fa1e794111037b7211d2559370da316df0006f0d0",
+    "freecad_control/inspect_connection.py": "1413935ee362b3ee2541ed2380a1303bd39705bf7be503bbd26a73775d180adb",
+    "freecad_control/easy_insert_session/Connect.FCMacro": "05fdf6589a40c8b2b9b44d368ae4c63c9e40f5592d1e07992750af482d59e6b0",
+    "freecad_control/easy_insert_session/send.py": "9bec63659385201287b5fedb0080c0024114dd454adcaa6651aa06f4a3a356dd",
+    "freecad_control/open_tray_session/Connect.FCMacro": "068f5741bbcb6186106d0691902abddb906cd3920407e3584129ccd90b0c12d1",
+    "freecad_control/open_tray_session/send.py": "9bec63659385201287b5fedb0080c0024114dd454adcaa6651aa06f4a3a356dd"
+  },
+  "archive_sha256": "f041081aaabe6d143a4ceeb5acd8c2f8a62a83d6bf64a2be2c5e6b6fd8998af9",
+  "deleted_files": [
+    "freecad_control/easy_insert_session/inbox/0c1e06f5550d4b658a1d0db5e1ee2df0.json",
+    "freecad_control/easy_insert_session/outbox/0c1e06f5550d4b658a1d0db5e1ee2df0.json",
+    "freecad_control/easy_insert_session/inbox/1024555d01e2417d92502b2756e981de.json",
+    "freecad_control/easy_insert_session/outbox/1024555d01e2417d92502b2756e981de.json",
+    "freecad_control/easy_insert_session/inbox/1130db805d504bada7ecadd58f0c9d67.json",
+    "freecad_control/easy_insert_session/outbox/1130db805d504bada7ecadd58f0c9d67.json",
+    "freecad_control/easy_insert_session/inbox/225374390cbc489f872f8771cd475ba0.json",
+    "freecad_control/easy_insert_session/outbox/225374390cbc489f872f8771cd475ba0.json",
+    "freecad_control/easy_insert_session/inbox/238664b748c44a7792d3e2acc9722e02.json",
+    "freecad_control/easy_insert_session/outbox/238664b748c44a7792d3e2acc9722e02.json",
+    "freecad_control/easy_insert_session/inbox/2a2c4216c3b740f6960467af1edf71ab.json",
+    "freecad_control/easy_insert_session/outbox/2a2c4216c3b740f6960467af1edf71ab.json",
+    "freecad_control/easy_insert_session/inbox/2a47991e25ba471481ace5d08a563934.json",
+    "freecad_control/easy_insert_session/outbox/2a47991e25ba471481ace5d08a563934.json",
+    "freecad_control/easy_insert_session/inbox/2bedc22a311240509a6350879093aed3.json",
+    "freecad_control/easy_insert_session/outbox/2bedc22a311240509a6350879093aed3.json",
+    "freecad_control/easy_insert_session/inbox/2daaa7d89260475998004c8d02559029.json",
+    "freecad_control/easy_insert_session/outbox/2daaa7d89260475998004c8d02559029.json",
+    "freecad_control/easy_insert_session/inbox/2dfa841c1e7d41649295909e41ecc313.json",
+    "freecad_control/easy_insert_session/outbox/2dfa841c1e7d41649295909e41ecc313.json",
+    "freecad_control/easy_insert_session/inbox/2e7465411f4f4b00a327a77dfadf8301.json",
+    "freecad_control/easy_insert_session/outbox/2e7465411f4f4b00a327a77dfadf8301.json",
+    "freecad_control/easy_insert_session/inbox/2f95ca606e954e0e908d97e9cbeb3d7f.json",
+    "freecad_control/easy_insert_session/outbox/2f95ca606e954e0e908d97e9cbeb3d7f.json",
+    "freecad_control/easy_insert_session/inbox/34e546ba9db74638aa6bbe68f33aea8e.json",
+    "freecad_control/easy_insert_session/outbox/34e546ba9db74638aa6bbe68f33aea8e.json",
+    "freecad_control/easy_insert_session/inbox/3aa23a7edfc14cabbee93fc8ab0668d0.json",
+    "freecad_control/easy_insert_session/outbox/3aa23a7edfc14cabbee93fc8ab0668d0.json",
+    "freecad_control/easy_insert_session/inbox/4231a0f907eb4c6fa472ca4e99419ad1.json",
+    "freecad_control/easy_insert_session/outbox/4231a0f907eb4c6fa472ca4e99419ad1.json",
+    "freecad_control/easy_insert_session/inbox/427c6e41bc1348ab8113f1fdb8ff8fb1.json",
+    "freecad_control/easy_insert_session/outbox/427c6e41bc1348ab8113f1fdb8ff8fb1.json",
+    "freecad_control/easy_insert_session/inbox/4773a457430d4a17a18add002d721723.json",
+    "freecad_control/easy_insert_session/outbox/4773a457430d4a17a18add002d721723.json",
+    "freecad_control/easy_insert_session/inbox/48bceefdcf374cb6b55fedf1993f4e5a.json",
+    "freecad_control/easy_insert_session/outbox/48bceefdcf374cb6b55fedf1993f4e5a.json",
+    "freecad_control/easy_insert_session/inbox/4a4b3d521fd3494b8d3267ad909d04ca.json",
+    "freecad_control/easy_insert_session/outbox/4a4b3d521fd3494b8d3267ad909d04ca.json",
+    "freecad_control/easy_insert_session/inbox/4ae50d85b0164549b6010ecd170e3191.json",
+    "freecad_control/easy_insert_session/outbox/4ae50d85b0164549b6010ecd170e3191.json",
+    "freecad_control/easy_insert_session/inbox/4c3a00bf6b2041f29fbd79470dbfb3e7.json",
+    "freecad_control/easy_insert_session/outbox/4c3a00bf6b2041f29fbd79470dbfb3e7.json",
+    "freecad_control/easy_insert_session/inbox/4fb9dc31022047738863429d233dc806.json",
+    "freecad_control/easy_insert_session/outbox/4fb9dc31022047738863429d233dc806.json",
+    "freecad_control/easy_insert_session/inbox/5137ac12f14e48be9c3beb06f9c835d0.json",
+    "freecad_control/easy_insert_session/outbox/5137ac12f14e48be9c3beb06f9c835d0.json",
+    "freecad_control/easy_insert_session/inbox/61aade79062b469cade898ef47db7b13.json",
+    "freecad_control/easy_insert_session/outbox/61aade79062b469cade898ef47db7b13.json",
+    "freecad_control/easy_insert_session/inbox/68347828d59446d985e833971c04d38d.json",
+    "freecad_control/easy_insert_session/outbox/68347828d59446d985e833971c04d38d.json",
+    "freecad_control/easy_insert_session/inbox/6a33593a14a541639e646c442c9c504f.json",
+    "freecad_control/easy_insert_session/outbox/6a33593a14a541639e646c442c9c504f.json",
+    "freecad_control/easy_insert_session/inbox/6cd603c693a14879b073b46ce999aaa1.json",
+    "freecad_control/easy_insert_session/outbox/6cd603c693a14879b073b46ce999aaa1.json",
+    "freecad_control/easy_insert_session/inbox/6d6def125551496d8bfb424776a40253.json",
+    "freecad_control/easy_insert_session/outbox/6d6def125551496d8bfb424776a40253.json",
+    "freecad_control/easy_insert_session/inbox/72e19b5551dd40f6b6122767aafc59fd.json",
+    "freecad_control/easy_insert_session/outbox/72e19b5551dd40f6b6122767aafc59fd.json",
+    "freecad_control/easy_insert_session/inbox/74aa729ad34d474da32820a7467c017e.json",
+    "freecad_control/easy_insert_session/outbox/74aa729ad34d474da32820a7467c017e.json",
+    "freecad_control/easy_insert_session/inbox/74c5bf26ad2248ebb26c6afffc708dec.json",
+    "freecad_control/easy_insert_session/outbox/74c5bf26ad2248ebb26c6afffc708dec.json",
+    "freecad_control/easy_insert_session/inbox/7738060948204c6d94bf6bb267602f6c.json",
+    "freecad_control/easy_insert_session/outbox/7738060948204c6d94bf6bb267602f6c.json",
+    "freecad_control/easy_insert_session/inbox/789b87c5d9c04a50814298165cf5137c.json",
+    "freecad_control/easy_insert_session/outbox/789b87c5d9c04a50814298165cf5137c.json",
+    "freecad_control/easy_insert_session/inbox/81e9f656b9434234b70295b96aa0aa54.json",
+    "freecad_control/easy_insert_session/outbox/81e9f656b9434234b70295b96aa0aa54.json",
+    "freecad_control/easy_insert_session/inbox/84e193d12d2b496eaa89bd2fecdb1ffc.json",
+    "freecad_control/easy_insert_session/outbox/84e193d12d2b496eaa89bd2fecdb1ffc.json",
+    "freecad_control/easy_insert_session/inbox/8c4450d3e5774b33966fde794bdd9698.json",
+    "freecad_control/easy_insert_session/outbox/8c4450d3e5774b33966fde794bdd9698.json",
+    "freecad_control/easy_insert_session/inbox/8d74895b14544be492ae0eebbe114af6.json",
+    "freecad_control/easy_insert_session/outbox/8d74895b14544be492ae0eebbe114af6.json",
+    "freecad_control/easy_insert_session/inbox/8ee2095c611c48f8b7bd7822e47a455c.json",
+    "freecad_control/easy_insert_session/outbox/8ee2095c611c48f8b7bd7822e47a455c.json",
+    "freecad_control/easy_insert_session/inbox/94a61e9f8219474e842ffd6e18795895.json",
+    "freecad_control/easy_insert_session/outbox/94a61e9f8219474e842ffd6e18795895.json",
+    "freecad_control/easy_insert_session/inbox/969765ecfc3841d897ad5a7852af5d14.json",
+    "freecad_control/easy_insert_session/outbox/969765ecfc3841d897ad5a7852af5d14.json",
+    "freecad_control/easy_insert_session/inbox/9dd4b5bde836414582b0a00b29893b8c.json",
+    "freecad_control/easy_insert_session/outbox/9dd4b5bde836414582b0a00b29893b8c.json",
+    "freecad_control/easy_insert_session/inbox/9ed9001bc8ff406e8fd79fd47c85de3f.json",
+    "freecad_control/easy_insert_session/outbox/9ed9001bc8ff406e8fd79fd47c85de3f.json",
+    "freecad_control/easy_insert_session/inbox/a464fa45223149c9a8768c0fa0740f26.json",
+    "freecad_control/easy_insert_session/outbox/a464fa45223149c9a8768c0fa0740f26.json",
+    "freecad_control/easy_insert_session/inbox/a8c7401e72db4126a46b3516dbc24b73.json",
+    "freecad_control/easy_insert_session/outbox/a8c7401e72db4126a46b3516dbc24b73.json",
+    "freecad_control/easy_insert_session/inbox/ab85e37987e243e7ac275a8d39e73974.json",
+    "freecad_control/easy_insert_session/outbox/ab85e37987e243e7ac275a8d39e73974.json",
+    "freecad_control/easy_insert_session/inbox/ae1e4798abc7468782c317e2da288940.json",
+    "freecad_control/easy_insert_session/outbox/ae1e4798abc7468782c317e2da288940.json",
+    "freecad_control/easy_insert_session/inbox/b2a946184b3844918e830005e55a5224.json",
+    "freecad_control/easy_insert_session/outbox/b2a946184b3844918e830005e55a5224.json",
+    "freecad_control/easy_insert_session/inbox/b42911768195451a97cb6643f8b45965.json",
+    "freecad_control/easy_insert_session/outbox/b42911768195451a97cb6643f8b45965.json",
+    "freecad_control/easy_insert_session/inbox/bafbf98b7cfb44948a48d5083a36343e.json",
+    "freecad_control/easy_insert_session/outbox/bafbf98b7cfb44948a48d5083a36343e.json",
+    "freecad_control/easy_insert_session/inbox/bd17b5ff221148caae1789fd1fb694ba.json",
+    "freecad_control/easy_insert_session/outbox/bd17b5ff221148caae1789fd1fb694ba.json",
+    "freecad_control/easy_insert_session/inbox/bdf89568af1a438c9828afc0c9c88183.json",
+    "freecad_control/easy_insert_session/outbox/bdf89568af1a438c9828afc0c9c88183.json",
+    "freecad_control/easy_insert_session/inbox/c03d47459ca54ddfbaec3facddb4b4fd.json",
+    "freecad_control/easy_insert_session/outbox/c03d47459ca54ddfbaec3facddb4b4fd.json",
+    "freecad_control/easy_insert_session/inbox/c1e5b67ae7884ca397f218438b9e09ed.json",
+    "freecad_control/easy_insert_session/outbox/c1e5b67ae7884ca397f218438b9e09ed.json",
+    "freecad_control/easy_insert_session/inbox/c3152b683fd540d0a29114752c77e635.json",
+    "freecad_control/easy_insert_session/outbox/c3152b683fd540d0a29114752c77e635.json",
+    "freecad_control/easy_insert_session/inbox/c752c73f07ff4f69a22b812da9d0b96a.json",
+    "freecad_control/easy_insert_session/outbox/c752c73f07ff4f69a22b812da9d0b96a.json",
+    "freecad_control/easy_insert_session/inbox/cda8724ec2684508aec2087aedbaa4d5.json",
+    "freecad_control/easy_insert_session/outbox/cda8724ec2684508aec2087aedbaa4d5.json",
+    "freecad_control/easy_insert_session/inbox/ce7535513e904df6bf64186d5ddd4ee5.json",
+    "freecad_control/easy_insert_session/outbox/ce7535513e904df6bf64186d5ddd4ee5.json",
+    "freecad_control/easy_insert_session/inbox/d5b027de5ac14cb69d9aaf19ffa7d0e0.json",
+    "freecad_control/easy_insert_session/outbox/d5b027de5ac14cb69d9aaf19ffa7d0e0.json",
+    "freecad_control/easy_insert_session/inbox/e0e92ee6a1274da5b66a393945eb5ea3.json",
+    "freecad_control/easy_insert_session/outbox/e0e92ee6a1274da5b66a393945eb5ea3.json",
+    "freecad_control/easy_insert_session/inbox/e19488ca5d824d83afcce959d79c316a.json",
+    "freecad_control/easy_insert_session/outbox/e19488ca5d824d83afcce959d79c316a.json",
+    "freecad_control/easy_insert_session/inbox/e34cc48681d04b998973e0024e637fd3.json",
+    "freecad_control/easy_insert_session/outbox/e34cc48681d04b998973e0024e637fd3.json",
+    "freecad_control/easy_insert_session/inbox/e544bffe81bd48aab564db9bd940b2d6.json",
+    "freecad_control/easy_insert_session/outbox/e544bffe81bd48aab564db9bd940b2d6.json",
+    "freecad_control/easy_insert_session/inbox/e55be620520a4dfdba9b6902d6be0c14.json",
+    "freecad_control/easy_insert_session/outbox/e55be620520a4dfdba9b6902d6be0c14.json",
+    "freecad_control/easy_insert_session/inbox/edb1b5557aea4b73bf0e17e7cc291715.json",
+    "freecad_control/easy_insert_session/outbox/edb1b5557aea4b73bf0e17e7cc291715.json",
+    "freecad_control/easy_insert_session/inbox/ff94ffa86a44462eb9e42d090ab4c19c.json",
+    "freecad_control/easy_insert_session/outbox/ff94ffa86a44462eb9e42d090ab4c19c.json",
+    "freecad_control/add_lower_screw.py",
+    "freecad_control/add_recessed_fasteners.py",
+    "freecad_control/capture_centered_m3.py",
+    "freecad_control/capture_clean_assembly.py",
+    "freecad_control/capture_fasteners.py",
+    "freecad_control/capture_lower_screw.py",
+    "freecad_control/capture_reinforced_frame.py",
+    "freecad_control/center_lower_m3.py",
+    "freecad_control/export_shells_2026_11_03.py",
+    "freecad_control/finalize_simplified_holders.py",
+    "freecad_control/finish_recessed_fasteners.py",
+    "freecad_control/inspect_fastener_holes.py",
+    "freecad_control/inspect_frame_bars.py",
+    "freecad_control/inspect_lower_screw.py",
+    "freecad_control/inspect_shell_steps.py",
+    "freecad_control/keep_shells_only.py",
+    "freecad_control/reinforce_frame_bars.py",
+    "freecad_control/restore_selected_components.py",
+    "freecad_control/save_fastener_view.py",
+    "freecad_control/show_clean_assembly.py",
+    "freecad_control/show_lower_screw.py",
+    "freecad_control/simplify_holder_steps.py",
+    "freecad_control/validate_clean_view.py",
+    "freecad_control/validate_saved_fasteners.py",
+    "freecad_control/restart_screen.png"
+  ],
+  "deletion_status": "Completed after explicit user approval: delete the reviewed unnecessary files, only within freecad_control.",
+  "replacement_hashes": {
+    "README.md": "4368ebf05bd6742cf90c35840175ca9a32312b2dcd5350980a285196e9e4b84d",
+    "HISTORY.md": "4a10ef7c05dceed394d70afc488cec67f92c86f849aac81dd7b1134b308f49ce",
+    "resume_latest.py": "c0b93d082a78f207926a3df7541164f19045f88a23a8d9b9be052271547d940f",
+    "CLEANUP_PLAN.md": "edf33875bdf1eb781199b90bc861ff8c5a0f6cda2ca19a990251107c54133998"
+  },
+  "verification": "ZIP CRC/member SHA-256 and source SHA-256 verified before deletion; successful requests removed before responses; all 155 targets confined to freecad_control.",
+  "protected_files_unchanged": true
+}

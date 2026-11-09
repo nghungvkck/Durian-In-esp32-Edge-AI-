@@ -1,160 +1,153 @@
 #include "audio_recorder.h"
+#include "wav_file.h"
 #include <algorithm>
 #include "esp_heap_caps.h"
 #include "esp_log.h"
+#include "freertos/task.h"
 
 static const char *TAG = "AUDIO_RECORDER";
 
-AudioRecorder::~AudioRecorder() {
-    clear();
+AudioRecorder::~AudioRecorder() { clear(); }
+
+void AudioRecorder::clear() {
+    if (active_) (void)stop();
+    if (free_buffers_) vQueueDelete(free_buffers_);
+    if (ready_buffers_) vQueueDelete(ready_buffers_);
+    if (capture_done_) vSemaphoreDelete(capture_done_);
+    if (writer_done_) vSemaphoreDelete(writer_done_);
+    heap_caps_free(buffer_);
+    free_buffers_ = nullptr;
+    ready_buffers_ = nullptr;
+    capture_done_ = writer_done_ = nullptr;
+    buffer_ = nullptr;
 }
 
 esp_err_t AudioRecorder::init() {
-    if (initialized_) { return ESP_OK;}
-
-    constexpr size_t buffer_bytes = BUFFER_COUNT * CHUNK_SAMPLES * sizeof(int16_t);                          // tinh so byte can thiet
-    // cap phat bo nho psram
-    // neu ko cap phat duoc thi buffer_ trả về nullptr 
-    buffer_ = static_cast<int16_t *>(heap_caps_malloc(buffer_bytes, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT));  
-    if (buffer_ == nullptr){
-        ESP_LOGE(TAG, "Failed to allocate buffer");
+    if (buffer_) return ESP_OK;
+    buffer_ = static_cast<int16_t *>(heap_caps_malloc(
+        BUFFER_COUNT * CHUNK_SAMPLES * sizeof(int16_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT));
+    free_buffers_ = xQueueCreate(BUFFER_COUNT, sizeof(int16_t *));
+    // One extra slot guarantees room for the end marker.
+    ready_buffers_ = xQueueCreate(BUFFER_COUNT + 1, sizeof(AudioChunk));
+    capture_done_ = xSemaphoreCreateBinary();
+    writer_done_ = xSemaphoreCreateBinary();
+    if (!buffer_ || !free_buffers_ || !ready_buffers_ || !capture_done_ || !writer_done_) {
+        clear();
         return ESP_ERR_NO_MEM;
     }
-
-    free_buffers_ = xQueueCreate(BUFFER_COUNT, sizeof(int16_t *));   // queue luu cac con tro dang ranh
-    ready_buffers_ = xQueueCreate(BUFFER_COUNT, sizeof(AudioChunk)); // queue luu cac chunk da san sang de ghi vao file
-    if (free_buffers_ == nullptr || ready_buffers_ == nullptr) {     // neu 1 trong 2 queue ko tao duoc thi xoa queue con lai va giai phong bo nho buffer_
-        if (free_buffers_ != nullptr) {
-            vQueueDelete(free_buffers_);
-            free_buffers_ = nullptr;
-        }
-        if (ready_buffers_ != nullptr) {
-            vQueueDelete(ready_buffers_);
-            ready_buffers_ = nullptr;
-        }
-
-        heap_caps_free(buffer_);
-        buffer_ = nullptr;
-        ESP_LOGE(TAG, "Failed to create queues");
-        return ESP_ERR_NO_MEM;
-    }
-
-    for (size_t i = 0; i < BUFFER_COUNT; i++) {                     // dua cac chunk vao queue free_buffers_ de san sang su dung
-        int16_t *chunk = buffer_ + i * CHUNK_SAMPLES;               // tinh dia chi cua chunk thu i
-        xQueueSend(free_buffers_, &chunk, 0);                       // dua con tro chunk vao queue free_buffers_
-    }
-
-    samples_recorded_ = 0;
-    initialized_ = true;
-
-    ESP_LOGI(TAG, "AudioRecorder initialized with buffer size %u bytes", static_cast<unsigned>(buffer_bytes));
     return ESP_OK;
 }
 
-esp_err_t AudioRecorder::start(Ics43434 &mic, const char *file_path) {
-    if (!initialized_) {
-        ESP_LOGE(TAG, "Call init() before start()");
-        return ESP_ERR_INVALID_STATE;
-    }
-
-    if (file_ != nullptr){
-        ESP_LOGE(TAG, "Recording already in progress");
-        return ESP_ERR_INVALID_STATE;
-    }
-
-    if (!mic.is_started()){
-        ESP_LOGE(TAG, "Microphone not started");
-        return ESP_ERR_INVALID_STATE;   
-    }
-
-    if (file_path == nullptr) {
-        ESP_LOGE(TAG, "Invalid filename");
-        return ESP_ERR_INVALID_ARG;
-    }
-
-    if (file_ != nullptr) {
-        ESP_LOGE(TAG, "Recording already in progress");
-        return ESP_ERR_INVALID_STATE;
-    }   
+void AudioRecorder::set_error(esp_err_t err) {
+    esp_err_t expected = ESP_OK;
+    error_.compare_exchange_strong(expected, err);
+    stop_requested_.store(true);
 }
 
-// esp_err_t AudioRecorder::record(Ics43434 &mic) {
-//     if (buffer_ == nullptr) {
-//         ESP_LOGE(TAG, "Call init() before record()");
-//         return ESP_ERR_INVALID_STATE;
-//     }
+esp_err_t AudioRecorder::start(Ics43434 &mic, const char *path) {
+    if (!buffer_ || active_ || !mic.is_started()) return ESP_ERR_INVALID_STATE;
+    if (!path) return ESP_ERR_INVALID_ARG;
+    file_ = fopen(path, "wb");
+    if (!file_) return ESP_FAIL;
+    if (!wav::write_header(file_, 0)) {
+        fclose(file_); file_ = nullptr;
+        return ESP_FAIL;
+    }
+    xQueueReset(free_buffers_);
+    xQueueReset(ready_buffers_);
+    (void)xSemaphoreTake(capture_done_, 0);
+    (void)xSemaphoreTake(writer_done_, 0);
+    for (size_t i = 0; i < BUFFER_COUNT; ++i) {
+        int16_t *chunk = buffer_ + i * CHUNK_SAMPLES;
+        xQueueSend(free_buffers_, &chunk, 0);
+    }
+    samples_recorded_ = 0;
+    mic_ = &mic;
+    stop_requested_.store(false);
+    error_.store(ESP_OK);
+    if (xTaskCreate(writer_task, "sd_writer", 4096, this, 5, nullptr) != pdPASS) {
+        fclose(file_); file_ = nullptr;
+        return ESP_ERR_NO_MEM;
+    }
+    if (xTaskCreate(capture_task, "mic_capture", 6144, this, 6, nullptr) != pdPASS) {
+        AudioChunk end{nullptr, 0};
+        xQueueSend(ready_buffers_, &end, portMAX_DELAY);
+        xSemaphoreTake(writer_done_, portMAX_DELAY);
+        fclose(file_); file_ = nullptr;
+        return ESP_ERR_NO_MEM;
+    }
+    active_ = true;
+    return ESP_OK;
+}
 
-//     constexpr size_t CHUNK_SIZE = 256;
-//     int32_t input[CHUNK_SIZE];
+void AudioRecorder::capture_task(void *context) {
+    auto &self = *static_cast<AudioRecorder *>(context);
+    int32_t pcm[CHUNK_SAMPLES];
+    while (!self.stop_requested_.load()) {
+        int16_t *buffer = nullptr;
+        // Fail explicitly rather than silently losing audio if the SD falls behind.
+        if (xQueueReceive(self.free_buffers_, &buffer, pdMS_TO_TICKS(20)) != pdTRUE) {
+            self.set_error(ESP_ERR_TIMEOUT);
+            break;
+        }
+        size_t count = 0;
+        esp_err_t err = self.mic_->read(pcm, CHUNK_SAMPLES, count, 200);
+        if ((err != ESP_OK && err != ESP_ERR_TIMEOUT) || count == 0) {
+            xQueueSend(self.free_buffers_, &buffer, 0);
+            self.set_error(err == ESP_OK ? ESP_FAIL : err);
+            break;
+        }
+        for (size_t i = 0; i < count; ++i)
+            buffer[i] = static_cast<int16_t>(std::clamp<int32_t>(pcm[i] / 256, -32768, 32767));
+        AudioChunk chunk{buffer, count};
+        xQueueSend(self.ready_buffers_, &chunk, portMAX_DELAY);
+    }
+    AudioChunk end{nullptr, 0};
+    xQueueSend(self.ready_buffers_, &end, portMAX_DELAY);
+    xSemaphoreGive(self.capture_done_);
+    vTaskDelete(nullptr);
+}
 
-//     samples_recorded_ = 0;
+void AudioRecorder::writer_task(void *context) {
+    auto &self = *static_cast<AudioRecorder *>(context);
+    size_t flushed_samples = 0;
+    while (true) {
+        AudioChunk chunk{};
+        xQueueReceive(self.ready_buffers_, &chunk, portMAX_DELAY);
+        if (!chunk.data) break;
+        // On failure keep draining the queue so capture/stop can always finish.
+        if (self.error_.load() == ESP_OK) {
+            if (self.samples_recorded_ + chunk.sample_count > wav::MAX_DATA_BYTES / 2) {
+                self.set_error(ESP_ERR_INVALID_SIZE);
+            } else if (fwrite(chunk.data, sizeof(int16_t), chunk.sample_count, self.file_) != chunk.sample_count) {
+                self.set_error(ESP_FAIL);
+            } else {
+                self.samples_recorded_ += chunk.sample_count;
+                if (self.samples_recorded_ - flushed_samples >= SAMPLE_RATE_HZ) {
+                    if (fflush(self.file_) != 0) self.set_error(ESP_FAIL);
+                    flushed_samples = self.samples_recorded_;
+                }
+            }
+        }
+        xQueueSend(self.free_buffers_, &chunk.data, 0);
+    }
+    xSemaphoreGive(self.writer_done_);
+    vTaskDelete(nullptr);
+}
 
-//     while (samples_recorded_ < TOTAL_SAMPLES) {
-//         const size_t remaining = TOTAL_SAMPLES - samples_recorded_;
-//         const size_t requested = std::min(remaining, CHUNK_SIZE);
-
-//         size_t received = 0;
-
-//         esp_err_t err = mic.read(
-//             input,
-//             requested,
-//             received,
-//             1000
-//         );
-
-//         if (err != ESP_OK) {
-//             ESP_LOGE(TAG, "Microphone read failed: %s",
-//                      esp_err_to_name(err));
-//             samples_recorded_ = 0;
-//             return err;
-//         }
-
-//         if (received == 0) {
-//             ESP_LOGE(TAG, "No samples received");
-//             samples_recorded_ = 0;
-//             return ESP_FAIL;
-//         }
-
-//         for (size_t i = 0; i < received; i++) {
-//             int32_t sample = input[i] / 256;
-
-//             sample = std::max<int32_t>(sample, -32768);
-//             sample = std::min<int32_t>(sample, 32767);
-
-//             buffer_[samples_recorded_ + i] =
-//                 static_cast<int16_t>(sample);
-//         }
-
-//         samples_recorded_ += received;
-//     }
-
-//     ESP_LOGI(TAG, "Recorded %u samples",
-//              static_cast<unsigned>(samples_recorded_));
-
-//     return ESP_OK;
-// }
-
-// const int16_t *AudioRecorder::data() const {
-//     return buffer_;
-// }
-
-// size_t AudioRecorder::sample_count() const {
-//     return samples_recorded_;
-// }
-
-// size_t AudioRecorder::byte_size() const {
-//     return samples_recorded_ * sizeof(int16_t);
-// }
-
-// void AudioRecorder::clear() {
-//     if (buffer_ != nullptr) {
-//         heap_caps_free(buffer_);
-//         buffer_ = nullptr;
-//     }
-
-//     samples_recorded_ = 0;
-// }
-
-// bool AudioRecorder::is_ready() const {
-//     return buffer_ != nullptr;
-// }
+esp_err_t AudioRecorder::stop() {
+    if (!active_) return ESP_ERR_INVALID_STATE;
+    stop_requested_.store(true);
+    xSemaphoreTake(capture_done_, portMAX_DELAY);
+    xSemaphoreTake(writer_done_, portMAX_DELAY);
+    if (samples_recorded_ == 0) set_error(ESP_ERR_INVALID_SIZE);
+    if (!wav::write_header(file_, samples_recorded_ * sizeof(int16_t))) set_error(ESP_FAIL);
+    if (fflush(file_) != 0) set_error(ESP_FAIL);
+    if (fclose(file_) != 0) set_error(ESP_FAIL);
+    file_ = nullptr;
+    mic_ = nullptr;
+    active_ = false;
+    ESP_LOGI(TAG, "Stopped: %u samples, status=%s", static_cast<unsigned>(samples_recorded_),
+             esp_err_to_name(error_.load()));
+    return error_.load();
+}

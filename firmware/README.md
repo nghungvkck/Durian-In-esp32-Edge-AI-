@@ -1,6 +1,51 @@
 # Nạp firmware và model lên ESP32-S3
 
-Tài liệu ghi lại cấu hình đã chạy thành công, quy trình nạp và các lỗi đã xử lý ngày 31/10/2026. Đường dẫn và mô tả code được cập nhật theo cấu trúc thư mục ngày 02/11/2026; chưa xác nhận build/chạy trên board sau lần sắp xếp này.
+## Chuyển board sang ESP32-S3 N16R8
+
+Board mới theo người dùng là N16R8: Flash 16 MB và PSRAM Octal 8 MB.
+Log người dùng gửi báo `quad_psram: PSRAM ID read error: 0x00ffffff`
+và `Failed to init external RAM!` trước khi vào ứng dụng. Cấu hình cũ chọn
+Quad PSRAM của board 2 MB trước đây, không phù hợp N16R8.
+
+Đã đổi `sdkconfig` và `sdkconfig.defaults` sang `CONFIG_SPIRAM_MODE_OCT=y`,
+giữ 40 MHz, auto-detect, kiểm tra bộ nhớ lúc boot và cấp phát qua heap.
+Flash image đổi từ 2 MB sang 16 MB; chế độ Flash vẫn DIO, bảng phân vùng
+factory vẫn 1500 KiB. Chưa build/flash/xác nhận chạy trên board mới.
+Người dùng tự chạy `idf.py reconfigure`, `idf.py build`, rồi
+`idf.py -p /dev/ttyACM0 flash monitor`. Kiểm tra log nhận 8 MB PSRAM và
+memory test OK. Không dùng cấu hình Octal này khi quay về board Quad cũ.
+
+Nguồn thông số: [datasheet Espressif ESP32-S3-WROOM-1/1U](https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf).
+Các mô tả Quad PSRAM 2 MB/Flash 4 MB bên dưới là lịch sử board trước.
+
+## Chế độ test WAV nhúng — 07/11/2026
+
+`main/CMakeLists.txt` hiện đặt `set(FIRMWARE_MODEL_TEST ON)` để chọn
+`test/model_only.cpp`. WAV `test/20260717_172242.wav` (mono PCM16 16 kHz,
+118784 mẫu, 7,424 giây) được nhúng cùng model vào firmware; không cần
+micro, microSD, nút hoặc LED. Vẫn chạy trên ESP32-S3 có PSRAM.
+
+Cập nhật 09/11/2026: thay WAV test bằng `20260717_172242.wav`. Đã kiểm tra
+header 44 byte đúng định dạng ứng dụng; biên độ PCM từ -31341 đến 31222,
+có đỉnh ở cả hai cửa sổ. WAV cũ chỉ chứa mẫu -1 nên không phát hiện được
+đỉnh. Lần thay WAV này chưa build/flash hoặc xác nhận kết quả model trên board.
+
+File test mở WAV trong flash bằng `fmemopen(..., "rb")`, gọi
+`infer_wav(FILE*, prediction, true)` trong `main/src/inference_pipeline.cpp`.
+Luồng xử lý dùng lại các module chính: cửa sổ lõi 4 giây và ngữ cảnh hai phía
+→ phát hiện đỉnh → cắt 0,24 giây → Mel → chuẩn hóa → resize 128×128 → INT8
+→ ESP-DL → bỏ phiếu XANH/CHÍN. Log in cấu trúc model, tensor input/output,
+từng cửa sổ/đoạn cắt, thời gian suy luận, điểm INT8 và kết quả cuối. Điểm INT8
+không phải xác suất. Không có đỉnh hoặc phiếu hòa thì không trả nhãn.
+
+Để quay lại ứng dụng chính, chỉ đổi thành `set(FIRMWARE_MODEL_TEST OFF)`
+trong CMake rồi reconfigure/build; WAV test không được nhúng ở chế độ này.
+API `infer_latest_wav(path, prediction)` của ứng dụng chính giữ nguyên và gọi
+chung `infer_wav`. File test hiện chạy WAV thực thay cho `model->test()`.
+Thay đổi này **chưa build, chưa flash, chưa chạy trên board** theo yêu cầu.
+Các mục bên dưới mô tả cấu hình và luồng ứng dụng chính.
+
+Tài liệu ghi lại cấu hình đã chạy thành công, quy trình nạp và các lỗi đã xử lý ngày 31/10/2026. Code điều khiển nút bấm, ghi microSD và suy luận WAV được cập nhật ngày 05/11/2026. Theo yêu cầu, chưa build hoặc chạy trên board sau lần sửa này.
 
 ## 1. Phần cứng và kết quả đã xác nhận
 
@@ -34,7 +79,7 @@ dl::Model: Test Pass!
 DURIAN_AI: Model test PASSED
 ```
 
-Đây là kết quả của bản kiểm thử model với dữ liệu được nhúng khi export, hiện giữ tại `main/src/firmware.cpp` và không nằm trong danh sách build. Điểm vào đang build là `main/src/main.cpp`: nạp model, thu âm micro 5 giây, phát hiện đỉnh/cắt đoạn, tính Mel, resize `128 × 128`, lượng tử hóa INT8 và chạy suy luận từng đoạn. Kết quả kiểm thử cũ không xác nhận luồng thu âm và suy luận hiện tại đã chạy trên board.
+Đây là kết quả của bản kiểm thử model với dữ liệu được nhúng khi export, hiện giữ tại `main/src/firmware.cpp` và không nằm trong danh sách build. Điểm vào CMake chọn là `main/src/main.cpp`: điều khiển nút bấm để ghi WAV xuống microSD và gọi `inference_pipeline.cpp` khi yêu cầu suy luận file gần nhất. Kết quả kiểm thử cũ không xác nhận luồng thu âm và suy luận hiện tại đã chạy trên board.
 
 ## 2. Các file chính và cách model được nạp
 
@@ -46,7 +91,9 @@ DURIAN_AI: Model test PASSED
 | `../espdl/durian_student_pruned.espdl` | Model đầu ra của script quantization |
 | `models/durian_student_pruned.espdl` | Bản model thực sự được firmware nhúng vào binary |
 | `main/CMakeLists.txt` | Khai báo source và nhúng model |
-| `main/src/main.cpp` | Điểm vào đang build: điều phối thu âm, xử lý Mel và suy luận |
+| `main/src/main.cpp` | Điều phối nút, LED, mount microSD và vòng lặp ghi/suy luận |
+| `main/src/inference_pipeline.cpp` | Đọc WAV theo cửa sổ, xử lý Mel và suy luận |
+| `main/include/wav_file.h` | Ghi/kiểm tra header WAV mono PCM16 16 kHz |
 | `main/src/firmware.cpp` | Bản kiểm thử model cũ, không nằm trong `SRCS` |
 | `main/include/` | Header của các module ứng dụng |
 | `main/src/` | Phần cài đặt C++ của các module |
@@ -121,7 +168,7 @@ CONFIG_PARTITION_TABLE_FILENAME="partitions_singleapp_large.csv"
 
 `sdkconfig.defaults` đã lưu các thiết lập PSRAM và phân vùng app. File này cung cấp giá trị mặc định khi tạo cấu hình; không tự ghi đè các giá trị đã có trong `sdkconfig`. Nếu cấu hình cũ vẫn tắt PSRAM, mở `idf.py menuconfig`, bật trong `Component config → ESP PSRAM`, chọn Quad, 40 MHz và cho phép cấp phát qua malloc; chọn phân vùng single factory app lớn trong `Partition Table`.
 
-Trong `main/src/main.cpp` (và bản kiểm thử `main/src/firmware.cpp`), model được tạo với `max_internal_size = 0`:
+Trong `main/src/inference_pipeline.cpp` (và bản kiểm thử `main/src/firmware.cpp`), model được tạo với `max_internal_size = 0`:
 
 ```cpp
 dl::Model *model = new dl::Model(
@@ -131,7 +178,7 @@ dl::Model *model = new dl::Model(
 );
 ```
 
-Với `CONFIG_SPIRAM=y`, bộ quản lý bộ nhớ Greedy của phiên bản ESP-DL hiện tại đặt vùng tensor vào PSRAM khi giới hạn RAM nội bằng 0. Code hiện tại kiểm tra PSRAM và tensor input/output trước khi thu âm và suy luận. Bản kiểm thử cũ kiểm tra các điều kiện này trước khi gọi `test()`.
+Với `CONFIG_SPIRAM=y`, bộ quản lý bộ nhớ Greedy của phiên bản ESP-DL hiện tại đặt vùng tensor vào PSRAM khi giới hạn RAM nội bằng 0. Code hiện tại kiểm tra PSRAM lúc khởi động; model và tensor input/output được nạp/kiểm tra khi bấm nút suy luận, sau khi việc ghi âm đã kết thúc. Bản kiểm thử cũ kiểm tra các điều kiện này trước khi gọi `test()`.
 
 ### Bước 4 — Build
 
@@ -181,7 +228,7 @@ Model loaded
 Model test PASSED
 ```
 
-Với `main/src/main.cpp` đang build, theo dõi `Starting durian audio pipeline`, `Model loaded. Input bytes=...`, `Recording audio...`, `Recorded ... samples`, `Detected peaks: ...`, các dòng `Crop ... prediction: ...` và `Pipeline completed: ... crops inferred`. Code hiện tại không gọi `model->test()`, nên không chờ dòng `Model test PASSED`. Nếu không có đỉnh hoặc gặp lỗi khởi tạo/xử lý, code có thể thoát sớm; lưu log từ lúc boot để chẩn đoán. Build thành công chưa đủ để xác nhận thu âm và suy luận đúng trên phần cứng.
+Với code nút bấm/microSD hiện tại, theo dõi `Ready. Button 1=CHIN, 2=XANH, 3=infer latest`, `Recording ...`, `Stopped: ... samples`, `Saved /sdcard/...`, `Inferring ...`, `Votes XANH=..., CHIN=...` và `Result: ...`. Code không gọi `model->test()`. Bản cập nhật ngày 05/11/2026 chưa build/flash; cần kiểm tra thực tế thu âm, chất lượng WAV, chống dội nút và LED. Chi tiết thao tác nằm ở mục 7.
 
 ### Các lần cập nhật tiếp theo
 
@@ -273,13 +320,13 @@ Flash vật lý 4 MB nhưng image đang cấu hình 2 MB. Bản hiện tại v�
 - `main/include/ics43434.h`: khai báo class `Ics43434`, cấu hình GPIO và các hàm công khai.
 - `main/src/ics43434.cpp`: cài đặt I2S, đọc PCM và giải phóng tài nguyên.
 - `main/CMakeLists.txt`: đã thêm source và dependency `esp_driver_i2s`, `esp_driver_gpio`.
-- `main/src/main.cpp`: dùng `#include "ics43434.h"`, tạo đối tượng micro và gọi thu âm qua `AudioRecorder`. Header được tìm qua `INCLUDE_DIRS "include"`.
+- `main/src/main.cpp`: tạo đối tượng micro, bật khi bắt đầu thu và tắt sau khi dừng; `AudioRecorder` đọc micro trong task riêng. Header được tìm qua `INCLUDE_DIRS "include"`.
 
 Class chỉ phụ trách thu âm. Mel-Spectrogram nằm trong module `mel_extractor`, resize nằm trong `spectrogram_resize`, còn `app_main()` ở `main/src/main.cpp` điều phối và gọi suy luận model. C++ dùng `#include` cho khai báo và CMake để biên dịch/link phần cài đặt, khác với `import` module Python.
 
 ### Nối dây mẫu
 
-Bảng dưới là phương án GPIO gợi ý của ví dụ kiểm tra riêng. Code đang build trong `main/src/main.cpp` dùng BCLK GPIO3, WS GPIO2, DIN GPIO1 và kênh trái; không dùng bộ GPIO4/5/6 của ví dụ. Chưa xác nhận sơ đồ chân của board Super Mini thực tế. Kiểm tra nhãn GPIO trên board trước khi nối; số dưới đây là số GPIO, không phải vị trí chân trên hàng header. Có thể đổi bằng `Config` mà không sửa driver.
+Bảng dưới là phương án GPIO gợi ý của ví dụ kiểm tra riêng. Code hiện tại trong `main/src/main.cpp` dùng BCLK GPIO5, WS GPIO6, DIN GPIO4 và kênh trái; bảng GPIO4/5/6 bên dưới chỉ là ví dụ cũ. Sơ đồ chốt mới ở mục 7. Chưa xác nhận sơ đồ chân của board Super Mini thực tế. Kiểm tra nhãn GPIO trên board trước khi nối; số dưới đây là số GPIO, không phải vị trí chân trên hàng header. Có thể đổi bằng `Config` mà không sửa driver.
 
 | ICS-43434 | ESP32-S3 |
 | --- | --- |
@@ -357,3 +404,56 @@ extern "C" void app_main(void)
 Dùng một task để quản lý đối tượng, không gọi `begin/read/end` đồng thời từ nhiều task. Đọc đều đặn; tránh chờ lâu hoặc chạy suy luận nặng ngay giữa các lần đọc vì DMA có thể tràn và mất mẫu. Khi tích hợp suy luận liên tục, nên dùng task thu âm riêng và queue/ring buffer chuyển dữ liệu sang task xử lý. Không giữ toàn bộ bản thu dài trong stack; dùng buffer cố định hoặc bộ nhớ được cấp phát có kiểm tra.
 
 Nguồn đối chiếu: [datasheet ICS-43434 của TDK](https://product.tdk.com/system/files/dam/doc/product/sw_piezo/mic/mems-mic/data_sheet/ds-000069-ics-43434-v1.2.pdf), [I2S ESP-IDF 5.3.6 cho ESP32-S3](https://docs.espressif.com/projects/esp-idf/en/v5.3.6/esp32s3/api-reference/peripherals/i2s.html).
+
+
+## 7. Điều khiển nút bấm và ghi microSD — 05/11/2026
+
+Đã sửa code theo yêu cầu, **chưa build, chưa flash và chưa kiểm chứng trên board**.
+
+### Sơ đồ chân đã chốt
+
+| Module | Tín hiệu | GPIO |
+| --- | --- | --- |
+| microSD SPI | CS / SCK / MOSI / MISO | 13 / 12 / 11 / 10 |
+| ICS-43434 | SD / SCK / WS | 4 / 5 / 6 |
+| Nút P/V (nút 1) | CHÍN | 1 |
+| Nút N/V (nút 2) | XANH | 2 |
+| Nút Play (nút 3) | Suy luận | 3 |
+| LED đơn | Điều khiển LED | 7 |
+
+Code giả định nút nhấn kéo GPIO xuống GND, dùng pull-up nội và chống dội 40 ms; không tự lặp khi giữ nút. LED active-high: GPIO7 → điện trở hạn dòng → anode LED, cathode → GND. Nếu module nút xuất active-high hoặc LED mắc đảo, chỉnh `BUTTON_ACTIVE_LOW` / `LED_ACTIVE_HIGH` trong `main.cpp`. ICS L/R nối GND (kênh trái); dùng GND chung giữa các module.
+
+### Thao tác
+
+- Đang nghỉ: nút 1 bắt đầu thu nhãn CHÍN; nút 2 bắt đầu thu nhãn XANH.
+- Đang thu: chỉ bấm lại chính nút đã bắt đầu để dừng và hoàn tất file. Nút nhãn còn lại và nút 3 đều bị bỏ qua. Cụ thể, thu bằng nút 1 thì bấm nút 2 không làm gì.
+- Đang nghỉ: nút 3 suy luận file WAV hoàn tất gần nhất, kể cả file tìm lại sau khi reboot. Không phát âm thanh ra loa.
+- Trong lúc suy luận: các nút bị bỏ qua; nút đang giữ phải thả rồi nhấn lại để thao tác tiếp.
+- Nút 1 và 2 được nhấn đồng thời khi nghỉ thì không bắt đầu thu.
+
+### Quy ước LED
+
+| Trạng thái | LED |
+| --- | --- |
+| Sẵn sàng / lưu thành công | Tắt |
+| Đang ghi âm | Sáng liên tục |
+| Đang suy luận | Sáng 0,5 giây / tắt 0,5 giây |
+| Kết quả XANH | 1 nháy ngắn, lặp mỗi 3 giây |
+| Kết quả CHÍN | 2 nháy ngắn, lặp mỗi 3 giây |
+| Lỗi, chưa có file, không có đỉnh hoặc phiếu hòa | Nháy nhanh 0,1 giây sáng / 0,1 giây tắt |
+
+Kết quả/lỗi giữ đến thao tác tiếp theo. Lỗi khởi tạo SD/PSRAM yêu cầu sửa kết nối rồi khởi động lại. Xem log để biết nguyên nhân cụ thể.
+
+### File và xử lý
+
+- microSD phải mount được bằng FAT; code không tự format thẻ khi lỗi.
+- File mono PCM16 16 kHz: `/sdcard/CHIN/00000001.WAV` hoặc `/sdcard/XANH/00000002.WAV`. Nhãn nằm trong tên thư mục, không phải kết quả dự đoán.
+- ID tăng chung cho hai thư mục, không phụ thuộc đồng hồ. Tên 8.3 không cần bật hỗ trợ tên dài của FAT.
+- Khi thu dùng đuôi `.TMP`; sau khi drain bộ đệm, cập nhật header và đóng file thành công mới đổi thành `.WAV`. File `.TMP` sau lỗi/mất điện được giữ lại nhưng không dùng suy luận. Chưa có cơ chế phục hồi chúng.
+- Task thu mic chuyển PCM24 sang PCM16; task SD nhận dữ liệu qua queue 16 buffer × 1024 mẫu (~1 giây âm thanh). Ghi liên tục, flush khoảng mỗi giây. Nếu SD quá chậm, hết chỗ hoặc đọc mic lỗi thì dừng và báo lỗi; không âm thầm bỏ mẫu.
+- Không còn giới hạn cố định 5 giây. Giới hạn kích thước mỗi file gần 2 GiB để offset nằm trong miền `fseek`; chạm giới hạn thì báo lỗi, giữ `.TMP`.
+- Khi suy luận, đọc cửa sổ lõi 4 giây có ngữ cảnh hai phía 0,24 giây, phát hiện đỉnh/cắt đoạn bằng module hiện có, rồi Mel → chuẩn hóa → resize 128 × 128 → INT8 → ESP-DL. Ngưỡng đỉnh được tính riêng theo từng cửa sổ, có thể khác xử lý toàn file một lượt.
+- Chỉ tính phiếu các đỉnh thuộc lõi cửa sổ, lọc khoảng cách tối thiểu giữa đỉnh qua biên cửa sổ. Kết quả là đa số phiếu các đoạn: class 0=XANH, class 1=CHÍN. Hòa hoặc không có đỉnh báo lỗi, không đưa ra kết quả nhãn.
+- Model chỉ được nạp lúc suy luận và giải phóng khi xong, không chạy đồng thời với ghi âm. LED chạy task riêng.
+
+Khi tự kiểm tra: build trước, sau đó thử thu/dừng từng nhãn, bấm nút nhãn còn lại trong lúc thu, kiểm tra WAV trên máy, reboot rồi bấm nút 3; thử bản thu dài hơn 5 giây và quan sát log/LED. Quy trình này chưa được thực hiện trong lần sửa code.
